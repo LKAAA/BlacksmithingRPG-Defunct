@@ -169,6 +169,9 @@ radius = 11.0
 z_index = 2
 script = ExtResource("1_27t2j")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vmjjh")
 animation = &"idle_down"

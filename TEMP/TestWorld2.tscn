@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqcv67rhu6pu6"]
+
+[ext_resource type="TileSet" uid="uid://c6cv5anb28vs3" path="res://TEMP/world.tres" id="1_6irqp"]
+[ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://Scenes/player.tscn" id="2_px0af"]
+[ext_resource type="Texture2D" uid="uid://b7ijt60p65fp2" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Basic_Grass_Biom_things.png" id="3_sofyt"]
+[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/interaction_manager.tscn" id="4_4oax1"]
+[ext_resource type="Script" path="res://Scripts/transitionInteraction.gd" id="5_rj8a4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht8bt"]
+size = Vector2(8, 15)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tr32h"]
+radius = 11.0
+height = 38.0
+
+[node name="World2" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_6irqp")
+format = 2
+layer_0/tile_data = PackedInt32Array(851974, 65536, 0, 917510, 65536, 1, 786439, 0, 1, 851975, 589824, 0, 917511, 131072, 1, 196616, 0, 0, 262152, 393216, 2, 327688, 65536, 1, 393224, 65536, 1, 458760, 65536, 1, 524296, 65536, 1, 589832, 65536, 1, 655368, 65536, 1, 720904, 65536, 1, 786440, 65536, 1, 851976, 65536, 2, 196617, 131072, 0, 262153, 327680, 2, 327689, 65536, 1, 393225, 65536, 1, 458761, 65536, 1, 524297, 65536, 1, 589833, 65536, 1, 655369, 65536, 1, 720905, 65536, 1, 786441, 65536, 1, 262154, 131072, 0, 327690, 131072, 1, 393226, 131072, 1, 458762, 131072, 1, 524298, 131072, 1, 589834, 131072, 1, 655370, 131072, 1, 720906, 131072, 1, 786442, 131072, 1, 851979, 65536, 0, 917515, 65536, 1, 851980, 131072, 0, 917516, 131072, 1, 851973, 0, 0, 917509, 0, 1, 983045, 0, 2, 983046, 65536, 2, 262151, 0, 0, 327687, 0, 1, 393223, 0, 1, 458759, 0, 1, 524295, 0, 1, 589831, 0, 1, 655367, 0, 1, 720903, 0, 1, 983047, 131072, 2, 851977, 65536, 2, 851978, 589824, 1, 917514, 0, 1, 983050, 0, 2, 983051, 65536, 2, 983052, 131072, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_px0af")]
+position = Vector2(145, 205)
+
+[node name="TreeTranspotation" type="StaticBody2D" parent="."]
+position = Vector2(144, 68)
+
+[node name="Sprite2D" type="Sprite2D" parent="TreeTranspotation"]
+texture = ExtResource("3_sofyt")
+region_enabled = true
+region_rect = Rect2(18.6985, 0, 26.6491, 31.6564)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreeTranspotation"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_ht8bt")
+
+[node name="InteractionManager" parent="TreeTranspotation" instance=ExtResource("4_4oax1")]
+script = ExtResource("5_rj8a4")
+scenePath = "res://Scenes/world.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreeTranspotation/InteractionManager"]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_tr32h")
