@@ -167,6 +167,7 @@ radius = 11.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
+collision_layer = 73
 script = ExtResource("1_27t2j")
 
 [node name="Camera2D" type="Camera2D" parent="."]

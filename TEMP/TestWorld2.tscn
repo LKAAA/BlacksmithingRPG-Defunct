@@ -37,7 +37,7 @@ shape = SubResource("RectangleShape2D_ht8bt")
 
 [node name="InteractionManager" parent="TreeTranspotation" instance=ExtResource("4_4oax1")]
 script = ExtResource("5_rj8a4")
-scenePath = "res://Scenes/world.tscn"
+scenePath = "res://TEMP/TestingWorld.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeTranspotation/InteractionManager"]
 position = Vector2(0, 5)
