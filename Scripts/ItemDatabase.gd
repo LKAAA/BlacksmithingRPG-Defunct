@@ -1,9 +1,8 @@
-extends Node2D
+extends Node
 
 var items = {}
 
 func _ready():
-	visible = false
 	
 	# Put items in a dictionary for quick access
 	for child in get_children():

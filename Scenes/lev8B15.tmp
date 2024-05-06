@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb16uv4cnk3td"]
+
+[ext_resource type="Script" path="res://Scripts/LevelingManager.gd" id="1_3v3pw"]
+[ext_resource type="PackedScene" uid="uid://d21plplyq0wgb" path="res://Scenes/stat_class.tscn" id="2_e7br6"]
+
+[node name="LevelingManager" type="Node"]
+script = ExtResource("1_3v3pw")
+
+[node name="Mining" parent="." instance=ExtResource("2_e7br6")]
+
+[node name="Combat" parent="." instance=ExtResource("2_e7br6")]
