@@ -13,10 +13,10 @@ func _ready():
 	while get_child_count() > 0:
 		remove_child(get_child(0))
 	
+	print(items)
 	pass
 
 
 func get_item(item_name):
-	if (items.has(item.name)):
+	if (items.has(item_name)):
 		return items[item_name]
-	return null

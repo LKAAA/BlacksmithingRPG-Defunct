@@ -9,10 +9,9 @@ var vertical
 var lastDirection
 
 @onready var interactionManager = $InteractionManager
-
 @onready var animated_sprite = $AnimatedSprite2D
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	horizontal = Input.get_axis("walk_left", "walk_right")
@@ -34,6 +33,13 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	play_animations()
+	
+	if Input.is_action_just_pressed("OpenInventory"):
+		var foundItem = ItemDatabase.get_item("Plant")
+		print(foundItem.value)
+		print(foundItem.name)
+		print(foundItem.description)
+	
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=12 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://Scenes/player.tscn" id="1_b4dbp"]
-[ext_resource type="PackedScene" uid="uid://d35iawy5rjcxr" path="res://Scenes/egg_test.tscn" id="2_a43td"]
 [ext_resource type="Texture2D" uid="uid://dc06eeyl616lw" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Free_Chicken_House.png" id="3_tfyfe"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/interaction_manager.tscn" id="4_xkivk"]
 [ext_resource type="Script" path="res://Scripts/transitionInteraction.gd" id="5_ukwkh"]
@@ -26,9 +25,7 @@ size = Vector2(93, 34)
 [node name="TestingWorld" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_b4dbp")]
-
-[node name="EggItem" parent="." instance=ExtResource("2_a43td")]
-position = Vector2(143, -21)
+position = Vector2(45, 2)
 
 [node name="FreeChickenHouse" type="Sprite2D" parent="."]
 position = Vector2(99, -63)
