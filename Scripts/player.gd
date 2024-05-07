@@ -28,7 +28,8 @@ func _physics_process(_delta):
 	
 	if isSprinting:
 		# First check if you are moving in both direction
-		if vertical && horizontal: # If you are moving in both direction cap speed at half so it doesnt move at double move speed diagonally
+		if vertical && horizontal: 
+			# If you are moving in both direction cap speed so it doesnt move faster diagonally
 			velocity.x = horizontal * (RUNSPEED / 1.5)
 			velocity.y = vertical * (RUNSPEED / 1.5)
 		elif horizontal: # If only moving horizontal you want to slow down vertical to 0
@@ -42,7 +43,8 @@ func _physics_process(_delta):
 			velocity.y = move_toward(velocity.y, 0, RUNSPEED)
 	else:
 		# First check if you are moving in both direction
-		if vertical && horizontal: # If you are moving in both direction cap speed at half so it doesnt move at double move speed diagonally
+		if vertical && horizontal: 
+			# If you are moving in both direction cap speed so it doesnt move faster diagonally
 			velocity.x = horizontal * (WALKSPEED / 1.5)
 			velocity.y = vertical * (WALKSPEED / 1.5)
 		elif horizontal: # If only moving horizontal you want to slow down vertical to 0
