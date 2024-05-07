@@ -55,8 +55,6 @@ func _physics_process(_delta):
 			velocity.x = move_toward(velocity.x, 0, WALKSPEED)
 			velocity.y = move_toward(velocity.y, 0, WALKSPEED)
 	
-	print(velocity.x)
-	
 	move_and_slide()
 	recieve_inputs()
 	play_animations()
@@ -86,11 +84,12 @@ func recieve_inputs():
 		# health_manager.damage(10)
 		# print("Taken 10 damage.")
 		
-		# leveling_manager.gainXP(500, "Mining")
+		leveling_manager.gainXP(500, "Mining")
 		pass
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")
+		leveling_manager.gainXP(500, "Combat")
 		interactionManager.initiate_interaction()
 
 func play_animations():

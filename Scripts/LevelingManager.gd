@@ -2,6 +2,8 @@ extends Node
 
 var skills = {}
 
+var totalLevel = 00
+
 var maxLevel = 10
 var totalXP
 
@@ -32,7 +34,7 @@ func gainXP(xpToGain: int, skillName: String):
 		var curSkillLevel
 		curSkillLevel = skillToAdjust.curLevel
 		requiredXP = xpTable[curSkillLevel]
-		print("requiredXP = " + str(requiredXP))
+		#print("requiredXP = " + str(requiredXP))
 		
 		# If skill's current xp would go over the current level requirement then commence level up
 		if (skillToAdjust.curXP + xpToGain) >= requiredXP:
@@ -40,7 +42,7 @@ func gainXP(xpToGain: int, skillName: String):
 		# Otherwise add the requested amount of xp to the skill
 		else:
 			skillToAdjust.curXP += xpToGain
-			print("Increased xp by " + str(xpToGain) + ". It is now: " + str(skillToAdjust.curXP))
+			#print("Increased xp by " + str(xpToGain) + ". It is now: " + str(skillToAdjust.curXP))
 			skillToAdjust = null
 			requiredXP = null
 
@@ -53,7 +55,9 @@ func levelUp(skillToAdjust, xpToGain: int):
 	
 	# increase the skills level
 	skillToAdjust.curLevel += 1
+	totalLevel += 1
 	print(skillToAdjust.curLevel)
+	print(totalLevel)
 	
 	# find leftover xp
 	var neededXP
