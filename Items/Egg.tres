@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dr0xo1pung2n1"]
+
+[ext_resource type="Script" path="res://Scripts/Item.gd" id="1_8oaga"]
+[ext_resource type="Texture2D" uid="uid://6velhd73jsjj" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Egg_item.png" id="2_7nsvt"]
+
+[resource]
+script = ExtResource("1_8oaga")
+name = "Egg"
+stackable = true
+max_stack_size = 16
+value = 50
+description = "A delicious looking egg. Yum."
+itemType = 1
+sprite = ExtResource("2_7nsvt")

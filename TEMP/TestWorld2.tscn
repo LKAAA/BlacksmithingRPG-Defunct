@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://c6cv5anb28vs3" path="res://TEMP/world.tres" id="1_6irqp"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://Scenes/player.tscn" id="2_px0af"]
 [ext_resource type="Texture2D" uid="uid://b7ijt60p65fp2" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Basic_Grass_Biom_things.png" id="3_sofyt"]
-[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/interaction_manager.tscn" id="4_4oax1"]
+[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="4_4oax1"]
 [ext_resource type="Script" path="res://Scripts/transitionInteraction.gd" id="5_rj8a4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht8bt"]

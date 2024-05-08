@@ -1,33 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx6ur2buykbxf"]
+[gd_scene load_steps=2 format=3 uid="uid://bx6ur2buykbxf"]
 
 [ext_resource type="Script" path="res://Scripts/ItemDatabase.gd" id="1_cb77r"]
-[ext_resource type="PackedScene" uid="uid://cq1j4oqe37qna" path="res://Scenes/item.tscn" id="2_c2dli"]
-[ext_resource type="Texture2D" uid="uid://6velhd73jsjj" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Egg_item.png" id="3_x08dc"]
-[ext_resource type="Texture2D" uid="uid://blwib3ky0q4nh" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Simple_Milk_and_grass_item.png" id="4_yi3le"]
 
 [node name="ItemDatabase" type="Node"]
 script = ExtResource("1_cb77r")
-
-[node name="Egg" parent="." instance=ExtResource("2_c2dli")]
-texture = ExtResource("3_x08dc")
-rarity = 1
-value = 5
-description = "A big shiny egg."
-itemType = 1
-
-[node name="Milk" parent="." instance=ExtResource("2_c2dli")]
-texture = ExtResource("4_yi3le")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-rarity = 1
-value = 10
-description = "A delicious bottle of milk."
-itemType = 1
-
-[node name="Plant" parent="." instance=ExtResource("2_c2dli")]
-texture = ExtResource("4_yi3le")
-region_enabled = true
-region_rect = Rect2(48, 0, 16, 16)
-rarity = 1
-value = 1
-description = "A plant."

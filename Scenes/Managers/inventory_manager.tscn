@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://lucdnr8845xa"]
+
+[ext_resource type="Script" path="res://Scripts/Managers/inventory_manager.gd" id="1_wou40"]
+
+[node name="inventory_manager" type="Node"]
+script = ExtResource("1_wou40")

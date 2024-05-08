@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb16uv4cnk3td"]
+
+[ext_resource type="Script" path="res://Scripts/Managers/LevelingManager.gd" id="1_3ar5d"]
+[ext_resource type="PackedScene" uid="uid://d21plplyq0wgb" path="res://Scenes/skill_class.tscn" id="2_ci7xg"]
+
+[node name="LevelingManager" type="Node"]
+script = ExtResource("1_3ar5d")
+
+[node name="Mining" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Foraging" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Combat" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Leatherworking" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Woodworking" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Metalworking" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Assembling" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Rune Etching" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Cooking" parent="." instance=ExtResource("2_ci7xg")]
+
+[node name="Fishing" parent="." instance=ExtResource("2_ci7xg")]

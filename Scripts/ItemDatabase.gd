@@ -1,21 +1,21 @@
 extends Node
 
-var items = {}
+var items = Array()
 
 func _ready():
+	var directory = DirAccess.open("res://Items")
+	directory.list_dir_begin()
 	
-	# Put items in a dictionary for quick access
-	for child in get_children():
-		items[child.name] = child
-	
-	# Remove items from scene tree so they don't get updated
-	while get_child_count() > 0:
-		remove_child(get_child(0))
-	
-	print(items)
-	pass
-
+	var filename = directory.get_next()
+	while(filename):
+		if not directory.current_is_dir():
+			items.append(load("res://Items/%s" % filename))
+		
+		filename = directory.get_next()
 
 func get_item(item_name):
-	if (items.has(item_name)):
-		return items[item_name]
+	for i in items:
+		if i.name == item_name:
+			return i
+	
+	return null

@@ -16,6 +16,8 @@ var lastDirection
 @onready var health_manager = $HealthManager
 @onready var interactionManager = $InteractionManager
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var inventory_manager = $inventory_manager
+
 
 func _ready():
 	health_manager.fullHeal()
@@ -63,6 +65,14 @@ func _physics_process(_delta):
 
 func recieve_inputs():
 	
+	if Input.is_action_just_pressed("TestAction"):
+		
+		# health_manager.damage(10)
+		# print("Taken 10 damage.")
+		inventory_manager.add_item("Egg", 1)
+		#leveling_manager.gainXP(500, "Mining")
+		#leveling_manager.gainXP(500, "Combat")
+	
 	if toggleSprint == true: 
 		# When you press the sprint button, if not already sprinting, start, and vice versa
 		if Input.is_action_just_pressed("sprint") && isSprinting == false:
@@ -78,20 +88,17 @@ func recieve_inputs():
 	
 	
 	if Input.is_action_just_pressed("OpenInventory"):
-		# var foundItem = ItemDatabase.get_item("Plant")
-		# print(foundItem.value)
-		# print(foundItem.name)
-		# print(foundItem.description)
-		
-		# health_manager.damage(10)
-		# print("Taken 10 damage.")
-		
-		leveling_manager.gainXP(500, "Mining")
+		#var foundItem = ItemDatabase.get_item("Egg")
+		#print(foundItem.value)
+		#print(foundItem.name)
+		#print(foundItem.description)
+		print("Inventory button pressed")
+		print(inventory_manager.debug_get_items())
 		pass
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")
-		leveling_manager.gainXP(500, "Combat")
+		inventory_manager.remove_item("Egg", 1)
 		interactionManager.initiate_interaction()
 
 func play_animations():

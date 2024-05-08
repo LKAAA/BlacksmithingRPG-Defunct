@@ -38,7 +38,7 @@ func gainXP(xpToGain: int, skillName: String):
 		
 		# If skill's current xp would go over the current level requirement then commence level up
 		if (skillToAdjust.curXP + xpToGain) >= requiredXP:
-			levelUp(skillToAdjust, xpToGain)
+			levelUp(xpToGain)
 		# Otherwise add the requested amount of xp to the skill
 		else:
 			skillToAdjust.curXP += xpToGain
@@ -50,7 +50,7 @@ func getSkill(skill_name):
 	if (skills.has(skill_name)):
 		return skills[skill_name]
 
-func levelUp(skillToAdjust, xpToGain: int):
+func levelUp(xpToGain: int):
 	print("Leveled up!")
 	
 	# increase the skills level

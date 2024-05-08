@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgfl4ax7pxuwc"]
+
+[ext_resource type="Texture2D" uid="uid://ngslrpkurybo" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Basic_tools_and_meterials.png" id="2_33djt"]
+[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="2_54vwy"]
+[ext_resource type="Script" path="res://TEMP/rustyAxeItemDroppedInteractable.gd" id="3_sqoaq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y0pqo"]
+radius = 13.0
+
+[node name="RustyAxe" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_33djt")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="InteractionManager" parent="." instance=ExtResource("2_54vwy")]
+script = ExtResource("3_sqoaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionManager"]
+shape = SubResource("CircleShape2D_y0pqo")

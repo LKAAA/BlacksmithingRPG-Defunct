@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=13 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://Scenes/player.tscn" id="1_b4dbp"]
 [ext_resource type="Texture2D" uid="uid://dc06eeyl616lw" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Free_Chicken_House.png" id="3_tfyfe"]
-[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="4_xkivk"]
+[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/interaction_manager.tscn" id="4_xkivk"]
 [ext_resource type="Script" path="res://Scripts/transitionInteraction.gd" id="5_ukwkh"]
 [ext_resource type="Texture2D" uid="uid://b7ijt60p65fp2" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Basic_Grass_Biom_things.png" id="6_xw1pt"]
 [ext_resource type="TileSet" uid="uid://c6cv5anb28vs3" path="res://TEMP/world.tres" id="7_o7o38"]
+[ext_resource type="Script" path="res://Scripts/InventoryGrid.gd" id="8_11aog"]
 [ext_resource type="PackedScene" uid="uid://dlsg4y4406gp8" path="res://Scenes/transition_zone.tscn" id="8_vk06y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7m742"]
@@ -71,3 +72,27 @@ scenePath = "res://TEMP/TestWorld2.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionZone"]
 shape = SubResource("RectangleShape2D_d6ptr")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 0
+offset_right = 119.0
+offset_bottom = 126.0
+
+[node name="GridContainer" type="GridContainer" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_11aog")
