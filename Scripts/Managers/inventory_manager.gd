@@ -12,7 +12,7 @@ func get_item(index):
 	return _items[index]
 
 func debug_get_items():
-	print("-- PLAYER INVENTORY --")
+	print("-- " + get_parent().name + " INVENTORY --")
 	for i in range(_items.size()):
 		var curItem = _items[i]
 		print("ITEM SLOT " + str(i) + ": ITEM NAME: " + curItem.item_reference.name 
