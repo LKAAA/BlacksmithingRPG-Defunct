@@ -1,4 +1,8 @@
 extends Node
+
+@onready var time_text = $TimeText
+
+
 var secs_per_hour = 60 * 60
 var curr_time
 var prev_time
@@ -72,7 +76,5 @@ func update_ui_time() -> bool:
 	if hour_24 == 0: hour_24 = 12
 	var hour_12 = hour_24
 	if hour_12 > 12: hour_12 -= 12
-
-	print("Day %d, %02d:%02d %s" % [day, hour_12, minute, am_pm])
-	print("Day: %s, Season: %s" % [curWeekday, curSeason]) 
+	time_text.text = "%s\n %s, Day: %d\n%02d:%02d %s" % [curSeason, curWeekday, day, hour_12, minute, am_pm]
 	return hour_24 == 2

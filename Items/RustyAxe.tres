@@ -10,8 +10,8 @@ region = Rect2(16, 0, 16, 16)
 [resource]
 script = ExtResource("1_x1a48")
 name = "Rusty Axe"
-stackable = true
-max_stack_size = 3
+stackable = false
+max_stack_size = 1
 sellable = false
 value = 0
 description = "A rusty axe. It looks like it would get the job done."

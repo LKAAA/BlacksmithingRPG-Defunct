@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://drfu4v1c5wh0c"]
+[gd_scene load_steps=27 format=3 uid="uid://drfu4v1c5wh0c"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_27t2j"]
 [ext_resource type="Texture2D" uid="uid://bqktms2cbpgah" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_qnijf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://lucdnr8845xa" path="res://Scenes/Managers/inventory_manager.tscn" id="2_7uywq"]
 [ext_resource type="PackedScene" uid="uid://2ytgkv3twyk7" path="res://Scenes/Managers/health_manager.tscn" id="3_k5wky"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_t5ayg"]
+[ext_resource type="PackedScene" uid="uid://du2scp2mhwtnu" path="res://Scenes/Managers/player_stats_manager.tscn" id="4_o6k7l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4hoy"]
 atlas = ExtResource("1_qnijf")
@@ -175,10 +176,11 @@ script = ExtResource("1_27t2j")
 
 [node name="inventory_manager" parent="." instance=ExtResource("2_7uywq")]
 
-[node name="LevelingManager" parent="." instance=ExtResource("2_5tb78")]
-
 [node name="HealthManager" parent="." instance=ExtResource("3_k5wky")]
-maxHealth = 50
+
+[node name="PlayerStatsManager" parent="." instance=ExtResource("4_o6k7l")]
+
+[node name="LevelingManager" parent="." instance=ExtResource("2_5tb78")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.5, 3.5)
@@ -196,5 +198,3 @@ shape = SubResource("CircleShape2D_ek807")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionManager"]
 shape = SubResource("CapsuleShape2D_6tc56")
-
-[connection signal="death" from="HealthManager" to="." method="_on_health_manager_death"]

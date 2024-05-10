@@ -13,14 +13,16 @@ var vertical
 var lastDirection
 
 @onready var leveling_manager = $LevelingManager
-@onready var health_manager = $HealthManager
 @onready var interactionManager = $InteractionManager
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var inventory_manager = $inventory_manager
-
+@onready var health_manager = $HealthManager
+@onready var stats = $PlayerStatsManager
 
 func _ready():
 	health_manager.fullHeal()
+	if PlayerProperties.holdingStats:
+		get_player_properties()
 
 func _physics_process(_delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -69,7 +71,7 @@ func recieve_inputs():
 		
 		# health_manager.damage(10)
 		# print("Taken 10 damage.")
-		inventory_manager.add_item("Egg", 1)
+		inventory_manager.add_item("Rusty Axe", 1)
 		#leveling_manager.gainXP(500, "Mining")
 		#leveling_manager.gainXP(500, "Combat")
 	
@@ -129,3 +131,14 @@ func play_animations():
 
 func _on_health_manager_death():
 	print("Oh no this is so sad little bunny died :(")
+
+func update_player_properties():
+	PlayerProperties.curHealth = health_manager.curHealth
+	PlayerProperties.curStamina = stats.curStamina
+	PlayerProperties.set_items(inventory_manager.get_items())
+	PlayerProperties.holdingStats = true
+
+func get_player_properties():
+	health_manager.curHealth = PlayerProperties.curHealth
+	stats.curStamina = PlayerProperties.curStamina
+	inventory_manager.set_items(PlayerProperties.get_items())

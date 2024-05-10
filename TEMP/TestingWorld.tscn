@@ -26,8 +26,6 @@ size = Vector2(93, 34)
 
 [node name="TestingWorld" type="Node2D"]
 
-[node name="TimeManager" parent="." instance=ExtResource("1_0kqm1")]
-
 [node name="Player" parent="." instance=ExtResource("1_b4dbp")]
 position = Vector2(45, 2)
 
@@ -78,3 +76,26 @@ shape = SubResource("RectangleShape2D_d6ptr")
 
 [node name="Chest" parent="." instance=ExtResource("8_mapaq")]
 position = Vector2(-35, -70)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="TimeManager" parent="Control/CanvasLayer" instance=ExtResource("1_0kqm1")]
+
+[node name="TimeText" type="Label" parent="Control/CanvasLayer/TimeManager"]
+offset_left = 928.0
+offset_top = 9.0
+offset_right = 1140.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 24
+text = "Spring
+Wednesday, Day 1
+00:00 AM"
+horizontal_alignment = 1

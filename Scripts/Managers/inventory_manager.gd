@@ -1,6 +1,8 @@
 extends Node
 
 @export var _items = Array(): set = set_items, get = get_items
+@export var maxSlots = 9
+var usedSlots = 0
 
 func set_items(new_items):
 	_items = new_items
@@ -13,10 +15,11 @@ func get_item(index):
 
 func debug_get_items():
 	print("-- " + get_parent().name + " INVENTORY --")
-	for i in range(_items.size()):
-		var curItem = _items[i]
-		print("ITEM SLOT " + str(i) + ": ITEM NAME: " + curItem.item_reference.name 
-		+ " QUANTITY: " + str(curItem.quantity))
+	if _items.size() != 0:
+		for i in range(_items.size()):
+			var curItem = _items[i]
+			print("ITEM SLOT " + str(i) + ": ITEM NAME: " + curItem.item_reference.name 
+			+ " QUANTITY: " + str(curItem.quantity))
 
 func add_item(item_name, quantity):
 	# Checks for a positive quantity
@@ -52,13 +55,16 @@ func add_item(item_name, quantity):
 				remaining_quantity -= inventory_item.quantity - original_quantity
 		
 		#Creates a new stack
-	while remaining_quantity > 0:
-		var new_item = {
-			item_reference = item, 
-			quantity = min(remaining_quantity, max_stack_size)
-		}
-		_items.append(new_item)
-		remaining_quantity -= new_item.quantity
+	if _items.size() < maxSlots:
+		while remaining_quantity > 0:
+			var new_item = {
+				item_reference = item, 
+				quantity = min(remaining_quantity, max_stack_size)
+			}
+			_items.append(new_item)
+			remaining_quantity -= new_item.quantity
+	else:
+		print("At max slots")
 
 func clear_inventory():
 	_items.clear()

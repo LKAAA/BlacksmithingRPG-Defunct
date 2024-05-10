@@ -14,6 +14,7 @@ func heal(healthToHeal: int): # Heal a specified amount of health, also prevents
 func damage(damageDealt: int): # Deal a specified amount of damage, also checked for death and emits a signal
 	pass
 	if (curHealth - damageDealt) <= 0: # if this damage would reduce health to 0 
+		curHealth = 0
 		death.emit()
 		print("dies of cringe")
 	else: 
