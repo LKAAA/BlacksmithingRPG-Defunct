@@ -1,5 +1,7 @@
 extends Node
 
+@onready var player = $".."
+
 var skills = {}
 
 var totalLevel = 00
@@ -17,8 +19,6 @@ func _ready():
 	# Put items in a dictionary for quick access
 	for child in get_children():
 		skills[child.name] = child
-	
-	print(skills)
 	pass
 
 func gainXP(xpToGain: int, skillName: String):
@@ -50,6 +50,22 @@ func getSkill(skill_name):
 	if (skills.has(skill_name)):
 		return skills[skill_name]
 
+func debugShowLevels():
+	for child in get_children():
+		print("%s, %d" % [skills[child.name].name, skills[child.name].curLevel])
+
+func debugLevelAllSkillsMax():
+	gainXP(16490, "Mining")
+	gainXP(16490, "Foraging")
+	gainXP(16490, "Combat")
+	gainXP(16490, "Leatherworking")
+	gainXP(16490, "Woodworking")
+	gainXP(16490, "Metalworking")
+	gainXP(16490, "Assembling")
+	gainXP(16490, "Rune Etching")
+	gainXP(16490, "Cooking")
+	gainXP(16490, "Fishing")
+
 func levelUp(xpToGain: int):
 	print("Leveled up!")
 	
@@ -65,5 +81,10 @@ func levelUp(xpToGain: int):
 	neededXP = requiredXP - skillToAdjust.curXP
 	leftoverXP = xpToGain - neededXP
 	
+	player.levelup()
+	
 	# set cur xp to leftoverXP
 	gainXP(leftoverXP, skillToAdjust.name)
+
+func setSkillLevel(level: int, skillToLevel: String):
+	getSkill(skillToLevel).curLevel = level

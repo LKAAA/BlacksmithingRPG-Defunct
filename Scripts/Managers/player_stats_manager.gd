@@ -28,8 +28,9 @@ func setStamina(staminaNewNum: int): # Set current stamina to any specified numb
 func fullStaminaRestore():
 	curStamina = maxStamina
 
-func changeMaxStamina(maxStaminaNewNum: int): # Set max stamina to a specified number
-	maxStamina = maxStaminaNewNum
+func increaseMaxStamina(maxStaminaIncrease: int): # Set max stamina to a specified number
+	maxStamina += maxStaminaIncrease
+
 
 #endregion
 

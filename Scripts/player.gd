@@ -18,9 +18,12 @@ var lastDirection
 @onready var inventory_manager = $inventory_manager
 @onready var health_manager = $HealthManager
 @onready var stats = $PlayerStatsManager
+@onready var health_text = $CanvasLayer/HealthText
+@onready var stamina_text = $CanvasLayer/StaminaText
 
 func _ready():
-	health_manager.fullHeal()
+	newGameStats()
+	updateUI()
 	if PlayerProperties.holdingStats:
 		get_player_properties()
 
@@ -73,6 +76,8 @@ func recieve_inputs():
 		# print("Taken 10 damage.")
 		inventory_manager.add_item("Rusty Axe", 1)
 		#leveling_manager.gainXP(500, "Mining")
+		leveling_manager.debugLevelAllSkillsMax()
+		leveling_manager.debugShowLevels()
 		#leveling_manager.gainXP(500, "Combat")
 	
 	if toggleSprint == true: 
@@ -132,13 +137,59 @@ func play_animations():
 func _on_health_manager_death():
 	print("Oh no this is so sad little bunny died :(")
 
+func levelup(): # on level up increase max health by 2, and stamina by 3.
+	health_manager.increaseMaxHealth(2)
+	health_manager.fullHeal()
+	stats.increaseMaxStamina(3)
+	stats.fullStaminaRestore()
+	updateUI()
+
+func updateUI():
+	health_text.text = "Health: %d/%d" % [health_manager.curHealth, health_manager.maxHealth]
+	stamina_text.text = "Stamina: %d/%d" % [stats.curStamina, stats.maxStamina]
+
 func update_player_properties():
 	PlayerProperties.curHealth = health_manager.curHealth
 	PlayerProperties.curStamina = stats.curStamina
+	PlayerProperties.maxHealth = health_manager.maxHealth
+	PlayerProperties.maxStamina = stats.maxStamina
 	PlayerProperties.set_items(inventory_manager.get_items())
+	PlayerProperties.miningLevel = leveling_manager.getSkill("Mining").curLevel
+	PlayerProperties.foragingLevel = leveling_manager.getSkill("Foraging").curLevel
+	PlayerProperties.leathworkingLevel = leveling_manager.getSkill("Leatherworking").curLevel
+	PlayerProperties.woodworkingLevel = leveling_manager.getSkill("Woodworking").curLevel
+	PlayerProperties.metalworkingLevel = leveling_manager.getSkill("Metalworking").curLevel
+	PlayerProperties.assemblingLevel = leveling_manager.getSkill("Assembling").curLevel
+	PlayerProperties.runeEtchingLevel = leveling_manager.getSkill("Rune Etching").curLevel
+	PlayerProperties.cookingLevel = leveling_manager.getSkill("Cooking").curLevel
+	PlayerProperties.fishingLevel = leveling_manager.getSkill("Fishing").curLevel
+	PlayerProperties.combatLevel = leveling_manager.getSkill("Combat").curLevel
 	PlayerProperties.holdingStats = true
 
 func get_player_properties():
 	health_manager.curHealth = PlayerProperties.curHealth
 	stats.curStamina = PlayerProperties.curStamina
+	health_manager.maxHealth = PlayerProperties.maxHealth
+	stats.maxStamina = PlayerProperties.maxStamina
+	leveling_manager.setSkillLevel(PlayerProperties.miningLevel, "Mining")
+	leveling_manager.setSkillLevel(PlayerProperties.foragingLevel, "Foraging")
+	leveling_manager.setSkillLevel(PlayerProperties.combatLevel, "Combat")
+	leveling_manager.setSkillLevel(PlayerProperties.leathworkingLevel, "Leatherworking")
+	leveling_manager.setSkillLevel(PlayerProperties.woodworkingLevel, "Woodworking")
+	leveling_manager.setSkillLevel(PlayerProperties.metalworkingLevel, "Metalworking")
+	leveling_manager.setSkillLevel(PlayerProperties.assemblingLevel, "Assembling")
+	leveling_manager.setSkillLevel(PlayerProperties.runeEtchingLevel, "Rune Etching")
+	leveling_manager.setSkillLevel(PlayerProperties.cookingLevel, "Cooking")
+	leveling_manager.setSkillLevel(PlayerProperties.fishingLevel, "Fishing")
 	inventory_manager.set_items(PlayerProperties.get_items())
+	
+	updateUI()
+
+func newGameStats():
+	health_manager.maxHealth = 100
+	stats.maxStamina = 200
+	health_manager.fullHeal()
+	stats.fullStaminaRestore()
+
+func _on_health_manager_taken_damage():
+	updateUI()

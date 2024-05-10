@@ -3,6 +3,7 @@ extends Node
 var curHealth = 0
 @export var maxHealth: int
 
+signal takenDamage
 signal death
 
 func heal(healthToHeal: int): # Heal a specified amount of health, also prevents overflow healing
@@ -19,6 +20,7 @@ func damage(damageDealt: int): # Deal a specified amount of damage, also checked
 		print("dies of cringe")
 	else: 
 		curHealth -= damageDealt
+		takenDamage.emit()
 
 func setHealth(healthNewNum: int): # Set current health to any specified number
 	curHealth = healthNewNum
@@ -26,5 +28,8 @@ func setHealth(healthNewNum: int): # Set current health to any specified number
 func fullHeal(): # Heal to max health
 	curHealth = maxHealth
 
-func changeMaxHealth(maxHealthNewNum: int): # Set max health to a specified number
+func setMaxHealth(maxHealthNewNum: int): # Set max health to a specified number
 	maxHealth = maxHealthNewNum
+
+func increaseMaxHealth(maxHealthIncrease: int): # Set max health to a specified number
+	maxHealth += maxHealthIncrease
