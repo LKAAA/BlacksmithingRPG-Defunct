@@ -1,19 +1,20 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://7um3ehh0qnna"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://7um3ehh0qnna"]
 
-[ext_resource type="Script" path="res://Scripts/Item.gd" id="1_x1a48"]
+[ext_resource type="Script" path="res://Scripts/ItemScripts/RustyAxe.gd" id="1_3pxn6"]
 [ext_resource type="Texture2D" uid="uid://ngslrpkurybo" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Basic_tools_and_meterials.png" id="2_kl34a"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jfcrb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w183p"]
 atlas = ExtResource("2_kl34a")
 region = Rect2(16, 0, 16, 16)
 
 [resource]
-script = ExtResource("1_x1a48")
+script = ExtResource("1_3pxn6")
 name = "Rusty Axe"
 stackable = false
-max_stack_size = 1
+max_quantity = 1
+quantity = 1
 sellable = false
 value = 0
-description = "A rusty axe. It looks like it would get the job done."
+description = "A rusty axe."
 itemType = 2
-sprite = SubResource("AtlasTexture_jfcrb")
+sprite = SubResource("AtlasTexture_w183p")

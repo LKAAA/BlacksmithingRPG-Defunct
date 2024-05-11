@@ -27,6 +27,7 @@ func setHealth(healthNewNum: int): # Set current health to any specified number
 
 func fullHeal(): # Heal to max health
 	curHealth = maxHealth
+	print("Full Heal")
 
 func setMaxHealth(maxHealthNewNum: int): # Set max health to a specified number
 	maxHealth = maxHealthNewNum

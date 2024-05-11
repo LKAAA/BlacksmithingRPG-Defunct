@@ -16,3 +16,6 @@ class_name Item
 #@export var placeableObject = 00
 #@export var placeableSize = Vector2.ZERO
 #@export var placeableOnWall: bool
+
+func use(player:Player) -> void:
+	print("No use action defined")

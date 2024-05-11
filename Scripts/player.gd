@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
+class_name Player
+
 var activeHotbarSlot: int # 0 - 8, 0 being slot 1, 8 being slot 9
-var activeItem
+var activeItem:ItemStack
 
 const RUNSPEED = 80.00
 const WALKSPEED = 50.00
@@ -29,6 +31,7 @@ func _ready():
 	inventory = Inventory.new()
 	inventory.max_slots = 9
 	activeHotbarSlot = 0
+	chooseActiveItem()
 	newGameStats()
 	updateUI()
 	if PlayerProperties.holdingStats:
@@ -90,6 +93,22 @@ func recieve_inputs():
 		else:
 			isSprinting = false
 	
+	if Input.is_action_just_pressed("use_item"):
+		if not activeItem.item == null:
+			match activeItem.item.itemType:
+				0: # Generic Item (Does nothing)
+					print("This item does nothing.")
+				1: # Consumable
+					activeItem.item.use(self)
+					print(activeItem.item.name)
+				2: # Equipment
+					activeItem.item.use(self)
+					print(activeItem.item.name)
+				3: # Quest
+					print("This is a quest item")
+		else:
+			print("No active item")
+	
 	if Input.is_action_just_pressed("TestAction"):
 		# health_manager.damage(10)
 		# print("Taken 10 damage.")
@@ -110,6 +129,7 @@ func recieve_inputs():
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")
+		inventory.add_item(ItemDatabase.get_item("Egggy"), 24, true)
 		interactionManager.initiate_interaction()
 	
 	if Input.is_action_just_pressed("scroll_up"):
@@ -132,10 +152,10 @@ func recieve_inputs():
 
 func chooseActiveItem():
 	activeItem = inventory.get_item_stack(activeHotbarSlot)
-	if activeItem == null:
+	if activeItem .item == null:
 		print("no item")
 	else:
-		print(activeItem.item_reference.name)
+		print(activeItem.item.name)
 
 func play_animations():
 	if vertical < 0:
