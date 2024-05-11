@@ -1,9 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://drfu4v1c5wh0c"]
+[gd_scene load_steps=26 format=3 uid="uid://drfu4v1c5wh0c"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_27t2j"]
 [ext_resource type="Texture2D" uid="uid://bqktms2cbpgah" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_qnijf"]
 [ext_resource type="PackedScene" uid="uid://cb16uv4cnk3td" path="res://Scenes/Managers/leveling_manager.tscn" id="2_5tb78"]
-[ext_resource type="PackedScene" uid="uid://lucdnr8845xa" path="res://Scenes/Managers/inventory_manager.tscn" id="2_7uywq"]
 [ext_resource type="PackedScene" uid="uid://2ytgkv3twyk7" path="res://Scenes/Managers/health_manager.tscn" id="3_k5wky"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_t5ayg"]
 [ext_resource type="PackedScene" uid="uid://du2scp2mhwtnu" path="res://Scenes/Managers/player_stats_manager.tscn" id="4_o6k7l"]
@@ -173,8 +172,6 @@ radius = 11.0
 z_index = 2
 collision_layer = 73
 script = ExtResource("1_27t2j")
-
-[node name="inventory_manager" parent="." instance=ExtResource("2_7uywq")]
 
 [node name="HealthManager" parent="." instance=ExtResource("3_k5wky")]
 

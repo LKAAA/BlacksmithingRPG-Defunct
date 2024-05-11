@@ -1,9 +1,11 @@
 extends InteractionManager
 
-@onready var inventory_manager = $"../inventory_manager"
+var inventory: Inventory = Inventory.new()
 
+func _ready():
+	inventory.max_slots = 27
 
 func receive_interaction():
 	print("open chest")
-	inventory_manager.add_item("Rusty Axe", 1)
-	inventory_manager.debug_get_items()
+	inventory.add_item(ItemDatabase.get_item("Rusty Axe"), 1)
+	inventory.debug_get_items()

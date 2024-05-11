@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+var activeHotbarSlot: int # 0 - 8, 0 being slot 1, 8 being slot 9
+var activeItem
+
 const RUNSPEED = 80.00
 const WALKSPEED = 50.00
 
@@ -12,16 +15,20 @@ var horizontal
 var vertical
 var lastDirection
 
+var inventory:Inventory = null
+
 @onready var leveling_manager = $LevelingManager
 @onready var interactionManager = $InteractionManager
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var inventory_manager = $inventory_manager
 @onready var health_manager = $HealthManager
 @onready var stats = $PlayerStatsManager
 @onready var health_text = $CanvasLayer/HealthText
 @onready var stamina_text = $CanvasLayer/StaminaText
 
 func _ready():
+	inventory = Inventory.new()
+	inventory.max_slots = 9
+	activeHotbarSlot = 0
 	newGameStats()
 	updateUI()
 	if PlayerProperties.holdingStats:
@@ -70,16 +77,6 @@ func _physics_process(_delta):
 
 func recieve_inputs():
 	
-	if Input.is_action_just_pressed("TestAction"):
-		
-		# health_manager.damage(10)
-		# print("Taken 10 damage.")
-		inventory_manager.add_item("Rusty Axe", 1)
-		#leveling_manager.gainXP(500, "Mining")
-		leveling_manager.debugLevelAllSkillsMax()
-		leveling_manager.debugShowLevels()
-		#leveling_manager.gainXP(500, "Combat")
-	
 	if toggleSprint == true: 
 		# When you press the sprint button, if not already sprinting, start, and vice versa
 		if Input.is_action_just_pressed("sprint") && isSprinting == false:
@@ -93,6 +90,14 @@ func recieve_inputs():
 		else:
 			isSprinting = false
 	
+	if Input.is_action_just_pressed("TestAction"):
+		# health_manager.damage(10)
+		# print("Taken 10 damage.")
+		inventory.add_item(ItemDatabase.get_item("Rusty Axe"), 1, false)
+		#leveling_manager.gainXP(500, "Mining")
+		#leveling_manager.debugLevelAllSkillsMax()
+		#leveling_manager.debugShowLevels()
+		#leveling_manager.gainXP(500, "Combat")
 	
 	if Input.is_action_just_pressed("OpenInventory"):
 		#var foundItem = ItemDatabase.get_item("Egg")
@@ -100,13 +105,37 @@ func recieve_inputs():
 		#print(foundItem.name)
 		#print(foundItem.description)
 		print("Inventory button pressed")
-		print(inventory_manager.debug_get_items())
+		inventory.debug_get_items()
 		pass
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")
-		inventory_manager.remove_item("Egg", 1)
 		interactionManager.initiate_interaction()
+	
+	if Input.is_action_just_pressed("scroll_up"):
+		if activeHotbarSlot == 0:
+			activeHotbarSlot = 8
+			print(activeHotbarSlot)
+		else:
+			activeHotbarSlot -= 1
+			print(activeHotbarSlot)
+		chooseActiveItem()
+	
+	if Input.is_action_just_pressed("scroll_down"):
+		if activeHotbarSlot == 8:
+			activeHotbarSlot = 0
+			print(activeHotbarSlot)
+		else:
+			activeHotbarSlot += 1
+			print(activeHotbarSlot)
+		chooseActiveItem()
+
+func chooseActiveItem():
+	activeItem = inventory.get_item_stack(activeHotbarSlot)
+	if activeItem == null:
+		print("no item")
+	else:
+		print(activeItem.item_reference.name)
 
 func play_animations():
 	if vertical < 0:
@@ -137,6 +166,9 @@ func play_animations():
 func _on_health_manager_death():
 	print("Oh no this is so sad little bunny died :(")
 
+func _on_health_manager_taken_damage():
+	updateUI()
+
 func levelup(): # on level up increase max health by 2, and stamina by 3.
 	health_manager.increaseMaxHealth(2)
 	health_manager.fullHeal()
@@ -144,16 +176,24 @@ func levelup(): # on level up increase max health by 2, and stamina by 3.
 	stats.fullStaminaRestore()
 	updateUI()
 
+func newGameStats():
+	health_manager.maxHealth = 100
+	stats.maxStamina = 200
+	health_manager.fullHeal()
+	stats.fullStaminaRestore()
+
 func updateUI():
 	health_text.text = "Health: %d/%d" % [health_manager.curHealth, health_manager.maxHealth]
 	stamina_text.text = "Stamina: %d/%d" % [stats.curStamina, stats.maxStamina]
+
+#region Player Properties
 
 func update_player_properties():
 	PlayerProperties.curHealth = health_manager.curHealth
 	PlayerProperties.curStamina = stats.curStamina
 	PlayerProperties.maxHealth = health_manager.maxHealth
 	PlayerProperties.maxStamina = stats.maxStamina
-	PlayerProperties.set_items(inventory_manager.get_items())
+	PlayerProperties.set_items(inventory.get_items())
 	PlayerProperties.miningLevel = leveling_manager.getSkill("Mining").curLevel
 	PlayerProperties.foragingLevel = leveling_manager.getSkill("Foraging").curLevel
 	PlayerProperties.leathworkingLevel = leveling_manager.getSkill("Leatherworking").curLevel
@@ -181,15 +221,7 @@ func get_player_properties():
 	leveling_manager.setSkillLevel(PlayerProperties.runeEtchingLevel, "Rune Etching")
 	leveling_manager.setSkillLevel(PlayerProperties.cookingLevel, "Cooking")
 	leveling_manager.setSkillLevel(PlayerProperties.fishingLevel, "Fishing")
-	inventory_manager.set_items(PlayerProperties.get_items())
+	inventory.set_items(PlayerProperties.get_items())
 	
 	updateUI()
-
-func newGameStats():
-	health_manager.maxHealth = 100
-	stats.maxStamina = 200
-	health_manager.fullHeal()
-	stats.fullStaminaRestore()
-
-func _on_health_manager_taken_damage():
-	updateUI()
+#endregion

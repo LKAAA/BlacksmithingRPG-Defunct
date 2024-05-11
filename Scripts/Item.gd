@@ -1,10 +1,11 @@
 extends Resource
 
-class_name ItemResource
+class_name Item
 
 @export var name: String
 @export var stackable: bool = false
-@export var max_stack_size: int = 1
+@export var max_quantity: int = 1
+@export var quantity: int = 1
 
 @export var sellable: bool = true
 @export var value: int
