@@ -199,24 +199,36 @@ shape = SubResource("CapsuleShape2D_6tc56")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthText" type="Label" parent="CanvasLayer"]
-offset_left = 928.0
-offset_top = 563.0
-offset_right = 1140.0
-offset_bottom = 605.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_top = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 24
 text = "Health: 000/000"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="StaminaText" type="Label" parent="CanvasLayer"]
-offset_left = 928.0
-offset_top = 597.0
-offset_right = 1140.0
-offset_bottom = 635.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -221.0
+offset_top = -77.0
+offset_right = -9.0
+offset_bottom = -39.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "Stamina: 000/000"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [connection signal="death" from="HealthManager" to="." method="_on_health_manager_death"]
 [connection signal="takenDamage" from="HealthManager" to="." method="_on_health_manager_taken_damage"]

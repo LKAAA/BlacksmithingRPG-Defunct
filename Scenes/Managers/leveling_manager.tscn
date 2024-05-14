@@ -16,7 +16,7 @@ script = ExtResource("1_3ar5d")
 
 [node name="Woodworking" parent="." instance=ExtResource("2_ci7xg")]
 
-[node name="Metalworking" parent="." instance=ExtResource("2_ci7xg")]
+[node name="Forging" parent="." instance=ExtResource("2_ci7xg")]
 
 [node name="Assembling" parent="." instance=ExtResource("2_ci7xg")]
 

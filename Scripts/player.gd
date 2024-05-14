@@ -29,7 +29,7 @@ var inventory:Inventory = null
 
 func _ready():
 	inventory = Inventory.new()
-	inventory.max_slots = 9
+	inventory.max_slots = 11
 	activeHotbarSlot = 0
 	chooseActiveItem()
 	newGameStats()
@@ -112,24 +112,21 @@ func recieve_inputs():
 	if Input.is_action_just_pressed("TestAction"):
 		# health_manager.damage(10)
 		# print("Taken 10 damage.")
-		inventory.add_item(ItemDatabase.get_item("Rusty Axe"), 1, false)
+		inventory.add_item(ItemDatabase.get_item("Iron Ore"), 1, true)
 		#leveling_manager.gainXP(500, "Mining")
 		#leveling_manager.debugLevelAllSkillsMax()
 		#leveling_manager.debugShowLevels()
 		#leveling_manager.gainXP(500, "Combat")
 	
 	if Input.is_action_just_pressed("OpenInventory"):
-		#var foundItem = ItemDatabase.get_item("Egg")
-		#print(foundItem.value)
-		#print(foundItem.name)
-		#print(foundItem.description)
+		inventory.add_item(ItemDatabase.get_item("Rusty Axe"), 1, false)
 		print("Inventory button pressed")
 		inventory.debug_get_items()
 		pass
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")
-		inventory.add_item(ItemDatabase.get_item("Egggy"), 24, true)
+		#inventory.add_item(ItemDatabase.get_item("Egggy"), 24, true)
 		interactionManager.initiate_interaction()
 	
 	if Input.is_action_just_pressed("scroll_up"):
@@ -206,6 +203,8 @@ func updateUI():
 	health_text.text = "Health: %d/%d" % [health_manager.curHealth, health_manager.maxHealth]
 	stamina_text.text = "Stamina: %d/%d" % [stats.curStamina, stats.maxStamina]
 
+
+
 #region Player Properties
 
 func update_player_properties():
@@ -218,7 +217,7 @@ func update_player_properties():
 	PlayerProperties.foragingLevel = leveling_manager.getSkill("Foraging").curLevel
 	PlayerProperties.leathworkingLevel = leveling_manager.getSkill("Leatherworking").curLevel
 	PlayerProperties.woodworkingLevel = leveling_manager.getSkill("Woodworking").curLevel
-	PlayerProperties.metalworkingLevel = leveling_manager.getSkill("Metalworking").curLevel
+	PlayerProperties.forgingLevel = leveling_manager.getSkill("Forging").curLevel
 	PlayerProperties.assemblingLevel = leveling_manager.getSkill("Assembling").curLevel
 	PlayerProperties.runeEtchingLevel = leveling_manager.getSkill("Rune Etching").curLevel
 	PlayerProperties.cookingLevel = leveling_manager.getSkill("Cooking").curLevel
@@ -236,7 +235,7 @@ func get_player_properties():
 	leveling_manager.setSkillLevel(PlayerProperties.combatLevel, "Combat")
 	leveling_manager.setSkillLevel(PlayerProperties.leathworkingLevel, "Leatherworking")
 	leveling_manager.setSkillLevel(PlayerProperties.woodworkingLevel, "Woodworking")
-	leveling_manager.setSkillLevel(PlayerProperties.metalworkingLevel, "Metalworking")
+	leveling_manager.setSkillLevel(PlayerProperties.forgingLevel, "Forging")
 	leveling_manager.setSkillLevel(PlayerProperties.assemblingLevel, "Assembling")
 	leveling_manager.setSkillLevel(PlayerProperties.runeEtchingLevel, "Rune Etching")
 	leveling_manager.setSkillLevel(PlayerProperties.cookingLevel, "Cooking")

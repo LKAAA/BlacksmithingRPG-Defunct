@@ -19,6 +19,7 @@ func _ready():
 	# Put items in a dictionary for quick access
 	for child in get_children():
 		skills[child.name] = child
+		print(child.name)
 	pass
 
 func gainXP(xpToGain: int, skillName: String):
@@ -60,7 +61,7 @@ func debugLevelAllSkillsMax():
 	gainXP(16490, "Combat")
 	gainXP(16490, "Leatherworking")
 	gainXP(16490, "Woodworking")
-	gainXP(16490, "Metalworking")
+	gainXP(16490, "Forging")
 	gainXP(16490, "Assembling")
 	gainXP(16490, "Rune Etching")
 	gainXP(16490, "Cooking")

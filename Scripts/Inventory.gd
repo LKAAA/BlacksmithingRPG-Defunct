@@ -27,6 +27,26 @@ func debug_get_items():
 		else:
 			print("Slot %d: %s, %d" % [i, _slots[i].item.name, _slots[i].quantity])
 
+func has_item(itemName: String) -> bool:
+	var hasItem : = false
+	for i in max_slots:
+		if _slots[i].item == null:
+			continue
+		else:
+			if _slots[i].item.name == itemName:
+				hasItem = true
+	return hasItem
+
+func has_item_count(itemName: String) -> int:
+	var amount : = 0
+	for i in max_slots:
+		if _slots[i].item == null:
+			continue
+		else:
+			if _slots[i].item.name == itemName:
+				amount = _slots[i].quantity
+	return amount
+
 func get_items():
 	return _slots
 
@@ -120,6 +140,23 @@ func add_item(item:Item, quantity:int = 1, should_stack:bool = true):
 			overflow = new_quantity
 	
 	return overflow
+
+func remove_item(item:Item, quantity:int = 1):
+	if not item: 
+		printerr("Could not find item")
+		return 0
+	
+	for q in quantity:
+		for i in max_slots:
+			if _slots[i].item == null:
+				continue
+			elif not _slots[i].item == item:
+				continue
+			else:
+				_slots[i].quantity -= 1
+				if _slots[i].quantity == 0:
+					_slots[i].item == null
+				quantity -= 1
 
 static func swap_slots_from_inventories(from_inventory:Inventory, from_index:int, to_inventory:Inventory, to_index:int, from_stack:ItemStack = null, to_stack:ItemStack = null) -> void:
 	

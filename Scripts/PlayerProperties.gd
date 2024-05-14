@@ -12,7 +12,7 @@ var foragingLevel
 var combatLevel
 var leathworkingLevel
 var woodworkingLevel
-var metalworkingLevel
+var forgingLevel
 var assemblingLevel
 var runeEtchingLevel
 var cookingLevel

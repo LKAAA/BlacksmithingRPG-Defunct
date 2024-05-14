@@ -1,18 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=13 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="PackedScene" uid="uid://che3xejp0ukh5" path="res://Scenes/Managers/time_manager.tscn" id="1_0kqm1"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://Scenes/player.tscn" id="1_b4dbp"]
-[ext_resource type="Texture2D" uid="uid://dc06eeyl616lw" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Free_Chicken_House.png" id="3_tfyfe"]
+[ext_resource type="PackedScene" uid="uid://s54eyr60mjw0" path="res://Scenes/Smelter.tscn" id="2_djdjf"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="4_xkivk"]
-[ext_resource type="Script" path="res://Scripts/transitionInteraction.gd" id="5_ukwkh"]
+[ext_resource type="Script" path="res://Scripts/transition_interaction.gd" id="5_occfb"]
 [ext_resource type="Texture2D" uid="uid://b7ijt60p65fp2" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Basic_Grass_Biom_things.png" id="6_xw1pt"]
 [ext_resource type="TileSet" uid="uid://c6cv5anb28vs3" path="res://TEMP/world.tres" id="7_o7o38"]
 [ext_resource type="PackedScene" uid="uid://d1pqxjvx0qh0l" path="res://Scenes/chest.tscn" id="8_mapaq"]
 [ext_resource type="PackedScene" uid="uid://dlsg4y4406gp8" path="res://Scenes/transition_zone.tscn" id="8_vk06y"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7m742"]
-radius = 15.0
-height = 48.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_676nx"]
 size = Vector2(8, 15)
@@ -29,17 +25,7 @@ size = Vector2(93, 34)
 [node name="Player" parent="." instance=ExtResource("1_b4dbp")]
 position = Vector2(45, 2)
 
-[node name="FreeChickenHouse" type="Sprite2D" parent="."]
-position = Vector2(99, -63)
-texture = ExtResource("3_tfyfe")
-
-[node name="InteractionManager" parent="FreeChickenHouse" instance=ExtResource("4_xkivk")]
-script = ExtResource("5_ukwkh")
-scenePath = "res://TEMP/TestWorld2.tscn"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FreeChickenHouse/InteractionManager"]
-position = Vector2(0, 16)
-shape = SubResource("CapsuleShape2D_7m742")
+[node name="FreeChickenHouse" parent="." instance=ExtResource("2_djdjf")]
 
 [node name="TreeTranspotation" type="StaticBody2D" parent="."]
 
@@ -54,8 +40,8 @@ position = Vector2(-144, -64.5)
 shape = SubResource("RectangleShape2D_676nx")
 
 [node name="InteractionManager" parent="TreeTranspotation" instance=ExtResource("4_xkivk")]
-script = ExtResource("5_ukwkh")
-scenePath = "res://TEMP/TestWorld2.tscn"
+script = ExtResource("5_occfb")
+scenePath = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeTranspotation/InteractionManager"]
 position = Vector2(-144, -67)

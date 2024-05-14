@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cfeswibvyf3i0"]
+
+[ext_resource type="Script" path="res://Scripts/Item.gd" id="1_2lb3d"]
+[ext_resource type="Texture2D" uid="uid://ctylmux8y1gsq" path="res://Assets/Sprites/Iron_Sprite_Sheet.png" id="2_asvrt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjp8w"]
+atlas = ExtResource("2_asvrt")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_2lb3d")
+name = "Iron Bar"
+stackable = true
+max_quantity = 999
+quantity = 1
+sellable = true
+value = 125
+description = "A bar of smelted iron."
+itemType = 0
+sprite = SubResource("AtlasTexture_yjp8w")
