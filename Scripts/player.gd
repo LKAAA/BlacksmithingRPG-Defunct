@@ -119,7 +119,6 @@ func recieve_inputs():
 		#leveling_manager.gainXP(500, "Combat")
 	
 	if Input.is_action_just_pressed("OpenInventory"):
-		inventory.add_item(ItemDatabase.get_item("Rusty Axe"), 1, false)
 		print("Inventory button pressed")
 		inventory.debug_get_items()
 		pass

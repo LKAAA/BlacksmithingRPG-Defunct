@@ -1,0 +1,80 @@
+[gd_scene load_steps=14 format=3 uid="uid://s54eyr60mjw0"]
+
+[ext_resource type="Script" path="res://Scripts/Forge.gd" id="1_c77jh"]
+[ext_resource type="Texture2D" uid="uid://08oab3va4bq0" path="res://Assets/Sprites/ForgeSpriteSheet.png" id="1_kp3in"]
+[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="2_mq60e"]
+[ext_resource type="PackedScene" uid="uid://bqfe80ngwbbev" path="res://Scenes/Managers/intake_crafting_station_manager.tscn" id="2_rirfw"]
+[ext_resource type="Resource" uid="uid://csc571wyxxd7y" path="res://Recipies/Iron_Bar_From_Ore.tres" id="3_8mpgl"]
+[ext_resource type="Script" path="res://Scripts/craftingStationItemInputInteraction.gd" id="3_gxgu4"]
+[ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="7_x2hoy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxffx"]
+atlas = ExtResource("1_kp3in")
+region = Rect2(32, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7gby"]
+atlas = ExtResource("1_kp3in")
+region = Rect2(0, 0, 32, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1btv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxffx")
+}],
+"loop": true,
+"name": &"ForgeOff",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7gby")
+}],
+"loop": true,
+"name": &"ForgeOn",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0rec"]
+size = Vector2(28, 22)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7m742"]
+radius = 15.0
+height = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnib4"]
+size = Vector2(28, 44)
+
+[node name="Forge" type="StaticBody2D"]
+position = Vector2(0, -48)
+script = ExtResource("1_c77jh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f1btv")
+animation = &"ForgeOff"
+autoplay = "ForgeOff"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_w0rec")
+
+[node name="IntakeCraftingStationManager" parent="." instance=ExtResource("2_rirfw")]
+craftingRecipies = Array[Resource("res://Scripts/Recipe.gd")]([ExtResource("3_8mpgl")])
+
+[node name="InteractionManager" parent="." instance=ExtResource("2_mq60e")]
+script = ExtResource("3_gxgu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionManager"]
+position = Vector2(0, 29)
+shape = SubResource("CapsuleShape2D_7m742")
+
+[node name="BehindAdjustment" parent="." instance=ExtResource("7_x2hoy")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BehindAdjustment"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_nnib4")
+
+[connection signal="turnedOff" from="IntakeCraftingStationManager" to="." method="_on_intake_crafting_station_manager_turned_off"]
+[connection signal="turnedOn" from="IntakeCraftingStationManager" to="." method="_on_intake_crafting_station_manager_turned_on"]
+[connection signal="body_entered" from="BehindAdjustment" to="." method="_on_behind_adjustment_body_entered"]
+[connection signal="body_exited" from="BehindAdjustment" to="." method="_on_behind_adjustment_body_exited"]

@@ -1,6 +1,9 @@
 extends Node
 class_name IntakeCraftingStation
 
+signal turnedOn
+signal turnedOff
+
 @export var craftingRecipies: Array[Recipe]
 @onready var timer = $Timer
 
@@ -58,10 +61,12 @@ func beginCrafting(recipe: Recipe):
 	owedXPType = recipe.recipeType
 	timer.wait_time = recipe.craftingDuration
 	timer.start()
+	turnedOn.emit()
 	print("Started the smelt")
 
 func craftEnded():
 	readyToGrab = true
+	turnedOff.emit()
 	print("ready for pickup")
 
 func finishCraft():
