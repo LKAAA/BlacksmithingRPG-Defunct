@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6ngnivow085i"]
+
+[ext_resource type="Texture2D" uid="uid://df34fy6l4gq07" path="res://Assets/Sprites/CastleSpritesheet.png" id="1_yfq57"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cgv5"]
+size = Vector2(138.75, 57.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gwfa"]
+atlas = ExtResource("1_yfq57")
+region = Rect2(0, 0, 384.529, 233)
+
+[node name="CastleGate" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-123, -28.75)
+shape = SubResource("RectangleShape2D_3cgv5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(121.25, -28)
+shape = SubResource("RectangleShape2D_3cgv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -107)
+texture = SubResource("AtlasTexture_6gwfa")

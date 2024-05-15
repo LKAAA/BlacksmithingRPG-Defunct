@@ -26,6 +26,7 @@ var inventory:Inventory = null
 @onready var stats = $PlayerStatsManager
 @onready var health_text = $CanvasLayer/HealthText
 @onready var stamina_text = $CanvasLayer/StaminaText
+@onready var camera = $Camera2D
 
 func _ready():
 	inventory = Inventory.new()
@@ -243,3 +244,13 @@ func get_player_properties():
 	
 	updateUI()
 #endregion
+
+func zoom_out_camera():
+	camera.zoom.x = 2.5
+	camera.zoom.y = 2.5
+	print("Zoom")
+
+func zoom_in_camera():
+	camera.zoom.x = 3.5
+	camera.zoom.y = 3.5
+	print("Unzoom")

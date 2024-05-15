@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c6cv5anb28vs3"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c6cv5anb28vs3"]
 
 [ext_resource type="Texture2D" uid="uid://boio4rgvdby0s" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Tilesets/Grass.png" id="1_go8fq"]
+[ext_resource type="Texture2D" uid="uid://df34fy6l4gq07" path="res://Assets/Sprites/CastleSpritesheet.png" id="2_58ni1"]
 [ext_resource type="Texture2D" uid="uid://8u5lpa2xi3dk" path="res://Assets/Sprites/TESTTILESET.png" id="2_sai8n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k2fv6"]
@@ -219,6 +220,9 @@ texture = ExtResource("1_go8fq")
 8:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:6/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3y7d"]
+texture = ExtResource("2_58ni1")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i2nng"]
 texture = ExtResource("2_sai8n")
 0:0/0 = 0
@@ -289,3 +293,4 @@ texture = ExtResource("2_sai8n")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_k2fv6")
 sources/6 = SubResource("TileSetAtlasSource_i2nng")
+sources/1 = SubResource("TileSetAtlasSource_r3y7d")

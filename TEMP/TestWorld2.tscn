@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://Scenes/player.tscn" id="2_px0af"]
 [ext_resource type="Texture2D" uid="uid://b7ijt60p65fp2" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Basic_Grass_Biom_things.png" id="3_sofyt"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="4_4oax1"]
-[ext_resource type="Script" path="res://Scripts/craftingStationItemInputInteraction.gd" id="5_rj8a4"]
+[ext_resource type="Script" path="res://Scripts/transition_interaction.gd" id="5_kmtti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht8bt"]
 size = Vector2(8, 15)
@@ -36,7 +36,7 @@ position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_ht8bt")
 
 [node name="InteractionManager" parent="TreeTranspotation" instance=ExtResource("4_4oax1")]
-script = ExtResource("5_rj8a4")
+script = ExtResource("5_kmtti")
 scenePath = "res://TEMP/TestingWorld.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeTranspotation/InteractionManager"]
