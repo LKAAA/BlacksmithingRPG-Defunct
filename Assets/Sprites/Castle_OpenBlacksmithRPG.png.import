@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df34fy6l4gq07"
-path="res://.godot/imported/CastleSpritesheet.png-96a4832b24bef8835344c6bbf3f87682.ctex"
+uid="uid://qgmjtol601ja"
+path="res://.godot/imported/Castle_OpenBlacksmithRPG.png-a89e93be0310cefd8abc2ba5aa06f80a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/CastleSpritesheet.png"
-dest_files=["res://.godot/imported/CastleSpritesheet.png-96a4832b24bef8835344c6bbf3f87682.ctex"]
+source_file="res://Assets/Sprites/Castle_OpenBlacksmithRPG.png"
+dest_files=["res://.godot/imported/Castle_OpenBlacksmithRPG.png-a89e93be0310cefd8abc2ba5aa06f80a.ctex"]
 
 [params]
 
