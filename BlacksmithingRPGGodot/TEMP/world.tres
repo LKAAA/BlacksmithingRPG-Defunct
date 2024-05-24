@@ -220,7 +220,6 @@ texture = ExtResource("1_go8fq")
 8:6/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tmhsd"]
-load_path = "res://.godot/imported/CastleSpritesheet.png-96a4832b24bef8835344c6bbf3f87682.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3y7d"]
 texture = SubResource("CompressedTexture2D_tmhsd")

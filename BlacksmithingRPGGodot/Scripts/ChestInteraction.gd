@@ -7,5 +7,5 @@ func _ready():
 
 func receive_interaction():
 	print("open chest")
-	inventory.add_item(ItemDatabase.get_item("Rusty Axe"), 1)
+	inventory.add_item(ItemDatabase.get_item("Tongs"), 1)
 	inventory.debug_get_items()

@@ -30,7 +30,7 @@ var inventory:Inventory = null
 
 func _ready():
 	inventory = Inventory.new()
-	inventory.max_slots = 11
+	inventory.max_slots = 12
 	activeHotbarSlot = 0
 	chooseActiveItem()
 	newGameStats()
@@ -146,6 +146,67 @@ func recieve_inputs():
 			activeHotbarSlot += 1
 			print(activeHotbarSlot)
 		chooseActiveItem()
+	
+	if Input.is_action_just_pressed("HotbarSlot1"):
+		activeHotbarSlot = 0
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot2"):
+		activeHotbarSlot = 1
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot3"):
+		activeHotbarSlot = 2
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot4"):
+		activeHotbarSlot = 3
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot5"):
+		activeHotbarSlot = 4
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot6"):
+		activeHotbarSlot = 5
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot7"):
+		activeHotbarSlot = 6
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot8"):
+		activeHotbarSlot = 7
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot9"):
+		activeHotbarSlot = 8
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot10"):
+		activeHotbarSlot = 9
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot11"):
+		activeHotbarSlot = 10
+		chooseActiveItem()
+		print(activeHotbarSlot)
+	
+	if Input.is_action_just_pressed("HotbarSlot12"):
+		activeHotbarSlot = 11
+		inventory.add_item(ItemDatabase.get_item("Tongs"), 1)
+		chooseActiveItem()
+		print(activeHotbarSlot)
 
 func chooseActiveItem():
 	activeItem = inventory.get_item_stack(activeHotbarSlot)

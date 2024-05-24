@@ -78,7 +78,7 @@ func finishCraft():
 	readyToGrab = false
 
 func attemptGrab():
-	if player.activeItem.item.name == "Rusty Axe":
+	if player.activeItem.item.name == "Tongs":
 		print("You have the required item to pick this up")
 		finishCraft()
 	else:
