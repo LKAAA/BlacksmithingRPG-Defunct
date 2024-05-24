@@ -90,11 +90,14 @@ grow_vertical = 2
 [node name="TimeManager" parent="Control/CanvasLayer" instance=ExtResource("1_0kqm1")]
 
 [node name="TimeText" type="Label" parent="Control/CanvasLayer/TimeManager"]
-offset_left = 910.0
-offset_top = 9.0
-offset_right = 1122.0
-offset_bottom = 117.0
-theme_override_font_sizes/font_size = 24
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -159.0
+offset_top = 5.0
+offset_bottom = 85.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 16
 text = "Spring
 Wednesday, Day 1
 00:00 AM"

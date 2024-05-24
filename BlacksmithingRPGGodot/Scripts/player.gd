@@ -27,6 +27,8 @@ var inventory:Inventory = null
 @onready var health_text = $CanvasLayer/HealthText
 @onready var stamina_text = $CanvasLayer/StaminaText
 @onready var camera = $Camera2D
+@onready var player_menu_ui = $CanvasLayer/PlayerMenuUI
+
 
 func _ready():
 	inventory = Inventory.new()
@@ -35,6 +37,7 @@ func _ready():
 	chooseActiveItem()
 	newGameStats()
 	updateUI()
+	player_menu_ui.visible = false
 	if PlayerProperties.holdingStats:
 		get_player_properties()
 
@@ -114,6 +117,7 @@ func recieve_inputs():
 		# health_manager.damage(10)
 		# print("Taken 10 damage.")
 		inventory.add_item(ItemDatabase.get_item("Iron Ore"), 1, true)
+		player_menu_ui.visible = false
 		#leveling_manager.gainXP(500, "Mining")
 		#leveling_manager.debugLevelAllSkillsMax()
 		#leveling_manager.debugShowLevels()
@@ -121,6 +125,7 @@ func recieve_inputs():
 	
 	if Input.is_action_just_pressed("OpenInventory"):
 		print("Inventory button pressed")
+		player_menu_ui.visible = true
 		inventory.debug_get_items()
 		pass
 	
