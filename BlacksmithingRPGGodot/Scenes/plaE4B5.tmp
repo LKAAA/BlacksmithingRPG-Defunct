@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://drfu4v1c5wh0c"]
+[gd_scene load_steps=27 format=3 uid="uid://drfu4v1c5wh0c"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_27t2j"]
 [ext_resource type="Texture2D" uid="uid://bqktms2cbpgah" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_qnijf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://2ytgkv3twyk7" path="res://Scenes/Managers/health_manager.tscn" id="3_k5wky"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_t5ayg"]
 [ext_resource type="PackedScene" uid="uid://du2scp2mhwtnu" path="res://Scenes/Managers/player_stats_manager.tscn" id="4_o6k7l"]
+[ext_resource type="PackedScene" uid="uid://dbqh862rtg5hi" path="res://Scenes/UI/player_menu_ui.tscn" id="7_0f4vt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4hoy"]
 atlas = ExtResource("1_qnijf")
@@ -180,7 +181,7 @@ script = ExtResource("1_27t2j")
 [node name="LevelingManager" parent="." instance=ExtResource("2_5tb78")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vmjjh")
@@ -204,13 +205,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -212.0
-offset_top = -42.0
+offset_left = -156.0
+offset_top = -31.0
+offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 text = "Health: 000/000"
 horizontal_alignment = 1
 
@@ -220,15 +222,22 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -221.0
-offset_top = -77.0
+offset_left = -150.0
+offset_top = -51.0
 offset_right = -9.0
-offset_bottom = -39.0
+offset_bottom = -28.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 text = "Stamina: 000/000"
 horizontal_alignment = 1
+
+[node name="PlayerMenuUI" parent="CanvasLayer" instance=ExtResource("7_0f4vt")]
+custom_minimum_size = Vector2(180, 180)
+offset_left = 95.0
+offset_top = 53.0
+offset_right = -80.0
+offset_bottom = -49.0
 
 [connection signal="death" from="HealthManager" to="." method="_on_health_manager_death"]
 [connection signal="takenDamage" from="HealthManager" to="." method="_on_health_manager_taken_damage"]
