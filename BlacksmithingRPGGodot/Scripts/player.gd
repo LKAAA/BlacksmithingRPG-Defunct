@@ -4,6 +4,7 @@ class_name Player
 
 var activeHotbarSlot: int # 0 - 8, 0 being slot 1, 8 being slot 9
 var activeItem:ItemStack
+var selected_tool: String = ""
 
 const RUNSPEED = 80.00
 const WALKSPEED = 50.00
@@ -110,6 +111,15 @@ func recieve_inputs():
 					print(activeItem.item.name)
 				3: # Quest
 					print("This is a quest item")
+				4: # TOOL
+					print(activeItem.item.tool_type)
+					match activeItem.item.tool_type:
+						"pickaxe":
+							use_pickaxe()
+						"axe":
+							use_axe()
+						"tongs":
+							use_tongs()
 		else:
 			print("No active item")
 	
@@ -131,8 +141,11 @@ func recieve_inputs():
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")
-		#inventory.add_item(ItemDatabase.get_item("Egggy"), 24, true)
+		inventory.add_item(ItemDatabase.get_item("Tongs"), 1, false)
 		interactionManager.initiate_interaction()
+	
+#region Hotbar Input
+	
 	
 	if Input.is_action_just_pressed("scroll_up"):
 		if activeHotbarSlot == 0:
@@ -212,6 +225,7 @@ func recieve_inputs():
 		inventory.add_item(ItemDatabase.get_item("Tongs"), 1)
 		chooseActiveItem()
 		print(activeHotbarSlot)
+#endregion
 
 func chooseActiveItem():
 	activeItem = inventory.get_item_stack(activeHotbarSlot)
@@ -269,8 +283,6 @@ func updateUI():
 	health_text.text = "Health: %d/%d" % [health_manager.curHealth, health_manager.maxHealth]
 	stamina_text.text = "Stamina: %d/%d" % [stats.curStamina, stats.maxStamina]
 
-
-
 #region Player Properties
 
 func update_player_properties():
@@ -309,6 +321,21 @@ func get_player_properties():
 	inventory.set_items(PlayerProperties.get_items())
 	
 	updateUI()
+#endregion
+
+#region Use tools functions
+
+func use_pickaxe():
+	print("Use pickaxe")
+	print(activeItem.item.efficiency)
+
+func use_axe():
+	print("Use axe")
+
+func use_tongs():
+	print("Use tongs")
+	print(activeItem.item.efficiency)
+
 #endregion
 
 func zoom_out_camera():

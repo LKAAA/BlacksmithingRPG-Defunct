@@ -1,20 +1,23 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c2y04av43vdmi"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c2y04av43vdmi"]
 
-[ext_resource type="Script" path="res://Scripts/Item.gd" id="1_hjh8g"]
+[ext_resource type="Script" path="res://Scripts/Tool.gd" id="1_63bas"]
 [ext_resource type="Texture2D" uid="uid://d30pn6aeri1" path="res://Assets/Sprites/Tongs_SpriteSheet.png" id="2_1va17"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sx8v1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_16tpv"]
 atlas = ExtResource("2_1va17")
 region = Rect2(16, 0, 16, 16)
 
 [resource]
-script = ExtResource("1_hjh8g")
+script = ExtResource("1_63bas")
+tool_type = "tongs"
+efficiency = 1
+range = 1
 name = "Tongs (Full)"
 stackable = false
 max_quantity = 1
 quantity = 1
 sellable = false
 value = 0
-description = "A pair of tongs used to grab hot objects out of the forge."
-itemType = 2
-sprite = SubResource("AtlasTexture_sx8v1")
+description = "A pair of tongs with an ingot in them."
+itemType = 4
+sprite = SubResource("AtlasTexture_16tpv")

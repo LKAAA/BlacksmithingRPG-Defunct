@@ -10,7 +10,7 @@ class_name Item
 @export var sellable: bool = true
 @export var value: int
 @export_multiline var description
-@export_enum("GENERIC","CONSUMABLE", "EQUIPMENT", "QUEST") var itemType: int
+@export_enum("GENERIC","CONSUMABLE", "EQUIPMENT", "QUEST", "TOOL") var itemType: int
 @export var sprite : Texture
 
 #@export var placeableObject = 00
