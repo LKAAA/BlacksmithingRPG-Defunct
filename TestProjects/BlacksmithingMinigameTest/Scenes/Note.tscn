@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://nqwxh3aysvoo"]
+
+[ext_resource type="Script" path="res://Scripts/Note.gd" id="1_78r3p"]
+[ext_resource type="Texture2D" uid="uid://4c4bjiyk5xec" path="res://Sprites/TempKeySpritesheet.png" id="2_ml8r3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6getp"]
+atlas = ExtResource("2_ml8r3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6muh"]
+size = Vector2(18, 18)
+
+[node name="Note" type="StaticBody2D"]
+script = ExtResource("1_78r3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_6getp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p6muh")

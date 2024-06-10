@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddg850r7d5poy"]
+
+[ext_resource type="Script" path="res://Scripts/AnvilMinigame.gd" id="1_rfctd"]
+[ext_resource type="PackedScene" uid="uid://nqwxh3aysvoo" path="res://Scenes/Note.tscn" id="2_vkyv5"]
+[ext_resource type="Texture2D" uid="uid://4c4bjiyk5xec" path="res://Sprites/TempKeySpritesheet.png" id="3_cabac"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ipx3"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxiyu"]
+atlas = ExtResource("3_cabac")
+region = Rect2(64, 0, 16, 16)
+
+[node name="AnvilMinigame" type="Node2D" node_paths=PackedStringArray("noteSpawnLocation", "hitZoneLocation")]
+script = ExtResource("1_rfctd")
+note_scene = ExtResource("2_vkyv5")
+noteSpawnLocation = NodePath("NoteSpawnLocation")
+hitZoneLocation = NodePath("HitZoneLocation")
+
+[node name="Line" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_7ipx3")
+position = Vector2(416.781, 181)
+scale = Vector2(29.5977, 0.25)
+texture = SubResource("AtlasTexture_sxiyu")
+
+[node name="NoteSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="NoteSpawnLocation" type="Node2D" parent="."]
+position = Vector2(653, 181)
+
+[node name="HitZoneLocation" type="Node2D" parent="."]
+position = Vector2(180, 181)
+
+[connection signal="timeout" from="NoteSpawnTimer" to="." method="_on_note_spawn_timer_timeout"]
