@@ -59,6 +59,7 @@ position = Vector2(0, 19)
 shape = SubResource("RectangleShape2D_w0rec")
 
 [node name="IntakeCraftingStationManager" parent="." instance=ExtResource("2_rirfw")]
+requiredItem = "Tongs"
 craftingRecipies = Array[Resource("res://Scripts/Recipe.gd")]([ExtResource("3_8mpgl")])
 
 [node name="InteractionManager" parent="." instance=ExtResource("2_mq60e")]

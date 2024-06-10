@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dbekqd73dhguj"]
+[gd_scene load_steps=2 format=3 uid="uid://dbekqd73dhguj"]
+
+[ext_resource type="Script" path="res://Scripts/breakable.gd" id="1_nc7gq"]
 
 [node name="Breakable" type="Node"]
+script = ExtResource("1_nc7gq")

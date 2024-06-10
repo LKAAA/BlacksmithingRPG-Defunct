@@ -155,7 +155,7 @@ func remove_item(item:Item, quantity:int = 1):
 			else:
 				_slots[i].quantity -= 1
 				if _slots[i].quantity == 0:
-					_slots[i].item == null
+					_slots[i].item = null
 				quantity -= 1
 
 static func swap_slots_from_inventories(from_inventory:Inventory, from_index:int, to_inventory:Inventory, to_index:int, from_stack:ItemStack = null, to_stack:ItemStack = null) -> void:

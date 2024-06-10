@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+var isMenuOpen: bool = false
+
 var activeHotbarSlot: int # 0 - 8, 0 being slot 1, 8 being slot 9
 var activeItem:ItemStack
 var selected_tool: String = ""
@@ -32,6 +34,7 @@ var inventory:Inventory = null
 
 
 func _ready():
+	isMenuOpen = false
 	inventory = Inventory.new()
 	inventory.max_slots = 12
 	activeHotbarSlot = 0
@@ -79,9 +82,12 @@ func _physics_process(_delta):
 			velocity.x = move_toward(velocity.x, 0, WALKSPEED)
 			velocity.y = move_toward(velocity.y, 0, WALKSPEED)
 	
-	move_and_slide()
+	if not isMenuOpen:
+		move_and_slide()
+		play_animations()
+	
 	recieve_inputs()
-	play_animations()
+	
 
 func recieve_inputs():
 	
@@ -115,11 +121,11 @@ func recieve_inputs():
 					print(activeItem.item.tool_type)
 					match activeItem.item.tool_type:
 						"pickaxe":
-							use_pickaxe()
+							use_tool(activeItem.item.tool_type)
 						"axe":
-							use_axe()
+							use_tool(activeItem.item.tool_type)
 						"tongs":
-							use_tongs()
+							use_tool(activeItem.item.tool_type)
 		else:
 			print("No active item")
 	
@@ -127,21 +133,30 @@ func recieve_inputs():
 		# health_manager.damage(10)
 		# print("Taken 10 damage.")
 		inventory.add_item(ItemDatabase.get_item("Iron Ore"), 1, true)
-		player_menu_ui.visible = false
 		#leveling_manager.gainXP(500, "Mining")
 		#leveling_manager.debugLevelAllSkillsMax()
 		#leveling_manager.debugShowLevels()
 		#leveling_manager.gainXP(500, "Combat")
 	
 	if Input.is_action_just_pressed("OpenInventory"):
-		print("Inventory button pressed")
-		player_menu_ui.visible = true
-		inventory.debug_get_items()
-		pass
+		if isMenuOpen == false: #If not open
+			inventory.add_item(ItemDatabase.get_item("Tongs"), 1, false)
+			print("Inventory button pressed")
+			player_menu_ui.visible = true
+			inventory.debug_get_items()
+			isMenuOpen = true
+			
+			#reset to idle
+			vertical = 0
+			horizontal = 0
+			play_animations()
+			
+		else:
+			player_menu_ui.visible = false
+			isMenuOpen = false
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")
-		inventory.add_item(ItemDatabase.get_item("Tongs"), 1, false)
 		interactionManager.initiate_interaction()
 	
 #region Hotbar Input
@@ -323,20 +338,8 @@ func get_player_properties():
 	updateUI()
 #endregion
 
-#region Use tools functions
-
-func use_pickaxe():
-	print("Use pickaxe")
-	print(activeItem.item.efficiency)
-
-func use_axe():
-	print("Use axe")
-
-func use_tongs():
-	print("Use tongs")
-	print(activeItem.item.efficiency)
-
-#endregion
+func use_tool(toolType: String):
+	print("Using " + toolType)
 
 func zoom_out_camera():
 	camera.zoom.x = 2.5

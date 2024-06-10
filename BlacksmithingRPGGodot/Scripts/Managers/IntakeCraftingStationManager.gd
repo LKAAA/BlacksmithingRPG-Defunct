@@ -4,6 +4,7 @@ class_name IntakeCraftingStation
 signal turnedOn
 signal turnedOff
 
+@export var requiredItem: String
 @export var craftingRecipies: Array[Recipe]
 @onready var timer = $Timer
 
@@ -70,15 +71,17 @@ func craftEnded():
 	print("ready for pickup")
 
 func finishCraft():
-	player.inventory.add_item(owedItem, owedCount)
+	
+	player.inventory.remove_item(player.activeItem.item, 1)
+	player.inventory.add_item(ItemDatabase.get_item("Tongs (" + owedItem.name + ")"), 1)
 	player.leveling_manager.gainXP(owedXP, owedXPType)
-	print("Picked up item")
+	print("Picked up " + ItemDatabase.get_item("Tongs (" + owedItem.name + ")").name)
 	owedItem = null
 	owedCount = 0
 	readyToGrab = false
 
 func attemptGrab():
-	if player.activeItem.item.name == "Tongs":
+	if player.activeItem.item.name == requiredItem:
 		print("You have the required item to pick this up")
 		finishCraft()
 	else:
