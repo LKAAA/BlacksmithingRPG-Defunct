@@ -1,8 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://vrw6wqq4okmu"]
+[gd_scene load_steps=8 format=3 uid="uid://vrw6wqq4okmu"]
 
 [ext_resource type="PackedScene" uid="uid://c41g5tc0fn10p" path="res://Scenes/player.tscn" id="1_kc4g7"]
+[ext_resource type="Texture2D" uid="uid://4c4bjiyk5xec" path="res://Sprites/TempKeySpritesheet.png" id="2_e5dxl"]
+[ext_resource type="PackedScene" uid="uid://bb6cvpk05qm0e" path="res://Scenes/interaction_manager.tscn" id="3_djq4r"]
+[ext_resource type="Script" path="res://Scenes/AnvilInteraction.gd" id="4_6u46t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx7an"]
+atlas = ExtResource("2_e5dxl")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exbnp"]
+size = Vector2(42, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jmcr"]
+radius = 56.2228
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_kc4g7")]
-position = Vector2(255, 139)
+position = Vector2(304, 176)
+
+[node name="AnvilMinigame" type="StaticBody2D" parent="."]
+position = Vector2(49, 166)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnvilMinigame"]
+position = Vector2(9.53674e-07, 9.53674e-07)
+scale = Vector2(2.6025, 2.4775)
+texture = SubResource("AtlasTexture_xx7an")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnvilMinigame"]
+shape = SubResource("RectangleShape2D_exbnp")
+
+[node name="InteractionManager" parent="AnvilMinigame" instance=ExtResource("3_djq4r")]
+script = ExtResource("4_6u46t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnvilMinigame/InteractionManager"]
+shape = SubResource("CircleShape2D_2jmcr")

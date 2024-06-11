@@ -8,7 +8,7 @@ extends Node2D
 
 @onready var spawn_timer = $NoteSpawnTimer
 
-@export var total_notes: int = 20  # Set the total number of notes
+@export var total_notes: int = 20 # Set the total number of notes
 
 var score: int = 0
 var notes_spawned: int = 0
@@ -41,7 +41,8 @@ func spawn_note():
 	add_child(note_instance)
 
 func _input(event):
-	if event.is_action_pressed("key_1") or event.is_action_pressed("key_2") or event.is_action_pressed("key_3") or event.is_action_pressed("key_4"):
+	if (event.is_action_pressed("key_1") or event.is_action_pressed("key_2") or 
+		event.is_action_pressed("key_3") or event.is_action_pressed("key_4")):
 		check_input(event)
 
 func check_input(event):

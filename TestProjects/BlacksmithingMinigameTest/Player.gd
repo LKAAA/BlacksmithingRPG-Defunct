@@ -14,6 +14,9 @@ var horizontal
 var vertical
 var lastDirection
 
+@onready var interactionManager = $InteractionManager
+
+
 func _ready():
 	isPaused = false
 
@@ -73,3 +76,7 @@ func recieve_inputs():
 			isSprinting = true
 		else:
 			isSprinting = false
+	
+	if Input.is_action_just_pressed("interact"):
+		print("init interaction")
+		interactionManager.initiate_interaction()

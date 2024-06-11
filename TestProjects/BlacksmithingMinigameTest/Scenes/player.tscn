@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c41g5tc0fn10p"]
+[gd_scene load_steps=6 format=3 uid="uid://c41g5tc0fn10p"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_ycpfy"]
 [ext_resource type="Texture2D" uid="uid://bbf0q1aytn1tu" path="res://icon.svg" id="2_ea6oe"]
+[ext_resource type="PackedScene" uid="uid://bb6cvpk05qm0e" path="res://Scenes/interaction_manager.tscn" id="3_gqfm3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aww7j"]
 size = Vector2(128, 129)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tehp4"]
+radius = 149.345
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)
@@ -16,3 +20,8 @@ texture = ExtResource("2_ea6oe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_aww7j")
+
+[node name="InteractionManager" parent="." instance=ExtResource("3_gqfm3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionManager"]
+shape = SubResource("CircleShape2D_tehp4")
