@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc18roxw6x115"]
+
+[ext_resource type="Script" path="res://Scripts/player_ui.gd" id="1_7ma2w"]
+[ext_resource type="Script" path="res://Scripts/Hotbar.gd" id="1_bt1gd"]
+[ext_resource type="Texture2D" uid="uid://cayrcre43gmnh" path="res://Assets/Sprites/UI/Hotbar.png" id="2_08s00"]
+
+[node name="PlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ma2w")
+
+[node name="HotbarTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -17.0
+offset_right = 140.0
+offset_bottom = 5.00002
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.774997, 0.774997)
+texture = ExtResource("2_08s00")
+
+[node name="Hotbar" type="GridContainer" parent="HotbarTexture"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_top = -19.0
+offset_right = 110.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 0
+columns = 12
+script = ExtResource("1_bt1gd")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://drfu4v1c5wh0c"]
+[gd_scene load_steps=28 format=3 uid="uid://drfu4v1c5wh0c"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_27t2j"]
 [ext_resource type="Texture2D" uid="uid://bqktms2cbpgah" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_qnijf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_t5ayg"]
 [ext_resource type="PackedScene" uid="uid://du2scp2mhwtnu" path="res://Scenes/Managers/player_stats_manager.tscn" id="4_o6k7l"]
 [ext_resource type="PackedScene" uid="uid://dbqh862rtg5hi" path="res://Scenes/UI/player_menu_ui.tscn" id="7_swwb4"]
+[ext_resource type="PackedScene" uid="uid://cc18roxw6x115" path="res://Scenes/UI/player_ui.tscn" id="8_a5i1x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4hoy"]
 atlas = ExtResource("1_qnijf")
@@ -238,6 +239,8 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 12
 text = "Stamina: 000/000"
 horizontal_alignment = 1
+
+[node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("8_a5i1x")]
 
 [node name="PlayerMenuUI" parent="CanvasLayer" instance=ExtResource("7_swwb4")]
 

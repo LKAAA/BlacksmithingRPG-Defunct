@@ -31,6 +31,7 @@ var inventory:Inventory = null
 @onready var stamina_text = $CanvasLayer/StaminaText
 @onready var camera = $Camera2D
 @onready var player_menu_ui = $CanvasLayer/PlayerMenuUI
+@onready var player_ui = $CanvasLayer/PlayerUI
 
 func _ready():
 	isMenuOpen = false
@@ -42,6 +43,8 @@ func _ready():
 	updateUI()
 	player_menu_ui.visible = false
 	player_menu_ui.get_player(self)
+	player_ui.get_player(self)
+	player_ui.update_hotbar()
 	if PlayerProperties.holdingStats:
 		get_player_properties()
 
@@ -136,6 +139,7 @@ func recieve_inputs():
 		inventory.add_item(ItemDatabase.get_item("Iron Bar"), 888, true)
 		inventory.add_item(ItemDatabase.get_item("Tongs"), 1, false)
 		player_menu_ui.update_inventory()
+		player_ui.update_hotbar()
 		#leveling_manager.gainXP(500, "Mining")
 		#leveling_manager.debugLevelAllSkillsMax()
 		#leveling_manager.debugShowLevels()
