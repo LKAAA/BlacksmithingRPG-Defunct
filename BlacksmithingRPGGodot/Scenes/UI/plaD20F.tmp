@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbqh862rtg5hi"]
+
+[ext_resource type="Script" path="res://Scripts/player_menu_ui.gd" id="1_pit5s"]
+[ext_resource type="Texture2D" uid="uid://oku78qubrsrv" path="res://Assets/Sprites/UI/PlayerMenuBook.png" id="2_tts2p"]
+[ext_resource type="Script" path="res://Scenes/UI/InventoryUIManager.gd" id="3_36him"]
+[ext_resource type="PackedScene" uid="uid://ch2lt10leyftb" path="res://Scenes/UI/Bookmark_button.tscn" id="4_cisch"]
+[ext_resource type="Texture2D" uid="uid://bxpesnqg1gtj0" path="res://Assets/Sprites/UI/InventoryTabNOTINUSE.png" id="5_iaw2p"]
+[ext_resource type="Texture2D" uid="uid://v6umymrml8h0" path="res://Assets/Sprites/UI/InventoryTabINUSE.png" id="6_qmi2s"]
+
+[node name="PlayerMenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_pit5s")
+
+[node name="InventorySprite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tts2p")
+stretch_mode = 2
+
+[node name="InventoryHolder" type="GridContainer" parent="InventorySprite"]
+clip_contents = true
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 63.0
+offset_top = 45.0
+offset_right = -201.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 2
+columns = 6
+script = ExtResource("3_36him")
+
+[node name="ExitButton" parent="." instance=ExtResource("4_cisch")]
+layout_mode = 0
+
+[node name="InventoryButton" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 330.0
+offset_top = 19.0
+offset_right = 362.0
+offset_bottom = 39.0
+
+[node name="NotInUseTexture" type="TextureRect" parent="InventoryButton"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0
+texture = ExtResource("5_iaw2p")
+stretch_mode = 2
+
+[node name="InUseTexture" type="TextureRect" parent="InventoryButton"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0
+texture = ExtResource("6_qmi2s")
+stretch_mode = 2

@@ -32,7 +32,6 @@ var inventory:Inventory = null
 @onready var camera = $Camera2D
 @onready var player_menu_ui = $CanvasLayer/PlayerMenuUI
 
-
 func _ready():
 	isMenuOpen = false
 	inventory = Inventory.new()
@@ -42,6 +41,7 @@ func _ready():
 	newGameStats()
 	updateUI()
 	player_menu_ui.visible = false
+	player_menu_ui.get_player(self)
 	if PlayerProperties.holdingStats:
 		get_player_properties()
 
@@ -132,7 +132,10 @@ func recieve_inputs():
 	if Input.is_action_just_pressed("TestAction"):
 		# health_manager.damage(10)
 		# print("Taken 10 damage.")
-		inventory.add_item(ItemDatabase.get_item("Iron Ore"), 1, true)
+		inventory.add_item(ItemDatabase.get_item("Iron Ore"), 87, true)
+		inventory.add_item(ItemDatabase.get_item("Iron Bar"), 888, true)
+		inventory.add_item(ItemDatabase.get_item("Tongs"), 1, false)
+		player_menu_ui.update_inventory()
 		#leveling_manager.gainXP(500, "Mining")
 		#leveling_manager.debugLevelAllSkillsMax()
 		#leveling_manager.debugShowLevels()
@@ -140,10 +143,9 @@ func recieve_inputs():
 	
 	if Input.is_action_just_pressed("OpenInventory"):
 		if isMenuOpen == false: #If not open
-			inventory.add_item(ItemDatabase.get_item("Tongs"), 1, false)
 			print("Inventory button pressed")
-			player_menu_ui.visible = true
-			inventory.debug_get_items()
+			player_menu_ui.activate_inventory()
+			#inventory.debug_get_items()
 			isMenuOpen = true
 			
 			#reset to idle

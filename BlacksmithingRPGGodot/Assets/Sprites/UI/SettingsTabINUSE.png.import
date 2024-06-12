@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gokaeloq7xlx"
-path="res://.godot/imported/PlayerInventoryTestImage.png-2452ccbb9c69ccbe1cf557d1cad4b2f4.ctex"
+uid="uid://d3k5hi1btrbiu"
+path="res://.godot/imported/SettingsTabINUSE.png-a7ef0c85b92565c5a290ad63cc20a8a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TEMP/PlayerInventoryTestImage.png"
-dest_files=["res://.godot/imported/PlayerInventoryTestImage.png-2452ccbb9c69ccbe1cf557d1cad4b2f4.ctex"]
+source_file="res://Assets/Sprites/UI/SettingsTabINUSE.png"
+dest_files=["res://.godot/imported/SettingsTabINUSE.png-a7ef0c85b92565c5a290ad63cc20a8a4.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
