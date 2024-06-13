@@ -45,3 +45,6 @@ clip_text = true
 max_lines_visible = 929
 visible_characters = 165
 visible_ratio = 55.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

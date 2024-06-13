@@ -9,6 +9,8 @@ var withItemSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlotWith
 var item:Item
 var quantity: int
 
+var hovered: bool = false
+
 @export var isLocked: bool = false
 
 @onready var slot = $Slot
@@ -22,7 +24,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if hovered:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if item: # If there is an item
+				print("Clicked on " + item.name)
 
 func lock():
 	isLocked = true
@@ -55,3 +60,11 @@ func set_texture():
 		slot.texture = withItemSprite
 		itemSprite.texture = item.sprite
 
+func _on_mouse_entered():
+	print("I was hovered")
+	print(isLocked)
+	hovered = true
+
+
+func _on_mouse_exited():
+	hovered = false
