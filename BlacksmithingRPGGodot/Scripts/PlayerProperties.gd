@@ -6,6 +6,7 @@ var curHealth
 var curStamina
 var maxHealth
 var maxStamina
+var curActiveSlot
 
 var miningLevel
 var foragingLevel

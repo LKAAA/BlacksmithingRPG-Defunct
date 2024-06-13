@@ -44,9 +44,12 @@ func _ready():
 	player_menu_ui.visible = false
 	player_menu_ui.get_player(self)
 	player_ui.get_player(self)
-	player_ui.update_hotbar()
 	if PlayerProperties.holdingStats:
+		print("YEYARAUYUADS")
 		get_player_properties()
+	print(activeHotbarSlot)
+	player_ui.update_hotbar()
+	player_ui.update_active_slot()
 
 func _physics_process(_delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -94,6 +97,8 @@ func _physics_process(_delta):
 
 func recieve_inputs():
 	
+	player_ui.update_active_slot()
+	
 	if toggleSprint == true: 
 		# When you press the sprint button, if not already sprinting, start, and vice versa
 		if Input.is_action_just_pressed("sprint") && isSprinting == false:
@@ -140,6 +145,7 @@ func recieve_inputs():
 		inventory.add_item(ItemDatabase.get_item("Tongs"), 1, false)
 		player_menu_ui.update_inventory()
 		player_ui.update_hotbar()
+		chooseActiveItem()
 		#leveling_manager.gainXP(500, "Mining")
 		#leveling_manager.debugLevelAllSkillsMax()
 		#leveling_manager.debugShowLevels()
@@ -160,6 +166,7 @@ func recieve_inputs():
 		else:
 			player_menu_ui.visible = false
 			isMenuOpen = false
+			chooseActiveItem()
 	
 	if Input.is_action_just_pressed("interact"):
 		print("init interaction")
@@ -170,79 +177,93 @@ func recieve_inputs():
 	
 	if Input.is_action_just_pressed("scroll_up"):
 		if activeHotbarSlot == 0:
-			activeHotbarSlot = 8
+			activeHotbarSlot = 11
 			print(activeHotbarSlot)
 		else:
 			activeHotbarSlot -= 1
 			print(activeHotbarSlot)
+		player_ui.update_active_slot()
 		chooseActiveItem()
 	
 	if Input.is_action_just_pressed("scroll_down"):
-		if activeHotbarSlot == 8:
+		if activeHotbarSlot == 11:
 			activeHotbarSlot = 0
 			print(activeHotbarSlot)
 		else:
 			activeHotbarSlot += 1
 			print(activeHotbarSlot)
+		player_ui.update_active_slot()
 		chooseActiveItem()
 	
 	if Input.is_action_just_pressed("HotbarSlot1"):
 		activeHotbarSlot = 0
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot2"):
 		activeHotbarSlot = 1
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot3"):
 		activeHotbarSlot = 2
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot4"):
 		activeHotbarSlot = 3
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot5"):
 		activeHotbarSlot = 4
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot6"):
 		activeHotbarSlot = 5
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot7"):
 		activeHotbarSlot = 6
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot8"):
 		activeHotbarSlot = 7
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot9"):
 		activeHotbarSlot = 8
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot10"):
 		activeHotbarSlot = 9
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot11"):
 		activeHotbarSlot = 10
+		player_ui.update_active_slot()
 		chooseActiveItem()
 		print(activeHotbarSlot)
 	
 	if Input.is_action_just_pressed("HotbarSlot12"):
 		activeHotbarSlot = 11
+		player_ui.update_active_slot()
 		inventory.add_item(ItemDatabase.get_item("Tongs"), 1)
 		chooseActiveItem()
 		print(activeHotbarSlot)
@@ -250,7 +271,7 @@ func recieve_inputs():
 
 func chooseActiveItem():
 	activeItem = inventory.get_item_stack(activeHotbarSlot)
-	if activeItem .item == null:
+	if activeItem.item == null:
 		print("no item")
 	else:
 		print(activeItem.item.name)
@@ -323,6 +344,7 @@ func update_player_properties():
 	PlayerProperties.fishingLevel = leveling_manager.getSkill("Fishing").curLevel
 	PlayerProperties.combatLevel = leveling_manager.getSkill("Combat").curLevel
 	PlayerProperties.holdingStats = true
+	PlayerProperties.curActiveSlot = activeHotbarSlot
 
 func get_player_properties():
 	health_manager.curHealth = PlayerProperties.curHealth
@@ -340,6 +362,7 @@ func get_player_properties():
 	leveling_manager.setSkillLevel(PlayerProperties.cookingLevel, "Cooking")
 	leveling_manager.setSkillLevel(PlayerProperties.fishingLevel, "Fishing")
 	inventory.set_items(PlayerProperties.get_items())
+	activeHotbarSlot = PlayerProperties.curActiveSlot
 	
 	updateUI()
 #endregion

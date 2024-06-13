@@ -64,6 +64,7 @@ func beginCrafting(recipe: Recipe):
 	timer.start()
 	turnedOn.emit()
 	print("Started the smelt")
+	player.player_ui.update_hotbar()
 
 func craftEnded():
 	readyToGrab = true
@@ -75,6 +76,7 @@ func finishCraft():
 	player.inventory.remove_item(player.activeItem.item, 1)
 	player.inventory.add_item(ItemDatabase.get_item("Tongs (" + owedItem.name + ")"), 1)
 	player.leveling_manager.gainXP(owedXP, owedXPType)
+	player.player_ui.update_hotbar()
 	print("Picked up " + ItemDatabase.get_item("Tongs (" + owedItem.name + ")").name)
 	owedItem = null
 	owedCount = 0
