@@ -1,8 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwa1ynjurvcnk"]
 
 [ext_resource type="Script" path="res://Scripts/inventory_slot.gd" id="1_adft8"]
-[ext_resource type="Texture2D" uid="uid://g17d3svctr5n" path="res://Assets/Sprites/UI/InventorySlotUnlocked.png" id="2_3hfu7"]
 [ext_resource type="FontFile" uid="uid://bxuspkq122jrq" path="res://Assets/Fonts/TeenyTinyPixls-o2zo.ttf" id="3_p8w76"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wqhqu"]
+load_path = "res://.godot/imported/InventorySlotUnlocked.png-8ee33a4b6068151cb4b37d65455b1bf9.ctex"
 
 [node name="InventorySlot" type="PanelContainer"]
 self_modulate = Color(1, 1, 1, 0)
@@ -17,7 +19,7 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_3hfu7")
+texture = SubResource("CompressedTexture2D_wqhqu")
 stretch_mode = 2
 
 [node name="Item" type="TextureRect" parent="."]

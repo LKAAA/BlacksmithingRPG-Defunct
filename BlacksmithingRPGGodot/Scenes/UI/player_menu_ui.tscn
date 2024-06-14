@@ -1,24 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbqh862rtg5hi"]
+[gd_scene load_steps=5 format=3 uid="uid://dbqh862rtg5hi"]
 
 [ext_resource type="Script" path="res://Scripts/player_menu_ui.gd" id="1_pit5s"]
-[ext_resource type="Texture2D" uid="uid://oku78qubrsrv" path="res://Assets/Sprites/UI/PlayerMenuBook.png" id="2_tts2p"]
+[ext_resource type="Texture2D" uid="uid://b0tptnh870b51" path="res://Assets/Sprites/UI/Inventory.png" id="2_av8qc"]
 [ext_resource type="Script" path="res://Scenes/UI/InventoryUIManager.gd" id="3_36him"]
-[ext_resource type="PackedScene" uid="uid://ch2lt10leyftb" path="res://Scenes/UI/Bookmark_Exit_button.tscn" id="4_m08k6"]
-[ext_resource type="PackedScene" uid="uid://d3okic32xtrxk" path="res://Scenes/UI/bookmark_button.tscn" id="5_3xpw8"]
-[ext_resource type="Texture2D" uid="uid://bxpesnqg1gtj0" path="res://Assets/Sprites/UI/InventoryTabNOTINUSE.png" id="5_iaw2p"]
-[ext_resource type="Texture2D" uid="uid://v6umymrml8h0" path="res://Assets/Sprites/UI/InventoryTabINUSE.png" id="6_qmi2s"]
-[ext_resource type="Texture2D" uid="uid://bthttrs3f4f8m" path="res://Assets/Sprites/UI/SkillsTabINUSE.png" id="8_vor0f"]
-[ext_resource type="Texture2D" uid="uid://uduvvkwgwr0a" path="res://Assets/Sprites/UI/SkillsTabNOTINUSE.png" id="9_375w3"]
-[ext_resource type="Texture2D" uid="uid://bnkhhj2rx4wk8" path="res://Assets/Sprites/UI/RelationshipTabINUSE.png" id="10_1gooi"]
-[ext_resource type="Texture2D" uid="uid://c4lx12ctro8d4" path="res://Assets/Sprites/UI/RelationshipTabNOTINUSE.png" id="11_bpo1l"]
-[ext_resource type="Texture2D" uid="uid://db1vq0ey57vw1" path="res://Assets/Sprites/UI/QuestTabINUSE.png" id="12_ej6fr"]
-[ext_resource type="Texture2D" uid="uid://doysy058jcsbg" path="res://Assets/Sprites/UI/QuestTabNOTINUSE.png" id="13_l7a30"]
-[ext_resource type="Texture2D" uid="uid://47vahpcsidil" path="res://Assets/Sprites/UI/RunesTabINUSE.png" id="14_qd1td"]
-[ext_resource type="Texture2D" uid="uid://cc54v80wdsqap" path="res://Assets/Sprites/UI/RunesTabNOTINUSE.png" id="15_17556"]
-[ext_resource type="Texture2D" uid="uid://b0pmqr6uheauw" path="res://Assets/Sprites/UI/CollectionTabINUSE.png" id="16_wstcw"]
-[ext_resource type="Texture2D" uid="uid://bt8wlrk37amwy" path="res://Assets/Sprites/UI/CollectionTabNOTINUSE.png" id="17_6atbg"]
-[ext_resource type="Texture2D" uid="uid://d3k5hi1btrbiu" path="res://Assets/Sprites/UI/SettingsTabINUSE.png" id="18_hl3r8"]
-[ext_resource type="Texture2D" uid="uid://bxx0gm2jqjyl" path="res://Assets/Sprites/UI/SettingsTabNOTINUSE.png" id="19_3dywy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_v2rti"]
 specular_color = Color(0, 0, 0, 1)
@@ -51,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_tts2p")
+texture = ExtResource("2_av8qc")
 stretch_mode = 2
 
 [node name="InventoryHolder" type="GridContainer" parent="InventorySprite"]
@@ -61,96 +45,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 66.0
-offset_top = 58.0
-offset_right = -203.0
-offset_bottom = -43.0
+offset_left = 78.0
+offset_top = 45.0
+offset_right = -76.0
+offset_bottom = -74.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/h_separation = -1
-theme_override_constants/v_separation = -1
-columns = 6
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 5
+columns = 9
 script = ExtResource("3_36him")
-
-[node name="ExitBut" parent="." instance=ExtResource("4_m08k6")]
-layout_mode = 0
-offset_left = 209.0
-offset_top = 184.0
-offset_right = 229.0
-offset_bottom = 212.0
-
-[node name="InventoryButton" parent="." instance=ExtResource("5_3xpw8")]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 19.0
-offset_right = 362.0
-offset_bottom = 39.0
-buttonType = "inventory"
-inUseTexture = ExtResource("6_qmi2s")
-notInUseTexture = ExtResource("5_iaw2p")
-
-[node name="SkillsButton" parent="." instance=ExtResource("5_3xpw8")]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 43.0
-offset_right = 362.0
-offset_bottom = 63.0
-buttonType = "skills"
-inUseTexture = ExtResource("8_vor0f")
-notInUseTexture = ExtResource("9_375w3")
-tabNumber = 1
-
-[node name="RelationshipButton" parent="." instance=ExtResource("5_3xpw8")]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 67.0
-offset_right = 362.0
-offset_bottom = 87.0
-buttonType = "relationships"
-inUseTexture = ExtResource("10_1gooi")
-notInUseTexture = ExtResource("11_bpo1l")
-tabNumber = 2
-
-[node name="QuestsButton" parent="." instance=ExtResource("5_3xpw8")]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 91.0
-offset_right = 362.0
-offset_bottom = 111.0
-buttonType = "quests"
-inUseTexture = ExtResource("12_ej6fr")
-notInUseTexture = ExtResource("13_l7a30")
-tabNumber = 3
-
-[node name="RunesButton" parent="." instance=ExtResource("5_3xpw8")]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 115.0
-offset_right = 362.0
-offset_bottom = 135.0
-buttonType = "runes"
-inUseTexture = ExtResource("14_qd1td")
-notInUseTexture = ExtResource("15_17556")
-tabNumber = 4
-
-[node name="CollectionButton" parent="." instance=ExtResource("5_3xpw8")]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 139.0
-offset_right = 362.0
-offset_bottom = 159.0
-buttonType = "collection"
-inUseTexture = ExtResource("16_wstcw")
-notInUseTexture = ExtResource("17_6atbg")
-tabNumber = 5
-
-[node name="SettingsButton" parent="." instance=ExtResource("5_3xpw8")]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 163.0
-offset_right = 362.0
-offset_bottom = 183.0
-buttonType = "settings"
-inUseTexture = ExtResource("18_hl3r8")
-notInUseTexture = ExtResource("19_3dywy")
-tabNumber = 6

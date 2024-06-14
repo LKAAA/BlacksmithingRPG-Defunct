@@ -2,14 +2,6 @@ extends Control
 
 var buttons = []
 
-@onready var inventory_button = $InventoryButton
-@onready var skills_button = $SkillsButton
-@onready var relationship_button = $RelationshipButton
-@onready var quests_button = $QuestsButton
-@onready var runes_button = $RunesButton
-@onready var collection_button = $CollectionButton
-@onready var settings_button = $SettingsButton
-
 var currentActiveTab: int = 0
 
 @onready var inventoryUI = $InventorySprite/InventoryHolder
@@ -17,20 +9,13 @@ var currentActiveTab: int = 0
 var player: Player
 
 func _ready():
-	buttons.append(inventory_button)
-	buttons.append(skills_button)
-	buttons.append(relationship_button)
-	buttons.append(quests_button)
-	buttons.append(runes_button)
-	buttons.append(collection_button)
-	buttons.append(settings_button)
+	pass
 
 func get_player(p: Player):
 	player = p
 
 func activate_inventory():
 	currentActiveTab = 0
-	update_all_button_textures()
 	update_inventory()
 	self.visible = true
 
@@ -62,15 +47,6 @@ func button_pressed(buttonType: String):
 		"settings":
 			currentActiveTab = 6
 			print("Settings Pressed")
-	update_all_button_textures()
-
-func update_all_button_textures():
-	print("Updating")
-	for button in buttons.size():
-		if buttons[button].tabNumber == currentActiveTab: # If it is the active tab
-			buttons[button].set_in_use()
-		else:
-			buttons[button].set_not_in_use()
 
 func exit_menu():
 	self.visible = false

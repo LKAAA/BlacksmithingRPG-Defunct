@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3k5hi1btrbiu"
-path="res://.godot/imported/SettingsTabINUSE.png-a7ef0c85b92565c5a290ad63cc20a8a4.ctex"
+uid="uid://b0tptnh870b51"
+path="res://.godot/imported/Inventory.png-4484097f94cdb3a68ceb1f638ed7dd5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/SettingsTabINUSE.png"
-dest_files=["res://.godot/imported/SettingsTabINUSE.png-a7ef0c85b92565c5a290ad63cc20a8a4.ctex"]
+source_file="res://Assets/Sprites/UI/Inventory.png"
+dest_files=["res://.godot/imported/Inventory.png-4484097f94cdb3a68ceb1f638ed7dd5b.ctex"]
 
 [params]
 
