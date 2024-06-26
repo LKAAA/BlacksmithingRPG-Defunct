@@ -2,8 +2,8 @@ extends PanelContainer
 
 class_name Inventory_Slot
 
-var lockedSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlotLocked.png")
-var unlockedSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlotUnlocked.png")
+var lockedSprite: Texture = preload("res://Assets/Sprites/UI/InventoryLocked.png")
+var unlockedSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlot.png")
 var withItemSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlotWithItem.png")
 
 var item:Item
@@ -25,9 +25,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hovered:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if Input.is_action_just_pressed("left_click"):
 			if item: # If there is an item
-				print("Clicked on " + item.name)
+				print("Clicked on " + item.name) 
+			else:
+				print("NO ITEM SAHUSAHDKJSAHDKASUDHSAKJDHSAJKDHSAKJDHASKJDHSAJK")
 
 func lock():
 	isLocked = true
@@ -65,6 +67,6 @@ func _on_mouse_entered():
 	print(isLocked)
 	hovered = true
 
-
 func _on_mouse_exited():
 	hovered = false
+

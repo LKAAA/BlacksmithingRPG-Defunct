@@ -33,13 +33,11 @@ func _on_pressed():
 	root.button_pressed(buttonType)
 
 func set_in_use():
-	print("Set in use")
 	inUse = true
 	not_in_use_texture.visible = false
 	in_use_texture.visible = true
 
 func set_not_in_use():
-	print("Set not in use")
 	inUse = false
 	not_in_use_texture.visible = true
 	in_use_texture.visible = false

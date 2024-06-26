@@ -37,5 +37,4 @@ func update_active_slot():
 		10: 
 			active_slot_marker.set_position(hotbar._item_slots[10].position - Vector2(-2,-2))
 		11: 
-			print("Fuck you")
 			active_slot_marker.set_position(hotbar._item_slots[11].position - Vector2(-2,-2))
