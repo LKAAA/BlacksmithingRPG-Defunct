@@ -112,30 +112,31 @@ func recieve_inputs():
 		else:
 			isSprinting = false
 	
-	if Input.is_action_just_pressed("use_item"):
-		if not activeItem.item == null:
-			match activeItem.item.itemType:
-				0: # Generic Item (Does nothing)
-					print("This item does nothing.")
-				1: # Consumable
-					activeItem.item.use(self)
-					print(activeItem.item.name)
-				2: # Equipment
-					activeItem.item.use(self)
-					print(activeItem.item.name)
-				3: # Quest
-					print("This is a quest item")
-				4: # TOOL
-					print(activeItem.item.tool_type)
-					match activeItem.item.tool_type:
-						"pickaxe":
-							use_tool(activeItem.item.tool_type)
-						"axe":
-							use_tool(activeItem.item.tool_type)
-						"tongs":
-							use_tool(activeItem.item.tool_type)
-		else:
-			print("No active item")
+	if not isMenuOpen:
+		if Input.is_action_just_pressed("use_item"):
+			if not activeItem.item == null:
+				match activeItem.item.itemType:
+					0: # Generic Item (Does nothing)
+						print("This item does nothing.")
+					1: # Consumable
+						activeItem.item.use(self)
+						print(activeItem.item.name)
+					2: # Equipment
+						activeItem.item.use(self)
+						print(activeItem.item.name)
+					3: # Quest
+						print("This is a quest item")
+					4: # TOOL
+						print(activeItem.item.tool_type)
+						match activeItem.item.tool_type:
+							"pickaxe":
+								use_tool(activeItem.item.tool_type)
+							"axe":
+								use_tool(activeItem.item.tool_type)
+							"tongs":
+								use_tool(activeItem.item.tool_type)
+			else:
+				print("No active item")
 	
 	if Input.is_action_just_pressed("TestAction"):
 		# health_manager.damage(10)

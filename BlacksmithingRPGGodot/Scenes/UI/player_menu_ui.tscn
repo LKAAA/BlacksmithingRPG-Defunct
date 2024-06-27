@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbqh862rtg5hi"]
+[gd_scene load_steps=25 format=3 uid="uid://dbqh862rtg5hi"]
 
 [ext_resource type="Script" path="res://Scripts/player_menu_ui.gd" id="1_pit5s"]
 [ext_resource type="Texture2D" uid="uid://htg00vlwew44" path="res://TEMP/InventoryPageTEMP.png" id="2_2pq7e"]
 [ext_resource type="Script" path="res://Scenes/UI/InventoryUIManager.gd" id="3_36him"]
+[ext_resource type="Texture2D" uid="uid://bdqmd0kow4olm" path="res://Assets/Sprites/Item32x32Spritesheet.png" id="3_qymgb"]
 [ext_resource type="PackedScene" uid="uid://d3okic32xtrxk" path="res://Scenes/UI/bookmark_button.tscn" id="3_w3k4f"]
 [ext_resource type="Texture2D" uid="uid://bofv7auxs012m" path="res://Assets/Sprites/UI/InventoryTabINUSE.png" id="4_5ohln"]
+[ext_resource type="FontFile" uid="uid://bxuspkq122jrq" path="res://Assets/Fonts/TeenyTinyPixls-o2zo.ttf" id="4_h5oea"]
 [ext_resource type="Texture2D" uid="uid://b60vy73f5sjtd" path="res://Assets/Sprites/UI/InventoryTabNOTINUSE.png" id="5_cdov4"]
 [ext_resource type="Texture2D" uid="uid://bw3nog07atw6u" path="res://Assets/Sprites/UI/SkillsTabINUSE.png" id="7_n405q"]
 [ext_resource type="Texture2D" uid="uid://bxskpic23gppc" path="res://Assets/Sprites/UI/SkillsTabNOTINUSE.png" id="8_l8imq"]
@@ -23,6 +25,10 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_v2rti"]
 specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lajd"]
+atlas = ExtResource("3_qymgb")
+region = Rect2(0, 0, 32, 32)
 
 [node name="PlayerMenuUI" type="Control"]
 layout_mode = 3
@@ -54,6 +60,35 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_2pq7e")
 stretch_mode = 2
+
+[node name="ItemInfoSection" type="Control" parent="InventorySprite"]
+anchors_preset = 0
+offset_left = 69.0
+offset_top = 21.0
+offset_right = 175.0
+offset_bottom = 62.0
+
+[node name="TextureRect" type="TextureRect" parent="InventorySprite/ItemInfoSection"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_5lajd")
+
+[node name="Label" type="Label" parent="InventorySprite/ItemInfoSection"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 4.0
+offset_right = 102.0
+offset_bottom = 37.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_h5oea")
+theme_override_font_sizes/font_size = 5
+text = "This is the items description"
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 1
 
 [node name="InventoryHolder" type="GridContainer" parent="InventorySprite"]
 clip_contents = true
