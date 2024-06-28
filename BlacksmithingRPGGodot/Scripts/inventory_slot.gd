@@ -11,6 +11,8 @@ var quantity: int
 
 var hovered: bool = false
 
+var inventoryUI: InventoryUI
+
 @export var isLocked: bool = false
 
 @onready var slot = $Slot
@@ -25,11 +27,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hovered:
+		inventoryUI.update_slot(self)
 		if Input.is_action_just_pressed("left_click"):
 			if item: # If there is an item
-				print("Clicked on " + item.name) 
+				#print("Clicked on " + item.name)
+				inventoryUI.select_slot(self)
 			else:
-				print("NO ITEM SAHUSAHDKJSAHDKASUDHSAKJDHSAJKDHSAKJDHASKJDHSAJK")
+				#print("NO ITEM SAHUSAHDKJSAHDKASUDHSAKJDHSAJKDHSAKJDHASKJDHSAJK")
+				inventoryUI.select_slot(self)
 
 func lock():
 	isLocked = true
@@ -48,6 +53,11 @@ func set_item(item:Item, quantity:int = 1) -> void:
 		set_quantity(quantity)
 		set_texture()
 
+func set_empty():
+	self.item = null
+	set_quantity(0)
+	set_texture()
+
 func set_quantity(new_quantity: int):
 	self.quantity = new_quantity
 	
@@ -61,10 +71,13 @@ func set_texture():
 	if item:
 		slot.texture = withItemSprite
 		itemSprite.texture = item.sprite
+	else:
+		slot.texture = unlockedSprite
+		itemSprite.texture = null
 
 func _on_mouse_entered():
-	print("I was hovered")
-	print(isLocked)
+	#print("I was hovered")
+	#print(isLocked)
 	hovered = true
 
 func _on_mouse_exited():

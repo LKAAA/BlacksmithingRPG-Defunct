@@ -1,9 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://dbqh862rtg5hi"]
+[gd_scene load_steps=24 format=3 uid="uid://dbqh862rtg5hi"]
 
 [ext_resource type="Script" path="res://Scripts/player_menu_ui.gd" id="1_pit5s"]
 [ext_resource type="Texture2D" uid="uid://htg00vlwew44" path="res://TEMP/InventoryPageTEMP.png" id="2_2pq7e"]
+[ext_resource type="PackedScene" uid="uid://dgsv1wec082bc" path="res://Scenes/UI/HeldItemAttachment.tscn" id="3_2r6sn"]
 [ext_resource type="Script" path="res://Scenes/UI/InventoryUIManager.gd" id="3_36him"]
-[ext_resource type="Texture2D" uid="uid://bdqmd0kow4olm" path="res://Assets/Sprites/Item32x32Spritesheet.png" id="3_qymgb"]
 [ext_resource type="PackedScene" uid="uid://d3okic32xtrxk" path="res://Scenes/UI/bookmark_button.tscn" id="3_w3k4f"]
 [ext_resource type="Texture2D" uid="uid://bofv7auxs012m" path="res://Assets/Sprites/UI/InventoryTabINUSE.png" id="4_5ohln"]
 [ext_resource type="FontFile" uid="uid://bxuspkq122jrq" path="res://Assets/Fonts/TeenyTinyPixls-o2zo.ttf" id="4_h5oea"]
@@ -25,10 +25,6 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_v2rti"]
 specular_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5lajd"]
-atlas = ExtResource("3_qymgb")
-region = Rect2(0, 0, 32, 32)
 
 [node name="PlayerMenuUI" type="Control"]
 layout_mode = 3
@@ -61,6 +57,9 @@ grow_vertical = 2
 texture = ExtResource("2_2pq7e")
 stretch_mode = 2
 
+[node name="HeldItemSlot" parent="InventorySprite" instance=ExtResource("3_2r6sn")]
+layout_mode = 0
+
 [node name="ItemInfoSection" type="Control" parent="InventorySprite"]
 anchors_preset = 0
 offset_left = 69.0
@@ -74,18 +73,16 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 38.0
 offset_bottom = 37.0
-texture = SubResource("AtlasTexture_5lajd")
 
 [node name="Label" type="Label" parent="InventorySprite/ItemInfoSection"]
 layout_mode = 0
-offset_left = 40.0
+offset_left = 41.0
 offset_top = 4.0
 offset_right = 102.0
 offset_bottom = 37.0
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("4_h5oea")
 theme_override_font_sizes/font_size = 5
-text = "This is the items description"
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 1

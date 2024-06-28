@@ -141,7 +141,7 @@ func recieve_inputs():
 	if Input.is_action_just_pressed("TestAction"):
 		# health_manager.damage(10)
 		# print("Taken 10 damage.")
-		inventory.add_item(ItemDatabase.get_item("Iron Ore"), 87, true)
+		inventory.add_item(ItemDatabase.get_item("Iron Ore"), 87, false)
 		inventory.add_item(ItemDatabase.get_item("Iron Bar"), 888, true)
 		inventory.add_item(ItemDatabase.get_item("Tongs"), 1, false)
 		player_menu_ui.update_inventory()
@@ -175,99 +175,98 @@ func recieve_inputs():
 	
 #region Hotbar Input
 	
-	
-	if Input.is_action_just_pressed("scroll_up"):
-		if activeHotbarSlot == 0:
-			activeHotbarSlot = 11
-			print(activeHotbarSlot)
-		else:
-			activeHotbarSlot -= 1
-			print(activeHotbarSlot)
-		player_ui.update_active_slot()
-		chooseActiveItem()
-	
-	if Input.is_action_just_pressed("scroll_down"):
-		if activeHotbarSlot == 11:
+	if isMenuOpen == false:
+		if Input.is_action_just_pressed("scroll_up"):
+			if activeHotbarSlot == 0:
+				activeHotbarSlot = 11
+				print(activeHotbarSlot)
+			else:
+				activeHotbarSlot -= 1
+				print(activeHotbarSlot)
+			player_ui.update_active_slot()
+			chooseActiveItem()
+		
+		if Input.is_action_just_pressed("scroll_down"):
+			if activeHotbarSlot == 11:
+				activeHotbarSlot = 0
+				print(activeHotbarSlot)
+			else:
+				activeHotbarSlot += 1
+				print(activeHotbarSlot)
+			player_ui.update_active_slot()
+			chooseActiveItem()
+		
+		if Input.is_action_just_pressed("HotbarSlot1"):
 			activeHotbarSlot = 0
+			player_ui.update_active_slot()
+			chooseActiveItem()
 			print(activeHotbarSlot)
-		else:
-			activeHotbarSlot += 1
+		
+		if Input.is_action_just_pressed("HotbarSlot2"):
+			activeHotbarSlot = 1
+			player_ui.update_active_slot()
+			chooseActiveItem()
 			print(activeHotbarSlot)
-		player_ui.update_active_slot()
-		chooseActiveItem()
-	
-	if Input.is_action_just_pressed("HotbarSlot1"):
-		activeHotbarSlot = 0
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot2"):
-		activeHotbarSlot = 1
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot3"):
-		activeHotbarSlot = 2
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot4"):
-		activeHotbarSlot = 3
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot5"):
-		activeHotbarSlot = 4
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot6"):
-		activeHotbarSlot = 5
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot7"):
-		activeHotbarSlot = 6
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot8"):
-		activeHotbarSlot = 7
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot9"):
-		activeHotbarSlot = 8
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot10"):
-		activeHotbarSlot = 9
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot11"):
-		activeHotbarSlot = 10
-		player_ui.update_active_slot()
-		chooseActiveItem()
-		print(activeHotbarSlot)
-	
-	if Input.is_action_just_pressed("HotbarSlot12"):
-		activeHotbarSlot = 11
-		player_ui.update_active_slot()
-		inventory.add_item(ItemDatabase.get_item("Tongs"), 1)
-		chooseActiveItem()
-		print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot3"):
+			activeHotbarSlot = 2
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot4"):
+			activeHotbarSlot = 3
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot5"):
+			activeHotbarSlot = 4
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot6"):
+			activeHotbarSlot = 5
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot7"):
+			activeHotbarSlot = 6
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot8"):
+			activeHotbarSlot = 7
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot9"):
+			activeHotbarSlot = 8
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot10"):
+			activeHotbarSlot = 9
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot11"):
+			activeHotbarSlot = 10
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
+		
+		if Input.is_action_just_pressed("HotbarSlot12"):
+			activeHotbarSlot = 11
+			player_ui.update_active_slot()
+			chooseActiveItem()
+			print(activeHotbarSlot)
 #endregion
 
 func chooseActiveItem():

@@ -79,22 +79,43 @@ func split_item_stack(index:int, split_percentage:float) -> Dictionary:
 func swap_slots(from_index:int, to_index:int, should_stack:bool = true):
 	var from_content = get_item_stack(from_index)
 	var to_content = get_item_stack(to_index)
-	if should_stack and from_content.item == to_content.item:
-		var quantity = from_content.quantity + to_content.quantity
-		var max_quantity = from_content.item.max_quantity
-		if quantity > max_quantity:  
-			if to_content.quantity == max_quantity: # straight up swaps the two items
-				swap_slots(from_index, to_index, false)
-			else: # 
-				set_item_stack(to_index, to_content.item, max_quantity)
-				quantity -= max_quantity
-				set_item_stack(from_index, from_content.item, quantity)
-		else: # swaps into the same item thats already there
-			set_item_stack(from_index, null, 0)
-			set_item_stack(to_index, to_content.item, quantity)
-	else: # swaps into nothing
-		set_item_stack(from_index, null, 0)
-		set_item_stack(to_index, to_content.item, from_content.quantity)
+	if not to_content.item == null:
+		if from_content.item.stackable == true && to_content.item.stackable == true: # If the item can stack and it is the same item
+			var quantity = from_content.quantity + to_content.quantity
+			var max_quantity = from_content.item.max_quantity
+			if from_content.item == to_content.item: # If the items are the same item
+				if quantity > max_quantity: #If the quantity is greater than the max quantity
+					if to_content.quantity == max_quantity: # straight up swaps the two items
+						#swap_slots(from_index, to_index, false)
+						print("Option A")
+					else: # 
+						set_item_stack(to_index, to_content.item, max_quantity)
+						quantity -= max_quantity
+						set_item_stack(from_index, from_content.item, quantity)
+						print("Option B")
+				else: # If the quantity is not greater than the max quantity (Can add them together into the same stack)
+					set_item_stack(from_index, null, 0)
+					set_item_stack(to_index, from_content.item, quantity)
+					print("Option C")
+			else: # If the items are not the same
+				set_item_stack(to_index, from_content.item, from_content.quantity)
+				set_item_stack(from_index, to_content.item, to_content.quantity)
+				print("Option D")
+		elif from_content.item.stackable == false && to_content.item.stackable == false: # swaps into nothing
+			if should_stack == true: # WORKING HERE
+				set_item_stack(from_index, null, 0)
+				set_item_stack(to_index, from_content.item, from_content.quantity)
+			else: # If you try and stack two unstackable objects it does nothing
+				pass
+			print("Option E")
+		else:
+			set_item_stack(to_index, from_content.item, from_content.quantity)
+			set_item_stack(from_index, to_content.item, to_content.quantity)
+			print("Option F")
+	else:
+		set_item_stack(to_index, from_content.item, from_content.quantity)
+		set_item_stack(from_index, to_content.item, to_content.quantity)
+		print("Option Z")
 
 func add_item(item:Item, quantity:int = 1, should_stack:bool = true):
 	if not item: 

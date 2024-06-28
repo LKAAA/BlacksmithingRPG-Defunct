@@ -8,12 +8,12 @@ extends Control
 @onready var collection_button = $CollectionButton
 @onready var settings_button = $SettingsButton
 
-
 var buttons = []
 
 var currentActiveTab: int = 0
 
 @onready var inventoryUI = $InventorySprite/InventoryHolder
+
 
 var player: Player
 

@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgsv1wec082bc"]
+
+[ext_resource type="Script" path="res://Scripts/HeldItemAttachment.gd" id="1_egj4a"]
+[ext_resource type="Texture2D" uid="uid://fagjfwmriqrt" path="res://Assets/Sprites/Metals-Spritesheet.png" id="1_lsqde"]
+[ext_resource type="FontFile" uid="uid://bxuspkq122jrq" path="res://Assets/Fonts/TeenyTinyPixls-o2zo.ttf" id="3_3ha14"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2oyi"]
+atlas = ExtResource("1_lsqde")
+region = Rect2(0, 0, 16, 16)
+
+[node name="HeldItemAttachment" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 10
+clip_contents = true
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+script = ExtResource("1_egj4a")
+
+[node name="Item" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_y2oyi")
+stretch_mode = 2
+
+[node name="QuantityText" type="Label" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(20, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_3ha14")
+theme_override_font_sizes/font_size = 5
+text = "111"
+horizontal_alignment = 2
+vertical_alignment = 2
+justification_flags = 0
+clip_text = true
+max_lines_visible = 929
+visible_characters = 165
+visible_ratio = 55.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
