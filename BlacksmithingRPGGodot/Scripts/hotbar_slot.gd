@@ -27,4 +27,6 @@ func set_quantity(new_quantity: int):
 func set_texture():
 	if item:
 		itemSprite.texture = item.sprite
+	else:
+		itemSprite.texture = null
 

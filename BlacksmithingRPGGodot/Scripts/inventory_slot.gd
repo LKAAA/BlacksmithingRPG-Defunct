@@ -4,12 +4,16 @@ class_name Inventory_Slot
 
 var lockedSprite: Texture = preload("res://Assets/Sprites/UI/InventoryLocked.png")
 var unlockedSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlot.png")
-var withItemSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlotWithItem.png")
+#var withItemSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlotWithItem.png")
+var withItemSprite: Texture = preload("res://Assets/Sprites/UI/InventorySlot.png")
 
 var item:Item
 var quantity: int
 
+var visualQuantity: int
+
 var hovered: bool = false
+var pickedUp: bool = false
 
 var inventoryUI: InventoryUI
 
@@ -29,12 +33,9 @@ func _process(delta):
 	if hovered:
 		inventoryUI.update_slot(self)
 		if Input.is_action_just_pressed("left_click"):
-			if item: # If there is an item
-				#print("Clicked on " + item.name)
 				inventoryUI.select_slot(self)
-			else:
-				#print("NO ITEM SAHUSAHDKJSAHDKASUDHSAKJDHSAJKDHSAKJDHASKJDHSAJK")
-				inventoryUI.select_slot(self)
+		if Input.is_action_just_pressed("right_click"):
+				inventoryUI.split_stack(self)
 
 func lock():
 	isLocked = true
@@ -59,21 +60,50 @@ func set_empty():
 	set_texture()
 
 func set_quantity(new_quantity: int):
-	self.quantity = new_quantity
-	
-	if quantity <= 1:
-		quantity_text.visible = false
-	else:
-		quantity_text.visible = true
-		quantity_text.text = "%s" % quantity
+	if not pickedUp:
+		self.quantity = new_quantity
+		
+		if not visualQuantity == 0 and visualQuantity < self.quantity:
+			if visualQuantity <= 1:
+				quantity_text.visible = false
+			else:
+				quantity_text.visible = true
+				quantity_text.text = "%s" % visualQuantity
+		else:
+			if quantity <= 1:
+				quantity_text.visible = false
+			else:
+				quantity_text.visible = true
+				quantity_text.text = "%s" % quantity
 
 func set_texture():
-	if item:
-		slot.texture = withItemSprite
-		itemSprite.texture = item.sprite
+	if not pickedUp:
+		if item:
+			slot.texture = withItemSprite
+			itemSprite.texture = item.sprite
+		else:
+			slot.texture = unlockedSprite
+			itemSprite.texture = null
+
+func picked_up(newQuantity: int, heldQuantity: int):
+	if visualQuantity == 0:
+		visualQuantity = quantity - newQuantity
 	else:
-		slot.texture = unlockedSprite
-		itemSprite.texture = null
+		visualQuantity -= newQuantity
+	
+	itemSprite.texture = null
+	if visualQuantity == 0:
+		quantity_text.text = ""
+	else:
+		quantity_text.text = str(quantity - newQuantity)
+	slot.texture = unlockedSprite
+	
+	if visualQuantity == 0:
+		pickedUp = true
+
+func put_down():
+	pickedUp = false
+	visualQuantity = 0
 
 func _on_mouse_entered():
 	#print("I was hovered")

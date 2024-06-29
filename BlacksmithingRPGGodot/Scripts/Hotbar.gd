@@ -21,3 +21,4 @@ func update_hotbar(p: Player):
 	for item in hotbarCount:
 		if not player.inventory._slots[item] == null:
 			_item_slots[item].set_item(player.inventory._slots[item].item, player.inventory._slots[item].quantity)
+			print(_item_slots[item].item)

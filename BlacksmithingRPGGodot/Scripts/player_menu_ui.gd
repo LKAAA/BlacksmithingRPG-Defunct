@@ -35,7 +35,9 @@ func activate_inventory():
 	self.visible = true
 
 func update_inventory():
+	inventoryUI.reset_inventory(player)
 	inventoryUI.update_inventory(player)
+	player.player_ui.update_hotbar()
 
 func button_pressed(buttonType: String):
 	match buttonType:

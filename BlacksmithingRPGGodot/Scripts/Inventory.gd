@@ -85,37 +85,39 @@ func swap_slots(from_index:int, to_index:int, should_stack:bool = true):
 			var max_quantity = from_content.item.max_quantity
 			if from_content.item == to_content.item: # If the items are the same item
 				if quantity > max_quantity: #If the quantity is greater than the max quantity
+					print(to_content.quantity)
+					print(from_content.quantity)
+					print(max_quantity)
 					if to_content.quantity == max_quantity: # straight up swaps the two items
-						#swap_slots(from_index, to_index, false)
-						print("Option A")
+						pass
 					else: # 
-						set_item_stack(to_index, to_content.item, max_quantity)
-						quantity -= max_quantity
-						set_item_stack(from_index, from_content.item, quantity)
-						print("Option B")
+						if to_index == from_index:
+							pass
+						else:
+							set_item_stack(to_index, to_content.item, max_quantity)
+							quantity -= max_quantity
+							set_item_stack(from_index, from_content.item, quantity)
 				else: # If the quantity is not greater than the max quantity (Can add them together into the same stack)
-					set_item_stack(from_index, null, 0)
-					set_item_stack(to_index, from_content.item, quantity)
-					print("Option C")
+					if to_index == from_index:
+						pass
+					else:
+						set_item_stack(from_index, null, 0)
+						set_item_stack(to_index, from_content.item, quantity)
 			else: # If the items are not the same
 				set_item_stack(to_index, from_content.item, from_content.quantity)
 				set_item_stack(from_index, to_content.item, to_content.quantity)
-				print("Option D")
 		elif from_content.item.stackable == false && to_content.item.stackable == false: # swaps into nothing
 			if should_stack == true: # WORKING HERE
 				set_item_stack(from_index, null, 0)
 				set_item_stack(to_index, from_content.item, from_content.quantity)
 			else: # If you try and stack two unstackable objects it does nothing
 				pass
-			print("Option E")
 		else:
 			set_item_stack(to_index, from_content.item, from_content.quantity)
 			set_item_stack(from_index, to_content.item, to_content.quantity)
-			print("Option F")
 	else:
 		set_item_stack(to_index, from_content.item, from_content.quantity)
 		set_item_stack(from_index, to_content.item, to_content.quantity)
-		print("Option Z")
 
 func add_item(item:Item, quantity:int = 1, should_stack:bool = true):
 	if not item: 
@@ -161,6 +163,20 @@ func add_item(item:Item, quantity:int = 1, should_stack:bool = true):
 			overflow = new_quantity
 	
 	return overflow
+
+func add_to_slot(to_index: int, quantity: int = 1):
+	var to_content = get_item_stack(to_index)
+	if to_content.quantity + quantity == to_content.item.max_quantity:
+		print("Goes over max stack")
+	else:
+		to_content.quantity += quantity
+
+func remove_from_slot(from_index: int, quantity: int = 1):
+	var from_content = get_item_stack(from_index)
+	if from_content.quantity - quantity == 0:
+		from_content = null
+	else:
+		from_content.quantity -= quantity
 
 func remove_item(item:Item, quantity:int = 1):
 	if not item: 
