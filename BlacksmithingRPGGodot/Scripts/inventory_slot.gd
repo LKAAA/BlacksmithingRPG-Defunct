@@ -106,8 +106,6 @@ func put_down():
 	visualQuantity = 0
 
 func _on_mouse_entered():
-	#print("I was hovered")
-	#print(isLocked)
 	hovered = true
 
 func _on_mouse_exited():

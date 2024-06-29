@@ -47,7 +47,6 @@ func _ready():
 	if PlayerProperties.holdingStats:
 		print("YEYARAUYUADS")
 		get_player_properties()
-	print(activeHotbarSlot)
 	player_ui.update_hotbar()
 	player_ui.update_active_slot()
 
@@ -137,6 +136,10 @@ func recieve_inputs():
 								use_tool(activeItem.item.tool_type)
 			else:
 				print("No active item")
+		
+		if Input.is_action_just_pressed("interact"):
+			print("init interaction")
+			interactionManager.initiate_interaction()
 	
 	if Input.is_action_just_pressed("TestAction"):
 		# health_manager.damage(10)
@@ -169,30 +172,22 @@ func recieve_inputs():
 			isMenuOpen = false
 			chooseActiveItem()
 	
-	if Input.is_action_just_pressed("interact"):
-		print("init interaction")
-		interactionManager.initiate_interaction()
-	
 #region Hotbar Input
 	
-	if isMenuOpen == false:
+	if not isMenuOpen:
 		if Input.is_action_just_pressed("scroll_up"):
 			if activeHotbarSlot == 0:
 				activeHotbarSlot = 11
-				print(activeHotbarSlot)
 			else:
 				activeHotbarSlot -= 1
-				print(activeHotbarSlot)
 			player_ui.update_active_slot()
 			chooseActiveItem()
 		
 		if Input.is_action_just_pressed("scroll_down"):
 			if activeHotbarSlot == 11:
 				activeHotbarSlot = 0
-				print(activeHotbarSlot)
 			else:
 				activeHotbarSlot += 1
-				print(activeHotbarSlot)
 			player_ui.update_active_slot()
 			chooseActiveItem()
 		
@@ -200,81 +195,71 @@ func recieve_inputs():
 			activeHotbarSlot = 0
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
+
 		
 		if Input.is_action_just_pressed("HotbarSlot2"):
 			activeHotbarSlot = 1
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot3"):
 			activeHotbarSlot = 2
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot4"):
 			activeHotbarSlot = 3
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot5"):
 			activeHotbarSlot = 4
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot6"):
 			activeHotbarSlot = 5
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot7"):
 			activeHotbarSlot = 6
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot8"):
 			activeHotbarSlot = 7
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot9"):
 			activeHotbarSlot = 8
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot10"):
 			activeHotbarSlot = 9
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot11"):
 			activeHotbarSlot = 10
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 		
 		if Input.is_action_just_pressed("HotbarSlot12"):
 			activeHotbarSlot = 11
 			player_ui.update_active_slot()
 			chooseActiveItem()
-			print(activeHotbarSlot)
 #endregion
 
 func chooseActiveItem():
 	activeItem = inventory.get_item_stack(activeHotbarSlot)
-	if activeItem.item == null:
-		print("no item")
-	else:
-		print(activeItem.item.name)
+	if not isMenuOpen:
+		if activeItem.item == null:
+			print("no item")
+		else:
+			print(activeItem.item.name)
 
 func play_animations():
 	if vertical < 0:

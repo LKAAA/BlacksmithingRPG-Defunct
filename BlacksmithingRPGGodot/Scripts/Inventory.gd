@@ -85,9 +85,6 @@ func swap_slots(from_index:int, to_index:int, should_stack:bool = true):
 			var max_quantity = from_content.item.max_quantity
 			if from_content.item == to_content.item: # If the items are the same item
 				if quantity > max_quantity: #If the quantity is greater than the max quantity
-					print(to_content.quantity)
-					print(from_content.quantity)
-					print(max_quantity)
 					if to_content.quantity == max_quantity: # straight up swaps the two items
 						pass
 					else: # 
