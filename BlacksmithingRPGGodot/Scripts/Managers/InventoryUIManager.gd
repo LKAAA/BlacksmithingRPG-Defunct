@@ -14,8 +14,8 @@ var mousePos
 
 var slotSelected: bool = false
 var splittingNewStack: bool = false
-var heldItemType: Item
-var curSelectedSlot: int = -1
+var heldItem: Item
+var previousSlot: int = -1 # -1 = no slot, 0 - X is the slot number
 var heldQuantity: int
 
 var oldItem
@@ -26,28 +26,36 @@ var oldQuantity
 var player: Player
 
 func _ready():
-	for _i in itemSlotCount:
-		var slot = Inventory_Slot_Scene.instantiate()
-		slot.inventoryUI = self
-		_item_slots.append(slot)
-		add_child(slot)
+	create_inventory(itemSlotCount)
 
 func _process(delta):
 	mousePos = get_global_mouse_position()
 	held_item_slot.position = mousePos - Vector2(8, 8)
 	held_item_slot.visible = slotSelected
 
+func create_inventory(slots: int):
+	for _i in slots:
+		var slot = Inventory_Slot_Scene.instantiate()
+		slot.inventoryUI = self
+		_item_slots.append(slot)
+		add_child(slot)
+
 func update_inventory(p: Player):
 	player = p
 	#get all item slots from inventory and update each itemslot ui 
 	for item in itemSlotCount:
-		if item >= player.inventory._slots.size():
+		if item >= player.inventory._slots.size(): # If there locked slots of the player, then lock them
 			_item_slots[item].lock()
-		else:
-			if player.inventory._slots[item].item == null:
+		else: # If they do not need to be locked
+			if player.inventory._slots[item].item == null: # If there is no item unlock them, and set it to empty
+				_item_slots[item].unlocked()
 				_item_slots[item].set_empty()
-			else:
-				_item_slots[item].set_item(player.inventory._slots[item].item, player.inventory._slots[item].quantity)
+			else: # If there is an item, set the slot to that item and quantity
+				if  player.inventory._slots[item].quantity != 0:
+					_item_slots[item].set_item(player.inventory._slots[item].item, player.inventory._slots[item].quantity)
+				else:
+					_item_slots[item].set_empty()
+	
 	player.player_ui.update_hotbar()
 
 func reset_inventory(p: Player):
@@ -66,7 +74,7 @@ func reset_inventory(p: Player):
 				heldQuantity = 0
 				_item_slots[item].set_item(player.inventory._slots[item].item, player.inventory._slots[item].quantity)
 
-func update_slot(slot: Inventory_Slot):
+func update_tooltip(slot: Inventory_Slot):
 	if not slot.item == null:
 		itemDescription.text = slot.item.description
 		bigItemImage.texture = slot.item.sprite
@@ -76,10 +84,11 @@ func select_slot(slot: Inventory_Slot) -> void:
 		handle_slot_selection(slot)
 	else: # If there is no item selected
 		if slot.item != null: # Check if the slot has something in it, if it does
+			print("Option A")
 			slotSelected = true
 			heldQuantity = slot.quantity
-			heldItemType = slot.item
-			curSelectedSlot = _item_slots.find(slot)
+			heldItem = slot.item
+			previousSlot = _item_slots.find(slot)
 			held_item_slot.update_slot(slot.item, heldQuantity)
 			slot.picked_up(heldQuantity, heldQuantity)
 			update_inventory(player)
@@ -96,13 +105,14 @@ func handle_slot_selection(slot: Inventory_Slot) -> void:
 func handle_splitting_stack(slot: Inventory_Slot):
 	if slot.item == null:
 		var newSlot = _item_slots.find(slot)
-		player.inventory.set_item_stack(newSlot, heldItemType, heldQuantity)
+		player.inventory.set_item_stack(newSlot, heldItem, heldQuantity)
 		reset_selection_state()
 	else:
-		if slot.item == _item_slots[curSelectedSlot].item:
+		if slot.item == _item_slots[previousSlot].item:
 			if slot.quantity < slot.item.max_quantity:
+				print("Option B")
 				var newSlot = _item_slots.find(slot)
-				player.inventory.set_item_stack(newSlot, heldItemType, heldQuantity + _item_slots[newSlot].quantity)
+				player.inventory.set_item_stack(newSlot, heldItem, heldQuantity + _item_slots[newSlot].quantity)
 				reset_selection_state()
 			else:
 				print("Cannot split, stack is full.")
@@ -112,18 +122,21 @@ func handle_splitting_stack(slot: Inventory_Slot):
 func handle_regular_selection(slot: Inventory_Slot):
 	if slot.item == null: # If there is no item in the slot
 		var newSlot = _item_slots.find(slot)
-		print(curSelectedSlot)
-		player.inventory.swap_slots(curSelectedSlot, newSlot, _item_slots[curSelectedSlot].item.stackable)
+		print(previousSlot)
+		player.inventory.swap_slots(previousSlot, newSlot, _item_slots[previousSlot].item.stackable)
 		reset_selection_state()
-		print("THIS ONE HERE")
+		print("Option F")
 	else:
-		if _item_slots.find(slot) == curSelectedSlot:
+		if _item_slots.find(slot) == previousSlot:
 			reset_selection_state()
+			print("Option G")
 		else:
 			if slot.quantity < slot.item.max_quantity or not slot.item.stackable:
 				var newSlot = _item_slots.find(slot)
-				player.inventory.swap_slots(curSelectedSlot, newSlot, _item_slots[curSelectedSlot].item.stackable)
+				player.inventory.swap_slots(previousSlot, newSlot, _item_slots[previousSlot].item.stackable)
+				_item_slots[newSlot].visualQuantity = player.inventory.get_item_stack(newSlot).quantity
 				reset_selection_state()
+				print("Option H")
 			else:
 				print("Cannot swap, target slot is full or item not stackable.")
 
@@ -131,43 +144,46 @@ func reset_selection_state() -> void:
 	slotSelected = false
 	splittingNewStack = false
 	heldQuantity = 0
-	_item_slots[curSelectedSlot].put_down()
-	curSelectedSlot = -1
+	_item_slots[previousSlot].put_down()
+	previousSlot = -1
 	update_inventory(player)
 
 func split_stack(slot: Inventory_Slot) -> void:
 	if slotSelected:
-		if _item_slots.find(slot) != curSelectedSlot:
-			if slot.item != null and slot.item == _item_slots[curSelectedSlot].item:
+		if _item_slots.find(slot) != previousSlot:
+			if slot.item != null and slot.item == _item_slots[previousSlot].item:
 				if slot.quantity > 1:
 					print(slot.quantity)
 					if heldQuantity < slot.item.max_quantity:
+						print("Option I")
 						heldQuantity += 1
-						heldItemType = slot.item
+						heldItem = slot.item
 						held_item_slot.update_slot(slot.item, heldQuantity)
 						slot.picked_up(1, heldQuantity)
 						player.inventory.remove_from_slot(_item_slots.find(slot), 1)
-						player.inventory.add_to_slot(curSelectedSlot, 1)
+						player.inventory.add_to_slot(previousSlot, 1)
 						update_inventory(player)
 					else:
 						print("Cannot take more, stack is full.")
 				elif slot.quantity == 1:
+					print("Option J")
 					var slotindex = _item_slots.find(slot)
 					heldQuantity += 1
-					heldItemType = player.inventory.get_item_stack(slotindex).item
-					held_item_slot.update_slot(heldItemType, heldQuantity)
+					heldItem = player.inventory.get_item_stack(slotindex).item
+					held_item_slot.update_slot(heldItem, heldQuantity)
 					slot.picked_up(1, heldQuantity)
 					player.inventory.remove_from_slot(_item_slots.find(slot), 1)
-					player.inventory.add_to_slot(curSelectedSlot, 1)
+					player.inventory.add_to_slot(previousSlot, 1)
 					player.inventory.set_item_stack(slotindex, null, 0)
 					update_inventory(player)
 				else:
 					print("I want to die please let this solution work or i will start crying")
 			else:
 				if slot.quantity > 1:
-					if slot.item == heldItemType:
+					if slot.item == heldItem:
+						print("Option K")
 						heldQuantity += 1
-						heldItemType = slot.item
+						heldItem = slot.item
 						held_item_slot.update_slot(slot.item, heldQuantity)
 						slot.picked_up(1, heldQuantity)
 						player.inventory.remove_from_slot(_item_slots.find(slot), 1)
@@ -175,21 +191,23 @@ func split_stack(slot: Inventory_Slot) -> void:
 					else:
 						print("Different item or no item in slot.")
 				elif slot.quantity == 1:
+					print("Option L")
 					var slotindex = _item_slots.find(slot)
 					heldQuantity += 1
-					heldItemType = player.inventory.get_item_stack(slotindex).item
-					held_item_slot.update_slot(heldItemType, heldQuantity)
+					heldItem = player.inventory.get_item_stack(slotindex).item
+					held_item_slot.update_slot(heldItem, heldQuantity)
 					slot.picked_up(1, heldQuantity)
 					player.inventory.remove_from_slot(_item_slots.find(slot), 1)
-					player.inventory.add_to_slot(curSelectedSlot, 1)
+					player.inventory.add_to_slot(previousSlot, 1)
 					player.inventory.set_item_stack(slotindex, null, 0)
 					update_inventory(player)
 				else:
 					print("I want to die please let this solution work or i will start crying")
 		else:
 			if splittingNewStack:
+				print("Option M")
 				heldQuantity += 1
-				heldItemType = slot.item
+				heldItem = slot.item
 				held_item_slot.update_slot(slot.item, heldQuantity)
 				slot.picked_up(1, heldQuantity)
 				player.inventory.remove_from_slot(_item_slots.find(slot), 1)
@@ -198,9 +216,10 @@ func split_stack(slot: Inventory_Slot) -> void:
 		if slot.item != null:
 			slotSelected = true
 			if slot.item.stackable and slot.quantity > 1:
-				heldItemType = slot.item
+				print("Option N")
+				heldItem = slot.item
 				splittingNewStack = true
-				curSelectedSlot = _item_slots.find(slot)
+				previousSlot = _item_slots.find(slot)
 				heldQuantity += 1
 				slot.picked_up(1, 0)
 				held_item_slot.update_slot(slot.item, heldQuantity)
@@ -211,42 +230,41 @@ func split_stack(slot: Inventory_Slot) -> void:
 
 func swap_items_between_slots(slot: Inventory_Slot) -> void:
 	var newSlot = _item_slots.find(slot)
-	if curSelectedSlot == -1:
+	if previousSlot == -1:
 		if oldItem == _item_slots[newSlot].item:
+			print("Option C")
 			player.inventory.set_item_stack(newSlot, oldItem, oldQuantity + _item_slots[newSlot].quantity)
-			_item_slots[curSelectedSlot].put_down()
+			_item_slots[previousSlot].put_down()
 			heldQuantity = 0
 			oldQuantity = 0
 			oldItem = null
-			heldItemType = null
+			heldItem = null
 			slotSelected = false
 			update_inventory(player)
-			curSelectedSlot = -1
+			previousSlot = -1
 			splittingNewStack = false
 		else:
-			#print("cur Selected Slot = " + _item_slots[curSelectedSlot].item.name)
-			print("New Slot = " + _item_slots[newSlot].item.name)
-			print("Old item = " + oldItem.name)
+			#print("cur Selected Slot = " + _item_slots[previousSlot].item.name)
+			print("Option D")
 			player.inventory.set_item_stack(newSlot, oldItem, oldQuantity)
 			oldItem = _item_slots[newSlot].item
 			oldQuantity = _item_slots[newSlot].quantity
-			print("Option A")
-			_item_slots[curSelectedSlot].put_down()
+			_item_slots[previousSlot].put_down()
 			heldQuantity = oldQuantity
-			heldItemType = oldItem
+			heldItem = oldItem
 			held_item_slot.update_slot(oldItem, heldQuantity)
 			update_inventory(player)
-			curSelectedSlot = -1
+			previousSlot = -1
 			splittingNewStack = true
 	else:
 		oldItem = _item_slots[newSlot].item
 		oldQuantity = _item_slots[newSlot].quantity
-		player.inventory.set_item_stack(newSlot, _item_slots[curSelectedSlot].item, heldQuantity)
-		print("Option B")
-		_item_slots[curSelectedSlot].put_down()
+		player.inventory.set_item_stack(newSlot, _item_slots[previousSlot].item, heldQuantity)
+		print("Option E")
+		_item_slots[previousSlot].put_down()
 		heldQuantity = oldQuantity
-		heldItemType = oldItem
+		heldItem = oldItem
 		held_item_slot.update_slot(oldItem, heldQuantity)
 		update_inventory(player)
-		curSelectedSlot = -1
+		previousSlot = -1
 		splittingNewStack = true

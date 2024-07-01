@@ -31,7 +31,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hovered:
-		inventoryUI.update_slot(self)
+		inventoryUI.update_tooltip(self)
 		if Input.is_action_just_pressed("left_click"):
 				inventoryUI.select_slot(self)
 		if Input.is_action_just_pressed("right_click"):
@@ -47,6 +47,7 @@ func unlocked():
 	slot.texture = unlockedSprite
 
 func set_item(item:Item, quantity:int = 1) -> void:
+	print(quantity)
 	if not isLocked:
 		self.item = item
 		if not item:

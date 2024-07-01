@@ -94,27 +94,34 @@ func swap_slots(from_index:int, to_index:int, should_stack:bool = true):
 							set_item_stack(to_index, to_content.item, max_quantity)
 							quantity -= max_quantity
 							set_item_stack(from_index, from_content.item, quantity)
+							print("Alpha")
 				else: # If the quantity is not greater than the max quantity (Can add them together into the same stack)
 					if to_index == from_index:
 						pass
 					else:
 						set_item_stack(from_index, null, 0)
 						set_item_stack(to_index, from_content.item, quantity)
+						print(quantity)
+						print("Beta")
 			else: # If the items are not the same
 				set_item_stack(to_index, from_content.item, from_content.quantity)
 				set_item_stack(from_index, to_content.item, to_content.quantity)
+				print("Gamma")
 		elif from_content.item.stackable == false && to_content.item.stackable == false: # swaps into nothing
 			if should_stack == true: # WORKING HERE
 				set_item_stack(from_index, null, 0)
 				set_item_stack(to_index, from_content.item, from_content.quantity)
+				print("Something after Gamma")
 			else: # If you try and stack two unstackable objects it does nothing
 				pass
 		else:
 			set_item_stack(to_index, from_content.item, from_content.quantity)
 			set_item_stack(from_index, to_content.item, to_content.quantity)
+			print("The one following the one after Gamma")
 	else:
 		set_item_stack(to_index, from_content.item, from_content.quantity)
 		set_item_stack(from_index, to_content.item, to_content.quantity)
+		print("Idk we're like 8 in or something")
 
 func add_item(item:Item, quantity:int = 1, should_stack:bool = true):
 	if not item: 
