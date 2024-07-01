@@ -172,8 +172,10 @@ func remove_from_slot(from_index: int, quantity: int = 1):
 	var from_content = get_item_stack(from_index)
 	if from_content.quantity - quantity == 0:
 		from_content = null
+		print("THIS")
 	else:
 		from_content.quantity -= quantity
+		print("THAT")
 
 func remove_item(item:Item, quantity:int = 1):
 	if not item: 
