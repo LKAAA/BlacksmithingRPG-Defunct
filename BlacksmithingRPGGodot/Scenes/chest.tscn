@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1pqxjvx0qh0l"]
+[gd_scene load_steps=7 format=3 uid="uid://d1pqxjvx0qh0l"]
 
+[ext_resource type="Script" path="res://Scripts/chest.gd" id="1_t4tag"]
 [ext_resource type="Texture2D" uid="uid://bhkv28fd2pwbb" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Chest.png" id="2_iqsla"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_fmi4g"]
 [ext_resource type="Script" path="res://Scripts/ChestInteraction.gd" id="4_52ets"]
@@ -11,7 +12,8 @@ size = Vector2(16, 14)
 radius = 9.0
 height = 28.0
 
-[node name="Chest" type="StaticBody2D"]
+[node name="Chest" type="StaticBody2D" groups=["external_inventory"]]
+script = ExtResource("1_t4tag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

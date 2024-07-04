@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm2gtb8p7a3xx"]
+
+[ext_resource type="Script" path="res://inventory/grabbed_slot.gd" id="1_gaejm"]
+[ext_resource type="FontFile" uid="uid://bojmp50ujm2pp" path="res://Assets/Fonts/UIFont.ttf" id="2_1rfvq"]
+
+[sub_resource type="FontVariation" id="FontVariation_bqy0k"]
+base_font = ExtResource("2_1rfvq")
+spacing_glyph = 1
+
+[node name="GrabbedSlot" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_gaejm")
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuantityLabel" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("FontVariation_bqy0k")
+theme_override_font_sizes/font_size = 16
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

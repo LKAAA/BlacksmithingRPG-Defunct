@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=4 format=3 uid="uid://200ryhno8bxj"]
+
+[ext_resource type="Script" path="res://item/item_data_consumable.gd" id="1_1lt0y"]
+[ext_resource type="Texture2D" uid="uid://bjh4eqmceqtkg" path="res://item/ItemSheet.PNG" id="2_w1kpm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dveuv"]
+atlas = ExtResource("2_w1kpm")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_1lt0y")
+heal_value = 20
+name = "Health Potion"
+description = "A gloopy red healing potion."
+stackable = false
+texture = SubResource("AtlasTexture_dveuv")

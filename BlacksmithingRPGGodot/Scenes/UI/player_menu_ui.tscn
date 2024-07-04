@@ -1,12 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://dbqh862rtg5hi"]
+[gd_scene load_steps=22 format=3 uid="uid://dbqh862rtg5hi"]
 
 [ext_resource type="Script" path="res://Scripts/player_menu_ui.gd" id="1_pit5s"]
 [ext_resource type="Texture2D" uid="uid://htg00vlwew44" path="res://TEMP/InventoryPageTEMP.png" id="2_2pq7e"]
-[ext_resource type="PackedScene" uid="uid://dgsv1wec082bc" path="res://Scenes/UI/HeldItemAttachment.tscn" id="3_2r6sn"]
 [ext_resource type="PackedScene" uid="uid://d3okic32xtrxk" path="res://Scenes/UI/bookmark_button.tscn" id="3_w3k4f"]
 [ext_resource type="Texture2D" uid="uid://bofv7auxs012m" path="res://Assets/Sprites/UI/InventoryTabINUSE.png" id="4_5ohln"]
 [ext_resource type="FontFile" uid="uid://bxuspkq122jrq" path="res://Assets/Fonts/TeenyTinyPixls-o2zo.ttf" id="4_h5oea"]
-[ext_resource type="Script" path="res://Scripts/Managers/InventoryUIManager.gd" id="5_4poxi"]
 [ext_resource type="Texture2D" uid="uid://b60vy73f5sjtd" path="res://Assets/Sprites/UI/InventoryTabNOTINUSE.png" id="5_cdov4"]
 [ext_resource type="Texture2D" uid="uid://bw3nog07atw6u" path="res://Assets/Sprites/UI/SkillsTabINUSE.png" id="7_n405q"]
 [ext_resource type="Texture2D" uid="uid://bxskpic23gppc" path="res://Assets/Sprites/UI/SkillsTabNOTINUSE.png" id="8_l8imq"]
@@ -57,13 +55,6 @@ grow_vertical = 2
 texture = ExtResource("2_2pq7e")
 stretch_mode = 2
 
-[node name="HeldItemSlot" parent="InventorySprite" instance=ExtResource("3_2r6sn")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 20.0
-offset_bottom = 20.0
-
 [node name="ItemInfoSection" type="Control" parent="InventorySprite"]
 anchors_preset = 0
 offset_left = 69.0
@@ -90,24 +81,6 @@ theme_override_font_sizes/font_size = 5
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 1
-
-[node name="InventoryHolder" type="GridContainer" parent="InventorySprite"]
-clip_contents = true
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 69.0
-offset_top = 64.0
-offset_right = -209.0
-offset_bottom = -46.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = -2
-theme_override_constants/v_separation = -2
-columns = 6
-script = ExtResource("5_4poxi")
 
 [node name="InventoryButton" parent="." instance=ExtResource("3_w3k4f")]
 layout_mode = 0

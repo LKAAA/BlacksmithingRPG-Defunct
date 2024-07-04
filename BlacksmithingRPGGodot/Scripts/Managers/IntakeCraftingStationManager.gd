@@ -1,4 +1,6 @@
 extends Node
+
+"""
 class_name IntakeCraftingStation
 
 signal turnedOn
@@ -98,3 +100,4 @@ func interactedWith(p: Player):
 
 func _on_timer_timeout():
 	craftEnded()
+"""

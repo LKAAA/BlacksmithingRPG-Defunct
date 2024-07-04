@@ -12,8 +12,6 @@ var buttons = []
 
 var currentActiveTab: int = 0
 
-@onready var inventoryUI = $InventorySprite/InventoryHolder
-
 
 var player: Player
 
@@ -28,16 +26,6 @@ func _ready():
 
 func get_player(p: Player):
 	player = p
-
-func activate_inventory():
-	currentActiveTab = 0
-	update_inventory()
-	self.visible = true
-
-func update_inventory():
-	inventoryUI.reset_inventory(player)
-	inventoryUI.update_inventory(player)
-	player.player_ui.update_hotbar()
 
 func button_pressed(buttonType: String):
 	match buttonType:

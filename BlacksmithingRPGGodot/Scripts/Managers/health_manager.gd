@@ -7,6 +7,7 @@ signal takenDamage
 signal death
 
 func heal(healthToHeal: int): # Heal a specified amount of health, also prevents overflow healing
+	print("healing")
 	if curHealth + healthToHeal >= maxHealth: # if this heal would heal to above max health restrict it to max
 		curHealth = maxHealth
 	else:
