@@ -15,6 +15,30 @@ func grab_slot_data(index: int) -> SlotData:
 	else:
 		return null
 
+func grab_new_single_slot_data(index: int) -> SlotData:
+	var slot_data = slot_datas[index]
+	var return_slot_data: SlotData
+	if slot_data:
+		return_slot_data = slot_data.create_single_slot_data()
+		if slot_datas[index].quantity < 1:
+			slot_datas[index] = null
+		inventory_updated.emit(self)
+		return return_slot_data
+	else:
+		return null
+
+func grab_single_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
+	var slot_data = slot_datas[index]
+	if slot_data and grabbed_slot_data.quantity + 1 <= 999:
+		grabbed_slot_data.quantity += 1
+		slot_data.quantity -= 1
+		if slot_datas[index].quantity < 1:
+			slot_datas[index] = null
+		inventory_updated.emit(self)
+		return grabbed_slot_data
+	else:
+		return grabbed_slot_data
+
 func drop_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 	var slot_data = slot_datas[index]
 	
@@ -43,7 +67,26 @@ func drop_single_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 	else:
 		return null
 
-func use_item_data(index: int) -> void:
+func create_slot_data(item_data: ItemData, quantity: int) -> void:
+	var slot_data: SlotData = SlotData.new()
+	
+	slot_data.new_slot_data(item_data, quantity)
+	
+	var index = find_open_slot()
+	if not index == -1:
+		slot_datas[index] = slot_data
+	else:
+		print("Drop the item")
+	print("Create slot")
+
+func find_open_slot() -> int:
+	var index = -1
+	
+	index = slot_datas.find(null, 0)
+	
+	return index
+
+func use_slot_data(index: int) -> void:
 	var slot_data = slot_datas[index]
 	
 	if not slot_data:

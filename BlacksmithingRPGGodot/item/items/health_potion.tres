@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=4 format=3 uid="uid://200ryhno8bxj"]
+[gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=5 format=3 uid="uid://200ryhno8bxj"]
 
+[ext_resource type="Resource" uid="uid://bprk0oovcmmp3" path="res://item/items/glass_bottle.tres" id="1_0gl5o"]
 [ext_resource type="Script" path="res://item/item_data_consumable.gd" id="1_1lt0y"]
-[ext_resource type="Texture2D" uid="uid://bjh4eqmceqtkg" path="res://item/ItemSheet.PNG" id="2_w1kpm"]
+[ext_resource type="Texture2D" uid="uid://cxbws1mfeorh5" path="res://item/ItemSheet.PNG" id="2_w1kpm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dveuv"]
 atlas = ExtResource("2_w1kpm")
@@ -9,7 +10,11 @@ region = Rect2(32, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_1lt0y")
-heal_value = 20
+heal_gain_value = 0
+mana_gain_value = 0
+stamina_gain_value = 0
+item_to_give = ExtResource("1_0gl5o")
+item_to_give_quantity = 1
 name = "Health Potion"
 description = "A gloopy red healing potion."
 stackable = false

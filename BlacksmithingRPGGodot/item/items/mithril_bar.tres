@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dyfi1m3g4oxwg"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_npc7u"]
+[ext_resource type="Texture2D" uid="uid://cxbws1mfeorh5" path="res://item/ItemSheet.PNG" id="2_crwo5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k16ct"]
+atlas = ExtResource("2_crwo5")
+region = Rect2(0, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_npc7u")
+name = "Mithril Bar"
+description = "A smelted bar of mithril."
+stackable = true
+texture = SubResource("AtlasTexture_k16ct")

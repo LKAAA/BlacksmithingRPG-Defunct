@@ -30,3 +30,10 @@ func set_quantity(value: int) -> void:
 	if quantity > 1 and not item_data.stackable:
 		quantity = 1
 		push_error("%s is not stackable, setting quantity to one" % item_data.name)
+
+func new_slot_data(_item_data: ItemData, quantity_value: int):
+	quantity = quantity_value
+	if quantity > 1 and not item_data.stackable:
+		quantity = 1
+		push_error("%s is not stackable, setting quantity to one" % item_data.name)
+	item_data = _item_data

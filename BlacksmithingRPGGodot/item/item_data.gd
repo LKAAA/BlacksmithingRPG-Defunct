@@ -8,3 +8,9 @@ class_name ItemData
 
 func use(target) -> void:
 	pass
+
+func equipped(target) -> void:
+	pass
+
+func unequipped(target) -> void:
+	pass

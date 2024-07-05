@@ -8,14 +8,18 @@ var external_inventory_owner
 @onready var player_inventory: PanelContainer = $PlayerInventory
 @onready var grabbed_slot: PanelContainer = $GrabbedSlot
 @onready var external_inventory: PanelContainer = $ExternalInventory
+@onready var equip_inventory: PanelContainer = $EquipInventory
 
 func _physics_process(delta: float) -> void:
-	if grabbed_slot.visible:
 		grabbed_slot.global_position = get_global_mouse_position() + Vector2(2,2)
 
 func set_player_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	player_inventory.set_inventory_data(inventory_data)
+
+func set_equip_inventory_data(inventory_data: InventoryData) -> void:
+	inventory_data.inventory_interact.connect(on_inventory_interact)
+	equip_inventory.set_inventory_data(inventory_data)
 
 func set_external_inventory(_external_inventory_owner) -> void:
 	external_inventory_owner = _external_inventory_owner
@@ -43,9 +47,11 @@ func on_inventory_interact(inventory_data: InventoryData, index: int, button: in
 		[_, MOUSE_BUTTON_LEFT]: # _ means it can be anything
 			grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
 		[null, MOUSE_BUTTON_RIGHT]:
-			inventory_data.use_item_data(index)
+			grabbed_slot_data = inventory_data.grab_new_single_slot_data(index)
+			#inventory_data.use_slot_data(index)
 		[_, MOUSE_BUTTON_RIGHT]: # _ means it can be anything
-			grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
+			grabbed_slot_data = inventory_data.grab_single_slot_data(grabbed_slot_data, index)
+			#grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
 	
 	update_grabbed_slot()
 

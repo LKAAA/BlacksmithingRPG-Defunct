@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqfe80ngwbbev"]
-
-[ext_resource type="Script" path="res://Scripts/Managers/CraftingStationManager.gd" id="1_ilhi8"]
-
-[node name="CraftingStationManager" type="Node"]
-script = ExtResource("1_ilhi8")

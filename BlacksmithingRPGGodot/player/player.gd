@@ -2,11 +2,13 @@ extends CharacterBody2D
 class_name Player
 
 @export var inventory_data: InventoryData
+@export var equip_inventory_data: InventoryDataEquip
 
 var isMenuOpen: bool = false
 
-const RUNSPEED = 80.00
+const RUNSPEED = 70.00
 const WALKSPEED = 50.00
+var speedBonuses: int = 0
 
 var isSprinting = false
 var toggleSprint = true
@@ -44,32 +46,32 @@ func _physics_process(_delta):
 		# First check if you are moving in both direction
 		if vertical && horizontal: 
 			# If you are moving in both direction cap speed so it doesnt move faster diagonally
-			velocity.x = horizontal * (RUNSPEED / 1.5)
-			velocity.y = vertical * (RUNSPEED / 1.5)
+			velocity.x = horizontal * ((RUNSPEED + speedBonuses) / 1.5)
+			velocity.y = vertical * ((RUNSPEED + speedBonuses) / 1.5)
 		elif horizontal: # If only moving horizontal you want to slow down vertical to 0
-			velocity.x = horizontal * RUNSPEED
-			velocity.y = move_toward(velocity.y, 0, RUNSPEED)
+			velocity.x = horizontal * (RUNSPEED + speedBonuses)
+			velocity.y = move_toward(velocity.y, 0, (RUNSPEED + speedBonuses))
 		elif vertical: # Same but with vertical and horizontal
-			velocity.y = vertical * RUNSPEED
-			velocity.x = move_toward(velocity.x, 0, RUNSPEED)
+			velocity.y = vertical * (RUNSPEED + speedBonuses)
+			velocity.x = move_toward(velocity.x, 0, (RUNSPEED + speedBonuses))
 		else:
-			velocity.x = move_toward(velocity.x, 0, RUNSPEED)
-			velocity.y = move_toward(velocity.y, 0, RUNSPEED)
+			velocity.x = move_toward(velocity.x, 0, (RUNSPEED + speedBonuses))
+			velocity.y = move_toward(velocity.y, 0, (RUNSPEED + speedBonuses))
 	else:
 		# First check if you are moving in both direction
 		if vertical && horizontal: 
 			# If you are moving in both direction cap speed so it doesnt move faster diagonally
-			velocity.x = horizontal * (WALKSPEED / 1.5)
-			velocity.y = vertical * (WALKSPEED / 1.5)
+			velocity.x = horizontal * ((WALKSPEED + speedBonuses) / 1.5)
+			velocity.y = vertical * ((WALKSPEED + speedBonuses) / 1.5)
 		elif horizontal: # If only moving horizontal you want to slow down vertical to 0
-			velocity.x = horizontal * WALKSPEED
-			velocity.y = move_toward(velocity.y, 0, WALKSPEED)
+			velocity.x = horizontal * (WALKSPEED + speedBonuses)
+			velocity.y = move_toward(velocity.y, 0, (WALKSPEED + speedBonuses))
 		elif vertical: # Same but with vertical and horizontal
-			velocity.y = vertical * WALKSPEED
-			velocity.x = move_toward(velocity.x, 0, WALKSPEED)
+			velocity.y = vertical * (WALKSPEED + speedBonuses)
+			velocity.x = move_toward(velocity.x, 0, (WALKSPEED + speedBonuses))
 		else:
-			velocity.x = move_toward(velocity.x, 0, WALKSPEED)
-			velocity.y = move_toward(velocity.y, 0, WALKSPEED)
+			velocity.x = move_toward(velocity.x, 0,(WALKSPEED + speedBonuses))
+			velocity.y = move_toward(velocity.y, 0, (WALKSPEED + speedBonuses))
 	
 	if not isMenuOpen:
 		move_and_slide()
@@ -136,24 +138,24 @@ func _on_health_manager_death():
 	print("Oh no this is so sad little bunny died :(")
 
 func levelup(): # on level up increase max health by 2, and stamina by 3.
-	health_manager.increaseMaxHealth(2)
-	health_manager.fullHeal()
-	stats.increaseMaxStamina(3)
-	stats.fullStaminaRestore()
+	health_manager.increase_max_health(2)
+	health_manager.full_heal()
+	stats.increase_max_stamina(3)
+	stats.full_stamina_restore()
 
 func newGameStats():
-	health_manager.maxHealth = 100
-	stats.maxStamina = 200
-	health_manager.fullHeal()
-	stats.fullStaminaRestore()
+	health_manager.max_health = 100
+	stats.max_stamina = 200
+	health_manager.full_heal()
+	stats.full_stamina_restore()
 
 #region Player Properties
 
 func update_player_properties():
-	PlayerProperties.curHealth = health_manager.curHealth
-	PlayerProperties.curStamina = stats.curStamina
-	PlayerProperties.maxHealth = health_manager.maxHealth
-	PlayerProperties.maxStamina = stats.maxStamina
+	PlayerProperties.cur_health = health_manager.cur_health
+	PlayerProperties.cur_stamina = stats.cur_stamina
+	PlayerProperties.max_health = health_manager.max_health
+	PlayerProperties.max_stamina = stats.max_stamina
 	PlayerProperties.miningLevel = leveling_manager.getSkill("Mining").curLevel
 	PlayerProperties.foragingLevel = leveling_manager.getSkill("Foraging").curLevel
 	PlayerProperties.leathworkingLevel = leveling_manager.getSkill("Leatherworking").curLevel
@@ -167,10 +169,10 @@ func update_player_properties():
 	PlayerProperties.holdingStats = true
 
 func get_player_properties():
-	health_manager.curHealth = PlayerProperties.curHealth
-	stats.curStamina = PlayerProperties.curStamina
-	health_manager.maxHealth = PlayerProperties.maxHealth
-	stats.maxStamina = PlayerProperties.maxStamina
+	health_manager.cur_health = PlayerProperties.cur_health
+	stats.cur_stamina = PlayerProperties.cur_stamina
+	health_manager.max_health = PlayerProperties.max_health
+	stats.max_stamina = PlayerProperties.max_stamina
 	leveling_manager.setSkillLevel(PlayerProperties.miningLevel, "Mining")
 	leveling_manager.setSkillLevel(PlayerProperties.foragingLevel, "Foraging")
 	leveling_manager.setSkillLevel(PlayerProperties.combatLevel, "Combat")
@@ -182,9 +184,6 @@ func get_player_properties():
 	leveling_manager.setSkillLevel(PlayerProperties.cookingLevel, "Cooking")
 	leveling_manager.setSkillLevel(PlayerProperties.fishingLevel, "Fishing")
 #endregion
-
-func use_tool(toolType: String):
-	print("Using " + toolType)
 
 func zoom_out_camera():
 	camera.zoom.x = 2.5

@@ -10,7 +10,7 @@ func _ready():
 	quit_button.pressed.connect(self._on_QuitButton_pressed)
 
 func _on_StartButton_pressed():
-	get_tree().change_scene_to_file("res://TEMP/TestingWorld.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
 
 func _on_OptionsButton_pressed():
 	print("Options button pressed")

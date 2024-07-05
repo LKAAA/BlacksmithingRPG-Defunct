@@ -1,35 +1,35 @@
 extends Node
 
-var curStamina
-var maxStamina
+var cur_stamina
+var max_stamina
 
 var defense
 var strength
 
 #region Stamina Functions
 
-func increaseStamina(staminaToGain: int): # Gain a specified amount of stamina, prevents going over
-	if curStamina + staminaToGain >= maxStamina: 
-		curStamina = maxStamina
+func increase_stamina(stamina_to_gain: int): # Gain a specified amount of stamina, prevents going over
+	if cur_stamina + stamina_to_gain >= max_stamina: 
+		cur_stamina = max_stamina
 	else:
-		curStamina += staminaToGain
+		cur_stamina += stamina_to_gain
 
-func decreaseStamina(decreaseAmount: int): 
+func decrease_stamina(decrease_amount: int): 
 	pass
-	if (curStamina - decreaseAmount) <= 0: # if this would reduce stamina to 0
+	if (cur_stamina - decrease_amount) <= 0: # if this would reduce stamina to 0
 		print("Out of stamina")
-		curStamina = 0
+		cur_stamina = 0
 	else: 
-		curStamina -= decreaseAmount
+		cur_stamina -= decrease_amount
 
-func setStamina(staminaNewNum: int): # Set current stamina to any specified number
-	curStamina = staminaNewNum
+func set_stamina(stamina_new_num: int): # Set current stamina to any specified number
+	cur_stamina = stamina_new_num
 
-func fullStaminaRestore():
-	curStamina = maxStamina
+func full_stamina_restore():
+	cur_stamina = max_stamina
 
-func increaseMaxStamina(maxStaminaIncrease: int): # Set max stamina to a specified number
-	maxStamina += maxStaminaIncrease
+func increase_max_stamina(max_stamina_increase: int): # Set max stamina to a specified number
+	max_stamina += max_stamina_increase
 
 
 #endregion

@@ -1,9 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=47 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_g7qdg"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://player/player.tscn" id="1_gngn8"]
 [ext_resource type="Resource" uid="uid://df0huqjiginuv" path="res://test_inv.tres" id="2_pn8co"]
 [ext_resource type="Script" path="res://TEMP/TreeTranspotation.gd" id="3_3uwjt"]
+[ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="4_bour0"]
 [ext_resource type="Texture2D" uid="uid://b7ijt60p65fp2" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Basic_Grass_Biom_things.png" id="4_s64hu"]
 [ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="5_7equ0"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="6_lnh27"]
@@ -19,11 +20,20 @@
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="14_fct8j"]
 [ext_resource type="Script" path="res://inventory/inventory_interface.gd" id="14_oq4ix"]
 [ext_resource type="PackedScene" uid="uid://s54eyr60mjw0" path="res://Scenes/Forge.tscn" id="14_yy3xl"]
+[ext_resource type="Resource" uid="uid://b6dwkc303imqb" path="res://item/items/stamina_potion.tres" id="15_5uopg"]
 [ext_resource type="Resource" uid="uid://200ryhno8bxj" path="res://item/items/health_potion.tres" id="15_68p0a"]
 [ext_resource type="Resource" uid="uid://cwf6sjksrs1gy" path="res://item/items/iron_bar.tres" id="15_lceh4"]
 [ext_resource type="PackedScene" uid="uid://b6ngnivow085i" path="res://Scenes/castle_gate.tscn" id="15_sjfcc"]
 [ext_resource type="PackedScene" uid="uid://bm2gtb8p7a3xx" path="res://inventory/grabbed_slot.tscn" id="16_i7kvx"]
-[ext_resource type="PackedScene" uid="uid://r4d6gfgntwkq" path="res://item/pickup/pick_up.tscn" id="23_ff42m"]
+[ext_resource type="Resource" uid="uid://bduo3d13rt6fi" path="res://item/items/mana_potion.tres" id="16_s3i53"]
+[ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/iron_ore.tres" id="19_x3x5g"]
+[ext_resource type="Resource" uid="uid://dyfi1m3g4oxwg" path="res://item/items/mithril_bar.tres" id="20_3kh1o"]
+[ext_resource type="Resource" uid="uid://cso7v7je31gjq" path="res://item/items/mithril_ore.tres" id="21_dct65"]
+[ext_resource type="PackedScene" uid="uid://dfgkh35w7t27k" path="res://inventory/hot_bar_inventory.tscn" id="27_tp3vq"]
+
+[sub_resource type="Resource" id="Resource_4m0pn"]
+script = ExtResource("4_bour0")
+slot_datas = Array[ExtResource("14_fct8j")]([null])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vsrb"]
 size = Vector2(24, 24)
@@ -49,34 +59,44 @@ script = ExtResource("14_fct8j")
 item_data = ExtResource("13_fynrc")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_oj1m8"]
+[sub_resource type="Resource" id="Resource_febrx"]
+script = ExtResource("14_fct8j")
+item_data = ExtResource("15_5uopg")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_4xmbu"]
+script = ExtResource("14_fct8j")
+item_data = ExtResource("16_s3i53")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_3wckr"]
 script = ExtResource("14_fct8j")
 item_data = ExtResource("15_68p0a")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_onjug"]
+[sub_resource type="Resource" id="Resource_spkuj"]
 script = ExtResource("14_fct8j")
 item_data = ExtResource("15_lceh4")
-quantity = 37
+quantity = 999
 
-[sub_resource type="Resource" id="Resource_jpjfv"]
+[sub_resource type="Resource" id="Resource_vmj7r"]
 script = ExtResource("14_fct8j")
-item_data = ExtResource("15_lceh4")
-quantity = 420
+item_data = ExtResource("19_x3x5g")
+quantity = 999
 
-[sub_resource type="Resource" id="Resource_gjs0k"]
+[sub_resource type="Resource" id="Resource_8khr3"]
 script = ExtResource("14_fct8j")
-item_data = ExtResource("15_lceh4")
-quantity = 69
+item_data = ExtResource("20_3kh1o")
+quantity = 999
+
+[sub_resource type="Resource" id="Resource_bunex"]
+script = ExtResource("14_fct8j")
+item_data = ExtResource("21_dct65")
+quantity = 999
 
 [sub_resource type="Resource" id="Resource_u37tx"]
 script = ExtResource("12_k4o7h")
-slot_datas = Array[ExtResource("14_fct8j")]([SubResource("Resource_0bw48"), null, null, null, SubResource("Resource_oj1m8"), null, null, SubResource("Resource_onjug"), null, null, null, SubResource("Resource_jpjfv"), null, null, null, SubResource("Resource_gjs0k"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
-
-[sub_resource type="Resource" id="Resource_kyuud"]
-script = ExtResource("14_fct8j")
-item_data = ExtResource("15_lceh4")
-quantity = 3
+slot_datas = Array[ExtResource("14_fct8j")]([SubResource("Resource_0bw48"), SubResource("Resource_febrx"), SubResource("Resource_4xmbu"), SubResource("Resource_3wckr"), SubResource("Resource_spkuj"), SubResource("Resource_vmj7r"), SubResource("Resource_8khr3"), SubResource("Resource_bunex"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g7qdg")
@@ -85,6 +105,7 @@ script = ExtResource("1_g7qdg")
 position = Vector2(45, 2)
 collision_layer = 75
 inventory_data = ExtResource("2_pn8co")
+equip_inventory_data = SubResource("Resource_4m0pn")
 
 [node name="TreeTranspotation" type="StaticBody2D" parent="."]
 position = Vector2(-84, 23)
@@ -205,9 +226,6 @@ theme_override_font_sizes/font_size = 12
 text = "Stamina: 000/000"
 horizontal_alignment = 1
 
-[node name="PlayerMenuUI" parent="UI" instance=ExtResource("12_o8tq4")]
-visible = false
-
 [node name="InventoryInterface" type="Control" parent="UI"]
 visible = false
 layout_mode = 3
@@ -218,12 +236,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("14_oq4ix")
 
+[node name="PlayerMenuUI" parent="UI/InventoryInterface" instance=ExtResource("12_o8tq4")]
+layout_mode = 1
+
 [node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("13_gnviy")]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 63.0
 offset_right = 92.0
 offset_bottom = 87.0
+
+[node name="EquipInventory" parent="UI/InventoryInterface" instance=ExtResource("13_gnviy")]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 69.0
+offset_right = 233.0
+offset_bottom = 93.0
 
 [node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("13_gnviy")]
 visible = false
@@ -238,15 +266,24 @@ visible = false
 modulate = Color(1, 1, 1, 0.607843)
 layout_mode = 0
 
+[node name="HotBarInventory" parent="UI" instance=ExtResource("27_tp3vq")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -22.0
+offset_right = 110.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [node name="Forge" parent="." instance=ExtResource("14_yy3xl")]
 position = Vector2(128, -24)
 
 [node name="CastleGate" parent="." instance=ExtResource("15_sjfcc")]
 position = Vector2(46, -172)
-
-[node name="Pickup" parent="." instance=ExtResource("23_ff42m")]
-position = Vector2(-28, 35)
-slot_data = SubResource("Resource_kyuud")
 
 [connection signal="body_entered" from="TreeTranspotation/BehindAdjustment" to="TreeTranspotation" method="_on_behind_adjustment_body_entered"]
 [connection signal="body_exited" from="TreeTranspotation/BehindAdjustment" to="TreeTranspotation" method="_on_behind_adjustment_body_exited"]

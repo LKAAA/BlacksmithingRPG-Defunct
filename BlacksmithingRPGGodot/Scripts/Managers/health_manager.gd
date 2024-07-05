@@ -1,37 +1,37 @@
 extends Node
 
-var curHealth = 0
-@export var maxHealth: int
+var cur_health = 0
+@export var max_health: int
 
 signal takenDamage
 signal death
 
 func heal(healthToHeal: int): # Heal a specified amount of health, also prevents overflow healing
 	print("healing")
-	if curHealth + healthToHeal >= maxHealth: # if this heal would heal to above max health restrict it to max
-		curHealth = maxHealth
+	if cur_health + healthToHeal >= max_health: # if this heal would heal to above max health restrict it to max
+		cur_health = max_health
 	else:
-		curHealth += healthToHeal
+		cur_health += healthToHeal
 
 func damage(damageDealt: int): # Deal a specified amount of damage, also checked for death and emits a signal
 	pass
-	if (curHealth - damageDealt) <= 0: # if this damage would reduce health to 0 
-		curHealth = 0
+	if (cur_health - damageDealt) <= 0: # if this damage would reduce health to 0 
+		cur_health = 0
 		death.emit()
 		print("dies of cringe")
 	else: 
-		curHealth -= damageDealt
+		cur_health -= damageDealt
 		takenDamage.emit()
 
-func setHealth(healthNewNum: int): # Set current health to any specified number
-	curHealth = healthNewNum
+func set_health(healthNewNum: int): # Set current health to any specified number
+	cur_health = healthNewNum
 
-func fullHeal(): # Heal to max health
-	curHealth = maxHealth
+func full_heal(): # Heal to max health
+	cur_health = max_health
 	print("Full Heal")
 
-func setMaxHealth(maxHealthNewNum: int): # Set max health to a specified number
-	maxHealth = maxHealthNewNum
+func set_max_health(max_healthNewNum: int): # Set max health to a specified number
+	max_health = max_healthNewNum
 
-func increaseMaxHealth(maxHealthIncrease: int): # Set max health to a specified number
-	maxHealth += maxHealthIncrease
+func increase_max_health(max_healthIncrease: int): # Set max health to a specified number
+	max_health += max_healthIncrease

@@ -1,5 +1,7 @@
 extends Control
 
+signal toggle_inventory
+
 @onready var inventory_button = $InventoryButton
 @onready var skills_button = $SkillsButton
 @onready var relationships_button = $RelationshipsButton
@@ -65,5 +67,4 @@ func update_all_button_textures():
 			buttons[button].set_not_in_use()
 
 func exit_menu():
-	self.visible = false
-	player.isMenuOpen = false
+	toggle_inventory.emit()
