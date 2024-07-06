@@ -1,0 +1,22 @@
+Current to do:
+
+Stamina UI updating
+Health UI updating
+Swapping menus in the inventory when tabs are clicked
+Trash slot
+Change out the player menu ui when external inventory is open vs when just player inventory
+equipping slots specific to type of equipment (boot only slot, head only slot, chest only slot)
+Tool system
+- Another form of item data
+- Use function but in item_data_tool
+- Separate from item_data_weapon?
+- Each tool can only hit a specific type of object
+- Look into object groups
+- if object is in group (mining) and tool type is of type mining 
+
+
+Recipe system
+Intake crafting system
+Menu crafting system
+
+NPCS YIPPIE
