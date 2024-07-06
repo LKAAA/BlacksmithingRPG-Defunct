@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=4 format=3 uid="uid://d2101k08srt0j"]
+
+[ext_resource type="Resource" uid="uid://cwf6sjksrs1gy" path="res://item/items/iron_bar.tres" id="1_tvuse"]
+[ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/iron_ore.tres" id="2_p38cy"]
+[ext_resource type="Script" path="res://recipe/Recipe.gd" id="3_ej0dm"]
+
+[resource]
+script = ExtResource("3_ej0dm")
+craftedItem = ExtResource("1_tvuse")
+craftedQuantity = 1
+ingredients = Array[Resource("res://item/item_data.gd")]([ExtResource("2_p38cy"), ExtResource("2_p38cy"), ExtResource("2_p38cy")])
+recipieOwned = false
+craftingDuration = 10
+xpReward = 10
+recipeType = "Forging"

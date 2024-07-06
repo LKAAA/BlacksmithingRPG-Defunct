@@ -104,6 +104,8 @@ func recieve_inputs():
 	
 	if Input.is_action_just_pressed("TestAction"):
 		print("Test Action")
+		stats.decrease_stamina(10)
+		health_manager.damage(10)
 	
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory.emit()

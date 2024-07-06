@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=48 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_g7qdg"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://player/player.tscn" id="1_gngn8"]
@@ -29,6 +29,7 @@
 [ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/iron_ore.tres" id="19_x3x5g"]
 [ext_resource type="Resource" uid="uid://dyfi1m3g4oxwg" path="res://item/items/mithril_bar.tres" id="20_3kh1o"]
 [ext_resource type="Resource" uid="uid://cso7v7je31gjq" path="res://item/items/mithril_ore.tres" id="21_dct65"]
+[ext_resource type="Script" path="res://Scripts/PlayerStatsInterface.gd" id="24_6kgt2"]
 [ext_resource type="PackedScene" uid="uid://dfgkh35w7t27k" path="res://inventory/hot_bar_inventory.tscn" id="27_tp3vq"]
 
 [sub_resource type="Resource" id="Resource_4m0pn"]
@@ -190,16 +191,24 @@ Wednesday, Day 1
 00:00 AM"
 horizontal_alignment = 1
 
-[node name="HealthText" type="Label" parent="UI"]
+[node name="PlayerStatsInterface" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("24_6kgt2")
+
+[node name="HealthText" type="Label" parent="UI/PlayerStatsInterface"]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -10.0
-offset_right = 31.0
-offset_bottom = 7.0
+offset_left = 284.0
+offset_top = 166.0
+offset_right = 375.0
+offset_bottom = 183.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
@@ -209,16 +218,17 @@ theme_override_font_sizes/font_size = 12
 text = "Health: 000/000"
 horizontal_alignment = 1
 
-[node name="StaminaText" type="Label" parent="UI"]
+[node name="StaminaText" type="Label" parent="UI/PlayerStatsInterface"]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -63.0
-offset_top = -18.0
-offset_right = 37.0
-offset_bottom = -1.0
+offset_left = 281.0
+offset_top = 158.0
+offset_right = 381.0
+offset_bottom = 175.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)

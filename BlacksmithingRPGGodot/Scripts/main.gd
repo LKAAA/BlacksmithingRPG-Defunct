@@ -6,17 +6,24 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var inventory_interface: Control = $UI/InventoryInterface
 @onready var player_menu_ui: Control = $UI/InventoryInterface/PlayerMenuUI
 @onready var hot_bar_inventory: PanelContainer = $UI/HotBarInventory
-
+@onready var player_stats_interface: Control = $UI/PlayerStatsInterface
 
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
 	player_menu_ui.toggle_inventory.connect(toggle_inventory_interface)
+	player.stats.updated_stats.connect(update_game_ui)
+	player.health_manager.updated_health.connect(update_game_ui)
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 	inventory_interface.set_equip_inventory_data(player.equip_inventory_data)
 	hot_bar_inventory.set_inventory_data(player.inventory_data)
+	player_stats_interface.update_max_stats(player.health_manager.max_health, player.stats.max_stamina)
+	update_game_ui()
 	
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
+
+func update_game_ui() -> void:
+	player_stats_interface.update_text(player.health_manager.cur_health, player.stats.cur_stamina)
 
 func toggle_inventory_interface(external_inventory_owner = null) -> void:
 	inventory_interface.visible = not inventory_interface.visible

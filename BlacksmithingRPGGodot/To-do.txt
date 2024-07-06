@@ -1,7 +1,5 @@
 Current to do:
 
-Stamina UI updating
-Health UI updating
 Swapping menus in the inventory when tabs are clicked
 Trash slot
 Change out the player menu ui when external inventory is open vs when just player inventory
@@ -15,8 +13,20 @@ Tool system
 - if object is in group (mining) and tool type is of type mining 
 
 
-Recipe system
 Intake crafting system
+- Intakes a single type of item, any amount of that item
+- Furnace
+- Barrel that you use to cool stuff?
 Menu crafting system
+- Used for crafting with items of different types at the same time
 
 NPCS YIPPIE
+
+
+
+
+Finished:
+
+Stamina UI updating - DONE
+Health UI updating - DONE
+Recipe system - DONE

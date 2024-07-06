@@ -10,7 +10,7 @@ region = Rect2(32, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_1lt0y")
-heal_gain_value = 0
+heal_gain_value = 20
 mana_gain_value = 0
 stamina_gain_value = 0
 item_to_give = ExtResource("1_0gl5o")
