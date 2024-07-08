@@ -12,6 +12,11 @@ Tool system
 - Look into object groups
 - if object is in group (mining) and tool type is of type mining 
 
+Grid system
+Used for:
+	Placing objects
+	Resource gathering (tool hit locations)
+	pathfinding
 
 Intake crafting system
 - Intakes a single type of item, any amount of that item

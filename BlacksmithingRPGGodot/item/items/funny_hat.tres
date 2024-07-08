@@ -11,6 +11,7 @@ region = Rect2(32, 48, 16, 16)
 script = ExtResource("1_0w7a6")
 speed = 2000
 defense = 10
+type = 0
 name = "Funny Hat"
 description = "It is a funny hat."
 stackable = false
