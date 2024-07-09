@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7pgk07e0k5bk"]
+
+[ext_resource type="Script" path="res://GridInfo.gd" id="1_cvl7g"]
+
+[node name="GridInfo" type="Node"]
+script = ExtResource("1_cvl7g")
