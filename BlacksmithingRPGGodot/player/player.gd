@@ -37,9 +37,6 @@ func _ready():
 		get_player_properties()
 
 func _physics_process(_delta):
-	
-	print(self.position)
-	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	horizontal = Input.get_axis("walk_left", "walk_right")
