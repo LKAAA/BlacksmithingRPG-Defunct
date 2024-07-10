@@ -22,6 +22,7 @@ var vertical
 var lastDirection
 
 signal toggle_inventory()
+signal use_item()
 
 @onready var leveling_manager = $LevelingManager
 @onready var interactionManager = $InteractionManager
@@ -99,6 +100,7 @@ func recieve_inputs():
 	if not isMenuOpen:
 		if Input.is_action_just_pressed("use_item"):
 			print("Use item")
+			use_item.emit()
 		
 		if Input.is_action_just_pressed("interact"):
 			print("init interaction")

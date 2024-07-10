@@ -13,6 +13,7 @@ func _ready() -> void:
 	player_menu_ui.toggle_inventory.connect(toggle_inventory_interface)
 	player.stats.updated_stats.connect(update_game_ui)
 	player.health_manager.updated_health.connect(update_game_ui)
+	player.use_item.connect(use_item)
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 	inventory_interface.set_equip_inventory_data(player.equip_inventory_data)
 	hot_bar_inventory.set_inventory_data(player.inventory_data)
@@ -38,6 +39,9 @@ func toggle_inventory_interface(external_inventory_owner = null) -> void:
 		inventory_interface.set_external_inventory(external_inventory_owner)
 	else:
 		inventory_interface.clear_external_inventory()
+
+func use_item() -> void:
+	hot_bar_inventory.use_hot_bar_slot()
 
 func _on_inventory_interface_drop_slot_data(slot_data: SlotData) -> void:
 	var pick_up = PickUp.instantiate()

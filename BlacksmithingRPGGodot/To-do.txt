@@ -1,5 +1,9 @@
 Current to do:
 
+Scroll wheel to swap active slot
+constant active slot
+
+
 Swapping menus in the inventory when tabs are clicked
 Trash slot
 Change out the player menu ui when external inventory is open vs when just player inventory
