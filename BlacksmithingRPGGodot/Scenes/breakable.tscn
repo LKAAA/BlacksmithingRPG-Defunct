@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/breakable.gd" id="1_nc7gq"]
 
-[node name="Breakable" type="Node"]
+[node name="Breakable" type="Area2D" groups=["grid_object"]]
 script = ExtResource("1_nc7gq")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

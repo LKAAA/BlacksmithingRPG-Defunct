@@ -38,7 +38,8 @@ func _process(delta: float) -> void:
 	
 	if player_tile == hoveredTile:
 		print("Hovering YIPPIE")
-	
+		
+	"""
 	if Input.is_action_just_pressed("interact"):
 		var clickedTile = base_tilemap.local_to_map(mousePos)
 		
@@ -79,6 +80,7 @@ func _process(delta: float) -> void:
 					pass
 			else:
 				print("Clicked on a different tile")
+	"""
 
 func get_centered_tile_position(tile: Vector2i) -> Vector2i:
 	return Vector2i((tile.x * TILE_SIZE) + (TILE_SIZE / 2), (tile.y * TILE_SIZE) + (TILE_SIZE / 2))

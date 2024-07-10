@@ -1,5 +1,7 @@
 extends Node2D
 
+signal harvesting
+
 @onready var base_tilemap: TileMap = $"../BaseTilemap"
 @onready var tile_indicator: Sprite2D = $"../SelectedTileIndicator"
 @onready var player: Player = $"../Player"
@@ -15,8 +17,8 @@ var mousePos
 @export var clamped_indicator: bool = false
 
 func _ready() -> void:
-	for node in get_tree().get_nodes_in_group("grid_objects"):
-		grid_objects.append(node)
+	for node in get_tree().get_nodes_in_group("grid_object"):
+		node.object_clicked.connect(object_clicked)
 
 func _process(delta: float) -> void:
 	mousePos = get_global_mouse_position()
@@ -30,6 +32,15 @@ func _process(delta: float) -> void:
 	
 	player_tile = base_tilemap.local_to_map(player.position)
 
+func object_clicked(object) -> void:
+	print(object.name)
+	var clickedTile = base_tilemap.local_to_map(object.position)
+	if get_distance(clickedTile, player_tile) <= interaction_range:
+		harvesting.emit(object.get_node("Breakable"))
+	else:
+		print("Not in range")
+
+"""
 func request_breaking() -> Breakable:
 	var clickedTile = base_tilemap.local_to_map(mousePos)
 	var tileWorldPos = Vector2i((clickedTile.x * TILE_SIZE), (clickedTile.y * TILE_SIZE))
@@ -62,6 +73,7 @@ func request_breaking() -> Breakable:
 			#print("Clicked on a different tile")
 			pass
 	return null
+"""
 
 func get_centered_tile_position(tile: Vector2i) -> Vector2i:
 	return Vector2i((tile.x * TILE_SIZE) + (TILE_SIZE / 2), (tile.y * TILE_SIZE) + (TILE_SIZE / 2))

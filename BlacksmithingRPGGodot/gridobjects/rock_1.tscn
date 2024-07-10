@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://deahbq4wwnnpw"]
+
+[ext_resource type="Texture2D" uid="uid://cxbws1mfeorh5" path="res://item/ItemSheet.PNG" id="1_cnten"]
+[ext_resource type="PackedScene" uid="uid://dbekqd73dhguj" path="res://Scenes/breakable.tscn" id="2_d5vrv"]
+[ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/iron_ore.tres" id="3_8no5c"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="4_cdvep"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x08r"]
+atlas = ExtResource("1_cnten")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d17hs"]
+atlas = SubResource("AtlasTexture_6x08r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ge8x1"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="Resource" id="Resource_tr2iv"]
+script = ExtResource("4_cdvep")
+item_data = ExtResource("3_8no5c")
+quantity = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2h3f"]
+size = Vector2(16, 16)
+
+[node name="RockType1" type="StaticBody2D" groups=["grid_objects"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_d17hs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_ge8x1")
+
+[node name="Breakable" parent="." instance=ExtResource("2_d5vrv")]
+required_tool = "Pickaxe"
+drop_item = SubResource("Resource_tr2iv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable"]
+shape = SubResource("RectangleShape2D_v2h3f")

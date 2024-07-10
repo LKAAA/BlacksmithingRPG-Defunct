@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="2_mq60e"]
 [ext_resource type="PackedScene" uid="uid://bqfe80ngwbbev" path="res://Scenes/Managers/intake_crafting_station_manager.tscn" id="2_rirfw"]
 [ext_resource type="Script" path="res://Scripts/craftingStationItemInputInteraction.gd" id="3_gxgu4"]
-[ext_resource type="PackedScene" uid="uid://dqg10gk8fv7db" path="res://Scenes/grid_info.tscn" id="7_d12aa"]
+[ext_resource type="PackedScene" uid="uid://dqg10gk8fv7db" path="res://Scenes/placeable_info.tscn" id="7_d12aa"]
 [ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="7_x2hoy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bxffx"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds5j6l4ngoaeh"]
+[gd_scene load_steps=11 format=3 uid="uid://ds5j6l4ngoaeh"]
 
 [ext_resource type="PackedScene" uid="uid://cu7wgffpaiabf" path="res://player.tscn" id="1_5edqi"]
 [ext_resource type="Texture2D" uid="uid://b4rk8oygwp57s" path="res://BlacksmithRPGTileSetUpdated.png" id="1_cfldq"]
 [ext_resource type="Script" path="res://grid.gd" id="3_u20ae"]
 [ext_resource type="PackedScene" uid="uid://d2ewlymwbpc2m" path="res://woman.tscn" id="4_6hd08"]
 [ext_resource type="PackedScene" uid="uid://cu0v7ppu4mjes" path="res://selected_tile_indicator.tscn" id="5_kcap6"]
+[ext_resource type="Script" path="res://BreakableObject.gd" id="6_66o2c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vcf5p"]
 texture = ExtResource("1_cfldq")
@@ -72,6 +73,12 @@ texture = ExtResource("1_cfldq")
 [sub_resource type="TileSet" id="TileSet_ov7ij"]
 sources/0 = SubResource("TileSetAtlasSource_vcf5p")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydf86"]
+atlas = ExtResource("1_cfldq")
+region = Rect2(144, 80, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qa13l"]
+
 [node name="Main" type="Node2D"]
 
 [node name="Grid" type="Node2D" parent="."]
@@ -87,9 +94,25 @@ layer_0/tile_data = PackedInt32Array(-1, 0, 0, 65535, 0, 1, -65536, 65536, 0, 0,
 position = Vector2(173, 111)
 
 [node name="Woman" parent="." instance=ExtResource("4_6hd08")]
-position = Vector2(40, 84)
+position = Vector2(56, 72)
 
 [node name="Woman2" parent="." instance=ExtResource("4_6hd08")]
-position = Vector2(211, 145)
+position = Vector2(88, 72)
 
 [node name="SelectedTileIndicator" parent="." instance=ExtResource("5_kcap6")]
+
+[node name="Rock" type="Area2D" parent="."]
+position = Vector2(200, 24)
+
+[node name="Sprite2D" type="Sprite2D" parent="Rock"]
+position = Vector2(-8.9407e-07, 1.19209e-07)
+scale = Vector2(1.25, 1.25)
+texture = SubResource("AtlasTexture_ydf86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock"]
+shape = SubResource("RectangleShape2D_qa13l")
+
+[node name="BreakableObject" type="Node2D" parent="Rock"]
+script = ExtResource("6_66o2c")
+
+[connection signal="input_event" from="Rock" to="Rock/BreakableObject" method="_on_rock_input_event"]

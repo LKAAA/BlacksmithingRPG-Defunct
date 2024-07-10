@@ -6,5 +6,5 @@ class_name ItemDataTool
 @export var tool_damage: int = 1
 
 func use(target) -> void:
-	target.harvest(tool_type, tool_efficiency, tool_damage)
+	#target.harvest(tool_type, tool_efficiency, tool_damage)
 	print("Test harvest")

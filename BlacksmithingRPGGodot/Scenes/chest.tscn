@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bhkv28fd2pwbb" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Chest.png" id="2_iqsla"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_fmi4g"]
 [ext_resource type="Script" path="res://Scripts/ChestInteraction.gd" id="4_52ets"]
-[ext_resource type="PackedScene" uid="uid://dqg10gk8fv7db" path="res://Scenes/grid_info.tscn" id="5_jdtt2"]
+[ext_resource type="PackedScene" uid="uid://dqg10gk8fv7db" path="res://Scenes/placeable_info.tscn" id="5_jdtt2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cno3t"]
 size = Vector2(16, 14)

@@ -1,6 +1,8 @@
 extends Node
 class_name Breakable
 
+signal object_clicked
+
 const PickUp = preload("res://item/pickup/pick_up.tscn")
 
 @export var health: int = 3
@@ -28,3 +30,8 @@ func drop():
 	pick_up.slot_data = drop_item
 	pick_up.position = self.get_parent().position
 	get_parent().get_parent().add_child(pick_up)
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("use_item"):
+		object_clicked.emit(get_parent())

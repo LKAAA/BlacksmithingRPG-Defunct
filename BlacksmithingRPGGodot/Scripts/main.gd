@@ -15,7 +15,7 @@ func _ready() -> void:
 	player.stats.updated_stats.connect(update_game_ui)
 	player.health_manager.updated_health.connect(update_game_ui)
 	player.use_item.connect(use_item)
-	player.request_harvest.connect(request_harvest)
+	grid.harvesting.connect(request_harvest)
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 	inventory_interface.set_equip_inventory_data(player.equip_inventory_data)
 	hot_bar_inventory.set_inventory_data(player.inventory_data)
@@ -51,11 +51,13 @@ func _on_inventory_interface_drop_slot_data(slot_data: SlotData) -> void:
 	pick_up.position = player.get_drop_position()
 	add_child(pick_up)
 
-func request_harvest(toolType: String, tool_efficiency: int, tool_damage: int):
-	var requestedObjectInfo: Breakable = grid.request_breaking()
+func request_harvest(object: Breakable):
+	var requestedObjectInfo: Breakable = object
+	requestedObjectInfo.take_damage(1)
 	print(requestedObjectInfo)
+	"""
 	if requestedObjectInfo:
-		if requestedObjectInfo.required_tool == toolType:
+		if requestedObjectInfo.required_tool == player.toolType:
 			if requestedObjectInfo.required_efficiency == tool_efficiency:
 				print("Can harvest")
 				requestedObjectInfo.take_damage(tool_damage)
@@ -65,3 +67,4 @@ func request_harvest(toolType: String, tool_efficiency: int, tool_damage: int):
 			print("Incorrect tool")
 	else:
 		print("This object is not breakable")
+		"""
