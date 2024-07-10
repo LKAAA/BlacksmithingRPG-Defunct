@@ -10,15 +10,16 @@ var grid_objects = []
 var player_tile: Vector2i
 var interaction_range: int = 2
 
+var mousePos
+
 @export var clamped_indicator: bool = false
 
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("grid_objects"):
 		grid_objects.append(node)
-	print(grid_objects)
 
 func _process(delta: float) -> void:
-	var mousePos = get_global_mouse_position()
+	mousePos = get_global_mouse_position()
 	var hoveredTile = base_tilemap.local_to_map(mousePos)
 	var hoveredTileWorldPosCenter = Vector2i((hoveredTile.x * TILE_SIZE) + (TILE_SIZE / 2), (hoveredTile.y * TILE_SIZE) + (TILE_SIZE / 2))
 	
@@ -28,11 +29,8 @@ func _process(delta: float) -> void:
 		pass
 	
 	player_tile = base_tilemap.local_to_map(player.position)
-	
-	if Input.is_action_just_pressed("use_item"):
-		request_breaking(mousePos)
 
-func request_breaking(mousePos: Vector2) -> void:
+func request_breaking() -> Breakable:
 	var clickedTile = base_tilemap.local_to_map(mousePos)
 	var tileWorldPos = Vector2i((clickedTile.x * TILE_SIZE), (clickedTile.y * TILE_SIZE))
 	var tileWorldPosCenter = Vector2i((tileWorldPos.x) + (TILE_SIZE / 2), (tileWorldPos.y) + (TILE_SIZE / 2)) 
@@ -47,20 +45,23 @@ func request_breaking(mousePos: Vector2) -> void:
 		
 		if get_distance(object_origin_tile, clickedTile) <= 5:
 			var object_tiles = get_object_tiles(object)
-			print("Checking " + object.name)
 			for tile in object_tiles.size():
 				if object_tiles[tile] == clickedTile:
 					if get_distance(object_tiles[tile], player_tile) <= interaction_range:
-						print("Within 2 tiles")
-						print("Harvest: " + object.name)
-						break
+						if object.get_node("Breakable"):
+							return object.get_node("Breakable")
+						else:
+							return null
 					else:
-						print("Not within 2 tiles")
+						#print("Not within 2 tiles")
 						break
 				else:
-					print("Not this one")
+					#print("Not this one")
+					pass
 		else:
-			print("Clicked on a different tile")
+			#print("Clicked on a different tile")
+			pass
+	return null
 
 func get_centered_tile_position(tile: Vector2i) -> Vector2i:
 	return Vector2i((tile.x * TILE_SIZE) + (TILE_SIZE / 2), (tile.y * TILE_SIZE) + (TILE_SIZE / 2))

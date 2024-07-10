@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=53 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_g7qdg"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://player/player.tscn" id="1_gngn8"]
@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://bprk0oovcmmp3" path="res://item/items/glass_bottle.tres" id="13_fynrc"]
 [ext_resource type="PackedScene" uid="uid://otlmg4lw37rt" path="res://inventory/inventory.tscn" id="13_gnviy"]
 [ext_resource type="PackedScene" uid="uid://dqg10gk8fv7db" path="res://Scenes/grid_info.tscn" id="13_y17vo"]
+[ext_resource type="PackedScene" uid="uid://dbekqd73dhguj" path="res://Scenes/breakable.tscn" id="14_axwv4"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="14_fct8j"]
 [ext_resource type="Script" path="res://inventory/inventory_interface.gd" id="14_oq4ix"]
 [ext_resource type="PackedScene" uid="uid://s54eyr60mjw0" path="res://Scenes/Forge.tscn" id="14_yy3xl"]
@@ -52,6 +53,11 @@ size = Vector2(8, 5)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_07x3h"]
 radius = 11.0
 height = 38.0
+
+[sub_resource type="Resource" id="Resource_qfys4"]
+script = ExtResource("14_fct8j")
+item_data = ExtResource("19_x3x5g")
+quantity = 3
 
 [sub_resource type="Resource" id="Resource_0bw48"]
 script = ExtResource("14_fct8j")
@@ -164,6 +170,34 @@ shape = SubResource("CapsuleShape2D_07x3h")
 
 [node name="GridInfo" parent="TreeTranspotation" instance=ExtResource("13_y17vo")]
 GRID_HEIGHT = 2
+
+[node name="Tree" type="StaticBody2D" parent="." groups=["grid_objects"]]
+position = Vector2(40, -72)
+script = ExtResource("3_3uwjt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tree"]
+position = Vector2(0, -11.5)
+texture = ExtResource("4_s64hu")
+region_enabled = true
+region_rect = Rect2(18.6985, 0, 26.6491, 31.6564)
+
+[node name="BehindAdjustment" parent="Tree" instance=ExtResource("5_7equ0")]
+position = Vector2(0, -3.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/BehindAdjustment"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_5vsrb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_676nx")
+
+[node name="GridInfo" parent="Tree" instance=ExtResource("13_y17vo")]
+GRID_HEIGHT = 2
+
+[node name="Breakable" parent="Tree" instance=ExtResource("14_axwv4")]
+required_tool = "Pickaxe"
+drop_item = SubResource("Resource_qfys4")
 
 [node name="Chest" parent="." instance=ExtResource("10_2lris")]
 position = Vector2(-24, -72)
@@ -298,6 +332,8 @@ z_index = 5
 
 [connection signal="body_entered" from="TreeTranspotation/BehindAdjustment" to="TreeTranspotation" method="_on_behind_adjustment_body_entered"]
 [connection signal="body_exited" from="TreeTranspotation/BehindAdjustment" to="TreeTranspotation" method="_on_behind_adjustment_body_exited"]
+[connection signal="body_entered" from="Tree/BehindAdjustment" to="Tree" method="_on_behind_adjustment_body_entered"]
+[connection signal="body_exited" from="Tree/BehindAdjustment" to="Tree" method="_on_behind_adjustment_body_exited"]
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
 [connection signal="visibility_changed" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_visibility_changed"]

@@ -9,8 +9,9 @@ region = Rect2(32, 32, 16, 16)
 
 [resource]
 script = ExtResource("1_jpn5x")
-toolType = ""
-toolStrength = 1
+tool_type = "Pickaxe"
+tool_efficiency = 1
+tool_damage = 1
 name = "Iron Pickaxe"
 description = "A pickaxe of iron."
 stackable = false

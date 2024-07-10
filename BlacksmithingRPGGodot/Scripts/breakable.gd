@@ -1,18 +1,18 @@
 extends Node
+class_name Breakable
+
+const PickUp = preload("res://item/pickup/pick_up.tscn")
 
 @export var health: int = 3
-@export var required_tool: String = "pickaxe" # The type of tool required
+@export_enum("Pickaxe", "Axe") var required_tool: String
 @export var required_efficiency: int = 1 # The minimum tool efficiency/level required
-@export var drop_item: Item
+@export var drop_item: SlotData
 @export var break_animation: AnimationPlayer
 
-func take_damage(tool: Item):
-	if tool.tool_type == required_tool and tool.efficicency >= required_efficiency:
-		health -= tool.damage
-		if health <= 0:
-			break_object()
-	else:
-		print("Tool is not effective")
+func take_damage(tool_damage: int):
+	health -= tool_damage
+	if health <= 0:
+		break_object()
 
 func break_object():
 	if break_animation: 
@@ -20,11 +20,11 @@ func break_object():
 		#implement waiting till it ends
 		#probably set up a timer
 	drop()
-	queue_free()
+	get_parent().queue_free()
 
 func drop():
 	print("Drop item")
-	#if drop_item:
-		#var item_instance = drop_item.instance()
-		#item_instance.global_position = global_position
-		#get_parent().add_child(item_instance)
+	var pick_up = PickUp.instantiate()
+	pick_up.slot_data = drop_item
+	pick_up.position = self.get_parent().position
+	get_parent().get_parent().add_child(pick_up)

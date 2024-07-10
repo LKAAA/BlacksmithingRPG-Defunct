@@ -23,6 +23,7 @@ var lastDirection
 
 signal toggle_inventory()
 signal use_item()
+signal request_harvest()
 
 @onready var leveling_manager = $LevelingManager
 @onready var interactionManager = $InteractionManager
@@ -213,3 +214,10 @@ func get_drop_position() -> Vector2:
 			return self.position - Vector2(30, 0)
 		_:
 			return self.position + Vector2(0, 30)
+
+func harvest(toolType: String, toolStrength: int, tool_damage: int) -> void:
+	# check the selected hovered tile
+	# If the hovered tile is harvestable
+	# Check what strength and type the object requires to break it
+	request_harvest.emit(toolType, toolStrength, tool_damage)
+	

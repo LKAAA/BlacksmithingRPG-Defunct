@@ -7,6 +7,7 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var player_menu_ui: Control = $UI/InventoryInterface/PlayerMenuUI
 @onready var hot_bar_inventory: PanelContainer = $UI/HotBarInventory
 @onready var player_stats_interface: Control = $UI/PlayerStatsInterface
+@onready var grid: Node2D = $Grid
 
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
@@ -14,6 +15,7 @@ func _ready() -> void:
 	player.stats.updated_stats.connect(update_game_ui)
 	player.health_manager.updated_health.connect(update_game_ui)
 	player.use_item.connect(use_item)
+	player.request_harvest.connect(request_harvest)
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 	inventory_interface.set_equip_inventory_data(player.equip_inventory_data)
 	hot_bar_inventory.set_inventory_data(player.inventory_data)
@@ -48,3 +50,18 @@ func _on_inventory_interface_drop_slot_data(slot_data: SlotData) -> void:
 	pick_up.slot_data = slot_data
 	pick_up.position = player.get_drop_position()
 	add_child(pick_up)
+
+func request_harvest(toolType: String, tool_efficiency: int, tool_damage: int):
+	var requestedObjectInfo: Breakable = grid.request_breaking()
+	print(requestedObjectInfo)
+	if requestedObjectInfo:
+		if requestedObjectInfo.required_tool == toolType:
+			if requestedObjectInfo.required_efficiency == tool_efficiency:
+				print("Can harvest")
+				requestedObjectInfo.take_damage(tool_damage)
+			else:
+				print("Not a strong enough tool")
+		else:
+			print("Incorrect tool")
+	else:
+		print("This object is not breakable")
