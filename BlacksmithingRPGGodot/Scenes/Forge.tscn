@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://s54eyr60mjw0"]
+[gd_scene load_steps=14 format=3 uid="uid://s54eyr60mjw0"]
 
 [ext_resource type="Script" path="res://Scripts/Forge.gd" id="1_c77jh"]
 [ext_resource type="Texture2D" uid="uid://08oab3va4bq0" path="res://Assets/Sprites/ForgeSpriteSheet.png" id="1_kp3in"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="2_mq60e"]
 [ext_resource type="PackedScene" uid="uid://bqfe80ngwbbev" path="res://Scenes/Managers/intake_crafting_station_manager.tscn" id="2_rirfw"]
 [ext_resource type="Script" path="res://Scripts/craftingStationItemInputInteraction.gd" id="3_gxgu4"]
+[ext_resource type="PackedScene" uid="uid://dqg10gk8fv7db" path="res://Scenes/grid_info.tscn" id="7_d12aa"]
 [ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="7_x2hoy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bxffx"]
@@ -44,22 +45,23 @@ height = 48.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnib4"]
 size = Vector2(28, 44)
 
-[node name="Forge" type="StaticBody2D"]
-position = Vector2(0, -48)
+[node name="Forge" type="StaticBody2D" groups=["grid_objects"]]
 script = ExtResource("1_c77jh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -36)
 sprite_frames = SubResource("SpriteFrames_f1btv")
 animation = &"ForgeOff"
 autoplay = "ForgeOff"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 19)
+position = Vector2(8, -11)
 shape = SubResource("RectangleShape2D_w0rec")
 
 [node name="IntakeCraftingStationManager" parent="." instance=ExtResource("2_rirfw")]
 
 [node name="InteractionManager" parent="." instance=ExtResource("2_mq60e")]
+position = Vector2(8, -29)
 script = ExtResource("3_gxgu4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionManager"]
@@ -67,10 +69,15 @@ position = Vector2(0, 29)
 shape = SubResource("CapsuleShape2D_7m742")
 
 [node name="BehindAdjustment" parent="." instance=ExtResource("7_x2hoy")]
+position = Vector2(8, -28)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BehindAdjustment"]
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_nnib4")
+
+[node name="GridInfo" parent="." instance=ExtResource("7_d12aa")]
+GRID_WIDTH = 2
+GRID_HEIGHT = 5
 
 [connection signal="body_entered" from="BehindAdjustment" to="." method="_on_behind_adjustment_body_entered"]
 [connection signal="body_exited" from="BehindAdjustment" to="." method="_on_behind_adjustment_body_exited"]

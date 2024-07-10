@@ -22,10 +22,6 @@ func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
 
-func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("use_item"):
-		var mousePos = get_global_mouse_position()
-
 func update_game_ui() -> void:
 	player_stats_interface.update_text(player.health_manager.cur_health, player.stats.cur_stamina)
 

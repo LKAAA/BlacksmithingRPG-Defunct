@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coj44cc4xejp3"]
+
+[ext_resource type="Texture2D" uid="uid://4nyibjlgn6g2" path="res://Assets/Sprites/TileSelection.png" id="1_hci7b"]
+
+[node name="SelectedTileIndicator" type="Sprite2D"]
+texture = ExtResource("1_hci7b")

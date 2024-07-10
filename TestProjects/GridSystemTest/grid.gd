@@ -79,13 +79,6 @@ func _process(delta: float) -> void:
 					pass
 			else:
 				print("Clicked on a different tile")
-				
-			"""
-			if get_distance(object_tile, clickedTile) <= 2:
-				print("Within 2 tiles")
-			else:
-				print("Not within 2 tiles")
-			"""
 
 func get_centered_tile_position(tile: Vector2i) -> Vector2i:
 	return Vector2i((tile.x * TILE_SIZE) + (TILE_SIZE / 2), (tile.y * TILE_SIZE) + (TILE_SIZE / 2))

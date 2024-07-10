@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@export var interaction_range: int = 2
+
 @export var inventory_data: InventoryData
 @export var equip_inventory_data: InventoryDataEquip
 
