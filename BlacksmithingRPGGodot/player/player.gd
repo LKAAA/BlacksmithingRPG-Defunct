@@ -214,3 +214,6 @@ func get_drop_position() -> Vector2:
 			return self.position - Vector2(30, 0)
 		_:
 			return self.position + Vector2(0, 30)
+
+func harvest(toolType: String, toolStrength: int, tool_damage: int) -> void:
+	request_harvest.emit(toolType, toolStrength, tool_damage)

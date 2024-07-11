@@ -12,6 +12,8 @@ var grid_objects = []
 var player_tile: Vector2i
 var interaction_range: int = 2
 
+var lastClicked
+
 var mousePos
 
 @export var clamped_indicator: bool = false
@@ -36,7 +38,9 @@ func object_clicked(object) -> void:
 	print(object.name)
 	var clickedTile = base_tilemap.local_to_map(object.position)
 	if get_distance(clickedTile, player_tile) <= interaction_range:
-		harvesting.emit(object.get_node("Breakable"))
+		lastClicked = object
+		print(lastClicked)
+		#harvesting.emit(object.get_node("Breakable"))
 	else:
 		print("Not in range")
 

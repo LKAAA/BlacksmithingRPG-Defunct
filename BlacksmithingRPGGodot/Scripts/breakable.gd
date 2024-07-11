@@ -2,6 +2,7 @@ extends Node
 class_name Breakable
 
 signal object_clicked
+signal destroyed
 
 const PickUp = preload("res://item/pickup/pick_up.tscn")
 
@@ -22,7 +23,9 @@ func break_object():
 		#implement waiting till it ends
 		#probably set up a timer
 	drop()
+	destroyed.emit()
 	get_parent().queue_free()
+
 
 func drop():
 	print("Drop item")
