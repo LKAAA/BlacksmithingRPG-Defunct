@@ -2,6 +2,9 @@ extends Node2D
 
 signal harvesting
 
+@export var GRID_WIDTH: int
+@export var GRID_HEIGHT: int
+
 @onready var base_tilemap: TileMap = $"../BaseTilemap"
 @onready var tile_indicator: Sprite2D = $"../SelectedTileIndicator"
 @onready var player: Player = $"../Player"
@@ -33,6 +36,9 @@ func _process(delta: float) -> void:
 		pass
 	
 	player_tile = base_tilemap.local_to_map(player.position)
+	
+	if Input.is_action_pressed("TestAction"):
+		debug_all_tiles(get_all_tiles())
 
 func object_clicked(object) -> void:
 	print(object.name)
@@ -43,41 +49,6 @@ func object_clicked(object) -> void:
 		#harvesting.emit(object.get_node("Breakable"))
 	else:
 		print("Not in range")
-
-"""
-func request_breaking() -> Breakable:
-	var clickedTile = base_tilemap.local_to_map(mousePos)
-	var tileWorldPos = Vector2i((clickedTile.x * TILE_SIZE), (clickedTile.y * TILE_SIZE))
-	var tileWorldPosCenter = Vector2i((tileWorldPos.x) + (TILE_SIZE / 2), (tileWorldPos.y) + (TILE_SIZE / 2)) 
-	
-	for i in grid_objects.size():
-		var object = grid_objects[i]
-		
-		if object == null:
-			break
-		
-		var object_origin_tile = base_tilemap.local_to_map(object.position)
-		
-		if get_distance(object_origin_tile, clickedTile) <= 5:
-			var object_tiles = get_object_tiles(object)
-			for tile in object_tiles.size():
-				if object_tiles[tile] == clickedTile:
-					if get_distance(object_tiles[tile], player_tile) <= interaction_range:
-						if object.get_node("Breakable"):
-							return object.get_node("Breakable")
-						else:
-							return null
-					else:
-						#print("Not within 2 tiles")
-						break
-				else:
-					#print("Not this one")
-					pass
-		else:
-			#print("Clicked on a different tile")
-			pass
-	return null
-"""
 
 func get_centered_tile_position(tile: Vector2i) -> Vector2i:
 	return Vector2i((tile.x * TILE_SIZE) + (TILE_SIZE / 2), (tile.y * TILE_SIZE) + (TILE_SIZE / 2))
@@ -128,3 +99,19 @@ func get_object_tiles(object) -> Array[Vector2i]:
 	
 	return ObjectTiles
 
+func get_all_tiles() -> Array[Vector2i]:
+	var all_tiles: Array[Vector2i] = []
+	
+	for w in GRID_WIDTH:
+		for h in GRID_HEIGHT:
+			all_tiles.append(Vector2i(w, h))
+	
+	return all_tiles
+
+func debug_all_tiles(tiles: Array[Vector2i]) -> void:
+	for tile in tiles.size():
+		var new_label = Label.new()
+		get_parent().add_child(new_label)
+		new_label.text = str(tiles[tile])
+		new_label.set("theme_override_font_sizes/font_size", 8)
+		new_label.position = base_tilemap.map_to_local(tiles[tile])

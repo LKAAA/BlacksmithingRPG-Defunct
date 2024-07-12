@@ -103,6 +103,8 @@ layer_1/tile_data = PackedInt32Array()
 [node name="Grid" type="Node2D" parent="."]
 position = Vector2(-224, -148)
 script = ExtResource("3_f7q7l")
+GRID_WIDTH = 10
+GRID_HEIGHT = 10
 
 [node name="CastleEntranceTransition" parent="." instance=ExtResource("9_n22hg")]
 position = Vector2(48, -234)
