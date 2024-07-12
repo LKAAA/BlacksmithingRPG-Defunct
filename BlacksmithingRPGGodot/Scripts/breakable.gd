@@ -30,10 +30,10 @@ func break_object():
 func drop():
 	print("Drop item")
 	var pick_up = PickUp.instantiate()
-	pick_up.slot_data = drop_item
+	var slot_data = drop_item.duplicate(false)
+	pick_up.slot_data = slot_data
 	pick_up.position = self.get_parent().position
-	get_parent().get_parent().add_child(pick_up)
-
+	find_parent("Main").add_child(pick_up)
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("use_item"):

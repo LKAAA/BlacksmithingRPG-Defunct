@@ -121,6 +121,15 @@ equip_inventory_data = SubResource("Resource_4m0pn")
 [node name="Tree" parent="." instance=ExtResource("8_wb64p")]
 position = Vector2(-56, -88)
 
+[node name="Tree2" parent="." instance=ExtResource("8_wb64p")]
+position = Vector2(-104, -88)
+
+[node name="Tree3" parent="." instance=ExtResource("8_wb64p")]
+position = Vector2(-152, -88)
+
+[node name="Tree4" parent="." instance=ExtResource("8_wb64p")]
+position = Vector2(-208, -88)
+
 [node name="Chest" parent="." instance=ExtResource("10_2lris")]
 position = Vector2(-24, -72)
 inventory_data = SubResource("Resource_u37tx")

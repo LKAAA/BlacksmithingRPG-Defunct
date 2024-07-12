@@ -105,12 +105,15 @@ func pick_up_slot_data(slot_data: SlotData) -> bool:
 	
 	for index in slot_datas.size():
 		if slot_datas[index] and slot_datas[index].can_fully_merge_with(slot_data):
+			print(slot_data.quantity)
 			slot_datas[index].fully_merge_with(slot_data)
+			print("Fully merge")
 			inventory_updated.emit(self)
 			return true
 	
 	for index in slot_datas.size():
 		if not slot_datas[index]:
+			print("New slot")
 			slot_datas[index] = slot_data
 			inventory_updated.emit(self)
 			return true

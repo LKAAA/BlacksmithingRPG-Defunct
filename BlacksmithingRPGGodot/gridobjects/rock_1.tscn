@@ -17,10 +17,10 @@ region = Rect2(0, 0, 16, 16)
 radius = 5.0
 height = 10.0
 
-[sub_resource type="Resource" id="Resource_tr2iv"]
+[sub_resource type="Resource" id="Resource_frwgt"]
 script = ExtResource("4_cdvep")
 item_data = ExtResource("3_8no5c")
-quantity = 3
+quantity = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2h3f"]
 size = Vector2(16, 16)
@@ -36,7 +36,7 @@ shape = SubResource("CapsuleShape2D_ge8x1")
 
 [node name="Breakable" parent="." instance=ExtResource("2_d5vrv")]
 required_tool = "Pickaxe"
-drop_item = SubResource("Resource_tr2iv")
+drop_item = SubResource("Resource_frwgt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable"]
 shape = SubResource("RectangleShape2D_v2h3f")
