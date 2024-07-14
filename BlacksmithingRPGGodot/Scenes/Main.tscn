@@ -130,7 +130,7 @@ position = Vector2(-104, -88)
 position = Vector2(-152, -88)
 
 [node name="Tree4" parent="." instance=ExtResource("8_wb64p")]
-position = Vector2(-208, -88)
+position = Vector2(-200, -88)
 
 [node name="Chest" parent="." instance=ExtResource("10_2lris")]
 position = Vector2(-24, -72)

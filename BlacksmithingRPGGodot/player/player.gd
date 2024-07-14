@@ -24,6 +24,7 @@ var lastDirection
 signal toggle_inventory()
 signal use_item()
 signal request_harvest()
+signal request_interaction()
 
 @onready var leveling_manager = $LevelingManager
 @onready var interactionManager = $InteractionManager
@@ -103,9 +104,9 @@ func recieve_inputs():
 			print("Use item")
 			use_item.emit()
 		
-		if Input.is_action_just_pressed("interact"):
-			print("init interaction")
-			interactionManager.initiate_interaction()
+		#if Input.is_action_just_pressed("interact"):
+			#print("init interaction")
+			#interactionManager.initiate_interaction()
 	
 	if Input.is_action_just_pressed("TestAction"):
 		print("Test Action")
@@ -217,3 +218,6 @@ func get_drop_position() -> Vector2:
 
 func harvest(toolType: String, toolStrength: int, tool_damage: int) -> void:
 	request_harvest.emit(toolType, toolStrength, tool_damage)
+
+func interact(object: InteractionManager) -> void:
+	request_interaction.emit(object)

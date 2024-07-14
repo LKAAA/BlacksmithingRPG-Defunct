@@ -26,7 +26,6 @@ func break_object():
 	destroyed.emit()
 	get_parent().queue_free()
 
-
 func drop():
 	print("Drop item")
 	var pick_up = PickUp.instantiate()

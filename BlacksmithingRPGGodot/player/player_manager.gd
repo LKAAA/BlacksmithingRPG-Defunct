@@ -10,3 +10,6 @@ func equip_slot_data(slot_data: SlotData) -> void:
 
 func unequip_slot_data(slot_data: SlotData) -> void:
 	slot_data.item_data.unequipped(player)
+
+func interact(object: InteractionManager) -> void:
+	player.interact(object)
