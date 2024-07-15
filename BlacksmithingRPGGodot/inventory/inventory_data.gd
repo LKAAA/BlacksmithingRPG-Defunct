@@ -102,7 +102,6 @@ func use_slot_data(index: int) -> void:
 	inventory_updated.emit(self)
 
 func pick_up_slot_data(slot_data: SlotData) -> bool:
-	
 	for index in slot_datas.size():
 		if slot_datas[index] and slot_datas[index].can_fully_merge_with(slot_data):
 			print(slot_data.quantity)
@@ -120,6 +119,15 @@ func pick_up_slot_data(slot_data: SlotData) -> bool:
 	
 	return false
 
+func has_item(item: ItemData) -> bool:
+	# Check if a slot in the player has the item
+	# then check if the quantity is not set to one, check if the player has the amount
+	return false
+
+func get_item_count(item: ItemData) -> int:
+	var itemCount
+	# Returns how much of a certain item you have
+	return itemCount
 
 func  on_slot_clicked(index: int, button: int) -> void:
 	inventory_interact.emit(self, index, button)

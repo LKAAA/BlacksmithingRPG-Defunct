@@ -1,4 +1,5 @@
 extends Node2D
+class_name Grid
 
 signal harvesting
 
@@ -37,8 +38,8 @@ func _process(delta: float) -> void:
 	
 	player_tile = base_tilemap.local_to_map(player.position)
 	
-	if Input.is_action_pressed("TestAction"):
-		debug_all_tiles(get_all_tiles())
+	#if Input.is_action_pressed("TestAction"):
+		#debug_all_tiles(get_all_tiles())
 
 func object_clicked(object) -> void:
 	print(object.name)
@@ -59,6 +60,13 @@ func get_distance(tile1: Vector2i, tile2: Vector2i) -> int:
 	var distanceTo = tile1Vector.distance_to(tile2Vector)
 	var roundedDistanceTo = roundf(distanceTo)
 	return roundedDistanceTo
+
+func check_if_in_interaction_range(objectPos: Vector2) -> bool:
+	var objectTile = base_tilemap.local_to_map(Vector2i(objectPos.x, objectPos.y))
+	if get_distance(objectTile, player_tile) <= interaction_range:
+		return true
+	else:
+		return false
 
 func get_object_tiles(object) -> Array[Vector2i]:
 	var ObjectTiles: Array[Vector2i] = []

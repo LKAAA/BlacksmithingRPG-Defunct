@@ -1,25 +1,21 @@
 Current to do:
 
-Grid system - DONE
-Used for:
-	interacting with objects - Use it to see if you are close enough instead of collider(NOW)
-	Placing objects (FUTURE)
-	Resource gathering (tool hit locations) - DONE
+Intake crafting system
+- Intakes a single type of item, any amount of that item
+- Furnace
+- Barrel that you use to cool stuff?
 
 Swapping menus in the inventory when tabs are clicked
 Trash slot
 Change out the player menu ui when external inventory is open vs when just player inventory
 equipping slots specific to type of equipment (boot only slot, head only slot, chest only slot)
 
-Intake crafting system
-- Intakes a single type of item, any amount of that item
-- Furnace
-- Barrel that you use to cool stuff?
 Menu crafting system
 - Used for crafting with items of different types at the same time
 
 NPCS YIPPIE
 
+Placing objects - Grid system is the groundwork
 
 
 
@@ -27,10 +23,13 @@ Finished:
 
 Stamina UI updating - DONE
 Health UI updating - DONE
+
 Recipe system - DONE
+
 Scroll wheel to swap active slot - DONE
 constant active slot - DONE
 Use any item when left clicked, not when swapped to - DONE
+
 Tool system - DONE
 - Another form of item data
 - Use function but in item_data_tool
@@ -38,3 +37,8 @@ Tool system - DONE
 - Each tool can only hit a specific type of object
 - Look into object groups
 - if object is in group (mining) and tool type is of type mining 
+
+Grid system - DONE
+Used for:
+	interacting with objects - Use it to see if you are close enough instead of collider - DONE
+	Resource gathering (tool hit locations) - DONE

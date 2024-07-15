@@ -10,7 +10,6 @@ var current_interaction: InteractionManager
 		#current_interaction.receive_interaction()
 	
 func receive_interaction() -> void:
-	print(self.get_parent().name)
 	print("No interaction reception behavior defined")
 
 # Note - we should only be reciving collisions from other interaction managers.

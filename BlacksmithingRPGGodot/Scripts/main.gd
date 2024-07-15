@@ -7,7 +7,7 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var player_menu_ui: Control = $UI/InventoryInterface/PlayerMenuUI
 @onready var hot_bar_inventory: PanelContainer = $UI/HotBarInventory
 @onready var player_stats_interface: Control = $UI/PlayerStatsInterface
-@onready var grid: Node2D = $Grid
+@onready var grid: Grid = $Grid
 
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
@@ -77,5 +77,7 @@ func request_harvest(toolType: String, tool_efficiency: int, tool_damage: int):
 
 func request_interaction(object: InteractionManager):
 	var requestedObjectInfo
-	if grid.lastClicked: 
+	if grid.check_if_in_interaction_range(object.get_parent().position):
 		object.receive_interaction()
+	else:
+		print("Not in range")

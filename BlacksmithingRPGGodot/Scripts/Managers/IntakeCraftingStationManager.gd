@@ -1,6 +1,4 @@
 extends Node
-
-"""
 class_name IntakeCraftingStation
 
 signal turnedOn
@@ -11,7 +9,7 @@ signal turnedOff
 @onready var timer = $Timer
 
 var chosenRecipe: Recipe
-var owedItem: Item
+var owedItem: ItemData
 var owedCount: int
 var owedXP: int
 var owedXPType: String
@@ -19,6 +17,33 @@ var readyToGrab: bool = false
 
 var player: Player
 
+func _ready() -> void:
+	player = PlayerManager.player
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("TestAction"):
+		if can_craft(craftingRecipies[0]):
+			Log.print("true")
+		else:
+			Log.print("false")
+
+func can_craft(recipe: Recipe) -> bool:
+	for ingredient in recipe.ingredients.size():
+		if not player.inventory_data.has_item(recipe.ingredients[ingredient]):
+			Log.print("No item")
+			return false
+		else:
+			var ownedItemCount : = player.inventory_data.get_item_count(recipe.ingredients[ingredient])
+			if ownedItemCount >= recipe.ingredients.count(recipe.ingredients[ingredient]):
+				Log.print("Has item and quantity required")
+				return true
+			else:
+				Log.print("Has item but not enough")
+				return false
+	Log.print("I hope its not this one")
+	return false
+
+"""
 func can_craft(recipe: Recipe) -> bool:
 	var can_craft: = true
 	for ingredient in recipe.ingredients.size():
