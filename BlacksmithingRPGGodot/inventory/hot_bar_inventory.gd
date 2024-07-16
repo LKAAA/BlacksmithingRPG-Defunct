@@ -8,18 +8,25 @@ const Slot = preload("res://inventory/slot.tscn")
 @onready var active_slot_marker: TextureRect = $ActiveSlotMarker
 @onready var h_box_container: HBoxContainer = $TextureRect/HBoxContainer
 
+func _ready() -> void:
+	PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("scroll_up"):
 		if activeSlot == 0:
 			activeSlot = 11
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		else:
 			activeSlot -= 1
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 	
 	if Input.is_action_just_pressed("scroll_down"):
 		if activeSlot == 11:
 			activeSlot = 0
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		else:
 			activeSlot += 1
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 	
 	match activeSlot:
 		0:
@@ -54,28 +61,40 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	match event.keycode:
 		KEY_1:
 			activeSlot = 0
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_2:
 			activeSlot = 1
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_3:
 			activeSlot = 2
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_4:
 			activeSlot = 3
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_5:
 			activeSlot = 4
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_6:
 			activeSlot = 5
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_7:
 			activeSlot = 6
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_8:
 			activeSlot = 7
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_9:
 			activeSlot = 8
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_0:
 			activeSlot = 9
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_MINUS:
 			activeSlot = 10
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 		KEY_EQUAL:
 			activeSlot = 11
+			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 
 func use_hot_bar_slot():
 	hot_bar_use.emit(activeSlot)

@@ -14,18 +14,18 @@ var owedCount: int
 var owedXP: int
 var owedXPType: String
 var readyToGrab: bool = false
+var isOn: bool = false
 
 var player: Player
 
 func _ready() -> void:
 	player = PlayerManager.player
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("TestAction"):
-		if can_craft(craftingRecipies[0]):
-			Log.print("true")
-		else:
-			Log.print("false")
+func interactedWith() -> void:
+	if readyToGrab == false:
+		decide_recipe()
+	elif readyToGrab == true:
+		attemptGrab()
 
 func can_craft(recipe: Recipe) -> bool:
 	for ingredient in recipe.ingredients.size():
@@ -36,6 +36,7 @@ func can_craft(recipe: Recipe) -> bool:
 			var ownedItemCount : = player.inventory_data.get_item_count(recipe.ingredients[ingredient])
 			if ownedItemCount >= recipe.ingredients.count(recipe.ingredients[ingredient]):
 				Log.print("Has item and quantity required")
+				Log.print("Quantity = " + str(ownedItemCount))
 				return true
 			else:
 				Log.print("Has item but not enough")
@@ -43,45 +44,33 @@ func can_craft(recipe: Recipe) -> bool:
 	Log.print("I hope its not this one")
 	return false
 
-"""
-func can_craft(recipe: Recipe) -> bool:
-	var can_craft: = true
-	for ingredient in recipe.ingredients.size():
-		if not player.inventory.has_item(recipe.ingredients[ingredient].name):
-			can_craft = false
-		else:
-			var ownedItemCount : = player.inventory.has_item_count(recipe.ingredients[ingredient].name)
-			if ownedItemCount >= recipe.ingredients.count(recipe.ingredients[ingredient]):
-				can_craft = true
-				return can_craft
-			else:
-				can_craft = false
-				return can_craft
-	return can_craft
-
-func decide_recipe():
+func decide_recipe() -> void:
 	var chosenRecipe: Recipe
-	if not player.activeItem.item == null:
-		for recipe in craftingRecipies.size():
-			var curRecipe : = craftingRecipies[recipe]
-			for ingredient in curRecipe.ingredients.size():
-				if player.activeItem.item == curRecipe.ingredients[ingredient]:
-					chosenRecipe = curRecipe
-					if can_craft(chosenRecipe):
-						beginCrafting(chosenRecipe)
-					break
-				else: 
-					chosenRecipe = null
-					print("No available recipe")
-					break
-	else:
-		chosenRecipe = null
-		print("No available recipe")
+	if not isOn:
+		if PlayerManager.active_slot:
+			for recipe in craftingRecipies.size():
+				var curRecipe : = craftingRecipies[recipe]
+				for ingredient in curRecipe.ingredients.size():
+					if PlayerManager.active_slot.item_data == curRecipe.ingredients[ingredient]:
+						chosenRecipe = curRecipe
+						if can_craft(chosenRecipe):
+							beginCrafting(chosenRecipe)
+						break
+					else: 
+						chosenRecipe = null
+						Log.print("Incorrect Item")
+						break
+		else:
+			chosenRecipe = null
+			Log.print("No active item")
 
-func beginCrafting(recipe: Recipe):
+func beginCrafting(recipe: Recipe) -> void:
+	Log.print("Begin crafting")
 	# get player inventory items
+	var numOfIngredients = 0
 	for ingredient in recipe.ingredients.size():
-		player.inventory.remove_item(recipe.ingredients[ingredient])
+		numOfIngredients += 1
+	player.inventory_data.remove_item(recipe.ingredients[0], numOfIngredients)
 	
 	owedItem = recipe.craftedItem
 	owedCount = recipe.craftedQuantity
@@ -90,39 +79,32 @@ func beginCrafting(recipe: Recipe):
 	timer.wait_time = recipe.craftingDuration
 	timer.start()
 	turnedOn.emit()
-	print("Started the smelt")
-	player.player_ui.update_hotbar()
+	isOn = true
+
+func attemptGrab() -> void:
+	finishCraft()
+	#if PlayerManager.active_slot == requiredItem:
+		#Log.print("You have the required item to pick this up")
+		#finishCraft()
+	#else:
+		#Log.print("You don't have the required item to pick this up")
+
+func finishCraft():
+	#player.inventory.remove_item(player.activeItem.item, 1)
+	#player.inventory.add_item(ItemDatabase.get_item("Tongs (" + owedItem.name + ")"), 1)
+	PlayerManager.player.inventory_data.add_item(owedItem, owedCount)
+	player.leveling_manager.gainXP(owedXP, owedXPType)
+	#Log.print("Picked up " + ItemDatabase.get_item("Tongs (" + owedItem.name + ")").name)
+	owedItem = null
+	owedCount = 0
+	readyToGrab = false
+	isOn = false
+	Log.print("Grabbed item")
 
 func craftEnded():
 	readyToGrab = true
 	turnedOff.emit()
-	print("ready for pickup")
-
-func finishCraft():
-	
-	player.inventory.remove_item(player.activeItem.item, 1)
-	player.inventory.add_item(ItemDatabase.get_item("Tongs (" + owedItem.name + ")"), 1)
-	player.leveling_manager.gainXP(owedXP, owedXPType)
-	player.player_ui.update_hotbar()
-	print("Picked up " + ItemDatabase.get_item("Tongs (" + owedItem.name + ")").name)
-	owedItem = null
-	owedCount = 0
-	readyToGrab = false
-
-func attemptGrab():
-	if player.activeItem.item.name == requiredItem:
-		print("You have the required item to pick this up")
-		finishCraft()
-	else:
-		print("You don't have the required item to pick this up")
-
-func interactedWith(p: Player):
-	player = p
-	if readyToGrab == false:
-		decide_recipe()
-	elif readyToGrab == true:
-		attemptGrab()
+	Log.print("ready for pickup")
 
 func _on_timer_timeout():
 	craftEnded()
-"""

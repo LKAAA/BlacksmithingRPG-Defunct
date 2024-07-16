@@ -24,7 +24,6 @@ func _ready() -> void:
 			label.text = ""
 			# rich_text_label.theme = theme
 			label.set_anchors_preset(Control.PRESET_FULL_RECT)
-			label.set("theme_override_fonts/font", "res://Assets/Fonts/ark-pixel-10px-monospaced-ja.ttf")
 			label.set("theme_override_font_sizes/font_size", 5)
 			label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			label.clip_text = true

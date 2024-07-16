@@ -79,6 +79,27 @@ func create_slot_data(item_data: ItemData, quantity: int) -> void:
 		print("Drop the item")
 	print("Create slot")
 
+func add_item(item_data: ItemData, quantity: int) -> void:
+	var slot_data: SlotData = SlotData.new()
+	
+	slot_data.new_slot_data(item_data, quantity)
+	
+	for index in slot_datas.size():
+		if slot_datas[index] and slot_datas[index].can_fully_merge_with(slot_data):
+			print(slot_data.quantity)
+			slot_datas[index].fully_merge_with(slot_data)
+			print("Fully merge")
+			inventory_updated.emit(self)
+			return
+	
+	for index in slot_datas.size():
+		if not slot_datas[index]:
+			print("New slot")
+			slot_datas[index] = slot_data
+			inventory_updated.emit(self)
+			return
+	
+
 func find_open_slot() -> int:
 	var index = -1
 	
@@ -101,6 +122,18 @@ func use_slot_data(index: int) -> void:
 	
 	inventory_updated.emit(self)
 
+func remove_item(item: ItemData, quantity: int = 1) -> void:
+	for index in slot_datas.size():
+		if slot_datas[index]:
+			if slot_datas[index].item_data == item:
+				for r in quantity:
+					slot_datas[index].quantity -= 1
+					if slot_datas[index].quantity < 1:
+						slot_datas[index] = null
+						if r >= 1:
+							remove_item(item, r)
+	inventory_updated.emit(self)
+
 func pick_up_slot_data(slot_data: SlotData) -> bool:
 	for index in slot_datas.size():
 		if slot_datas[index] and slot_datas[index].can_fully_merge_with(slot_data):
@@ -120,14 +153,23 @@ func pick_up_slot_data(slot_data: SlotData) -> bool:
 	return false
 
 func has_item(item: ItemData) -> bool:
-	# Check if a slot in the player has the item
-	# then check if the quantity is not set to one, check if the player has the amount
+	for index in slot_datas.size():
+		if slot_datas[index]:
+			if slot_datas[index].item_data == item:
+				return true
 	return false
 
 func get_item_count(item: ItemData) -> int:
-	var itemCount
-	# Returns how much of a certain item you have
+	var itemCount: int = 0
+	for index in slot_datas.size():
+		if slot_datas[index]:
+			if slot_datas[index].item_data == item:
+				if slot_datas[index].quantity >= 1:
+					itemCount += slot_datas[index].quantity
 	return itemCount
+
+func get_slot_data(index: int) -> SlotData:
+	return slot_datas[index]
 
 func  on_slot_clicked(index: int, button: int) -> void:
 	inventory_interact.emit(self, index, button)

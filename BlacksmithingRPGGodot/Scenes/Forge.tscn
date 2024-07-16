@@ -81,5 +81,7 @@ shape = SubResource("RectangleShape2D_nnib4")
 GRID_WIDTH = 2
 GRID_HEIGHT = 5
 
+[connection signal="turnedOff" from="IntakeCraftingStationManager" to="." method="_on_intake_crafting_station_manager_turned_off"]
+[connection signal="turnedOn" from="IntakeCraftingStationManager" to="." method="_on_intake_crafting_station_manager_turned_on"]
 [connection signal="body_entered" from="BehindAdjustment" to="." method="_on_behind_adjustment_body_entered"]
 [connection signal="body_exited" from="BehindAdjustment" to="." method="_on_behind_adjustment_body_exited"]
