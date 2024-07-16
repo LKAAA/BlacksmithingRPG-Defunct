@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuj4r6mfw7wjw"
-path="res://.godot/imported/ExitTabNOTINUSE.png-0477d1a72bfc7ae3cf3f1e50f295b1e4.ctex"
+uid="uid://b60vy73f5sjtd"
+path="res://.godot/imported/InventoryTabNOTINUSE.png-65b1b65a1d4e3b4aa7d33dbae8e582d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/ExitTabNOTINUSE.png"
-dest_files=["res://.godot/imported/ExitTabNOTINUSE.png-0477d1a72bfc7ae3cf3f1e50f295b1e4.ctex"]
+source_file="res://Assets/Sprites/UI/BookmarkButtons/InventoryTabNOTINUSE.png"
+dest_files=["res://.godot/imported/InventoryTabNOTINUSE.png-65b1b65a1d4e3b4aa7d33dbae8e582d7.ctex"]
 
 [params]
 

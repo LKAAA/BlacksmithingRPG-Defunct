@@ -12,6 +12,7 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
 	player_menu_ui.toggle_inventory.connect(toggle_inventory_interface)
+	player_menu_ui.change_menu.connect(change_menu)
 	player.stats.updated_stats.connect(update_game_ui)
 	player.health_manager.updated_health.connect(update_game_ui)
 	player.use_item.connect(use_item)
@@ -29,6 +30,23 @@ func _ready() -> void:
 
 func update_game_ui() -> void:
 	player_stats_interface.update_text(player.health_manager.cur_health, player.stats.cur_stamina)
+
+func change_menu(menu_num: int) -> void:
+	match menu_num:
+		0: # Inventory
+			pass
+		1: 
+			pass
+		2: 
+			pass
+		3: 
+			pass
+		4: 
+			pass
+		5: 
+			pass
+		6: 
+			pass
 
 func toggle_inventory_interface(external_inventory_owner = null) -> void:
 	inventory_interface.visible = not inventory_interface.visible

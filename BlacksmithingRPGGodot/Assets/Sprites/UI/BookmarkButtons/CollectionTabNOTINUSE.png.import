@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw3nog07atw6u"
-path="res://.godot/imported/SkillsTabINUSE.png-616a848e68317493ac4807a69903d790.ctex"
+uid="uid://21jq2kkbdbqd"
+path="res://.godot/imported/CollectionTabNOTINUSE.png-f062e90fc5378344d293df76175e51d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/SkillsTabINUSE.png"
-dest_files=["res://.godot/imported/SkillsTabINUSE.png-616a848e68317493ac4807a69903d790.ctex"]
+source_file="res://Assets/Sprites/UI/BookmarkButtons/CollectionTabNOTINUSE.png"
+dest_files=["res://.godot/imported/CollectionTabNOTINUSE.png-f062e90fc5378344d293df76175e51d7.ctex"]
 
 [params]
 

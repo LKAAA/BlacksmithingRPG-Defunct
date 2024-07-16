@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6m5mpkk74rh8"
-path="res://.godot/imported/QuestTabNOTINUSE.png-c65b31316d18b32817eaaf31e6f4fa46.ctex"
+uid="uid://bh570o724ihkd"
+path="res://.godot/imported/SettingsTabINUSE.png-cc00112a7c0bf9ffbf4d0a65243d5a37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/QuestTabNOTINUSE.png"
-dest_files=["res://.godot/imported/QuestTabNOTINUSE.png-c65b31316d18b32817eaaf31e6f4fa46.ctex"]
+source_file="res://Assets/Sprites/UI/BookmarkButtons/SettingsTabINUSE.png"
+dest_files=["res://.godot/imported/SettingsTabINUSE.png-cc00112a7c0bf9ffbf4d0a65243d5a37.ctex"]
 
 [params]
 

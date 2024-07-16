@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cakma6ptd2pl1"
-path="res://.godot/imported/BlankPageUI.png-4882402994b2771f155d5879cf40c5c1.ctex"
+uid="uid://7rtp2nc1dtfw"
+path="res://.godot/imported/RunesTabNOTINUSE.png-40f7c923430a048ba0abf1a95c7e3db6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/BlankPageUI.png"
-dest_files=["res://.godot/imported/BlankPageUI.png-4882402994b2771f155d5879cf40c5c1.ctex"]
+source_file="res://Assets/Sprites/UI/BookmarkButtons/RunesTabNOTINUSE.png"
+dest_files=["res://.godot/imported/RunesTabNOTINUSE.png-40f7c923430a048ba0abf1a95c7e3db6.ctex"]
 
 [params]
 

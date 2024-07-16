@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0pus10m8xnyu"
-path="res://.godot/imported/QuestTabINUSE.png-65f63e4d7d1d7ab49be4268cb63f9e1e.ctex"
+uid="uid://sfml80urbe28"
+path="res://.godot/imported/BlankPage.png-fa10b66e64bd0669329039af7216cd9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/QuestTabINUSE.png"
-dest_files=["res://.godot/imported/QuestTabINUSE.png-65f63e4d7d1d7ab49be4268cb63f9e1e.ctex"]
+source_file="res://Assets/Sprites/UI/Pages/BlankPage.png"
+dest_files=["res://.godot/imported/BlankPage.png-fa10b66e64bd0669329039af7216cd9b.ctex"]
 
 [params]
 

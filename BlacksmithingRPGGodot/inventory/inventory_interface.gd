@@ -5,10 +5,12 @@ signal drop_slot_data(slot_data: SlotData)
 var grabbed_slot_data: SlotData
 var external_inventory_owner
 
-@onready var player_inventory: PanelContainer = $PlayerInventory
-@onready var grabbed_slot: PanelContainer = $GrabbedSlot
-@onready var external_inventory: PanelContainer = $ExternalInventory
-@onready var equip_inventory: PanelContainer = $EquipInventory
+@onready var player_menu_ui: Control = $PlayerMenuUI
+
+@onready var player_inventory: PanelContainer = $InventorySection/PlayerInventory
+@onready var equip_inventory: PanelContainer = $InventorySection/EquipInventory
+@onready var external_inventory: PanelContainer = $InventorySection/ExternalInventory
+@onready var grabbed_slot: PanelContainer = $InventorySection/GrabbedSlot
 
 func _physics_process(delta: float) -> void:
 		grabbed_slot.global_position = get_global_mouse_position() + Vector2(2,2)

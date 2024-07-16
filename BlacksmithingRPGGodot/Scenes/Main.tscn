@@ -220,21 +220,26 @@ script = ExtResource("14_oq4ix")
 [node name="PlayerMenuUI" parent="UI/InventoryInterface" instance=ExtResource("12_o8tq4")]
 layout_mode = 1
 
-[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("13_gnviy")]
+[node name="InventorySection" type="Control" parent="UI/InventoryInterface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerInventory" parent="UI/InventoryInterface/InventorySection" instance=ExtResource("13_gnviy")]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 63.0
 offset_right = 92.0
 offset_bottom = 87.0
 
-[node name="EquipInventory" parent="UI/InventoryInterface" instance=ExtResource("13_gnviy")]
+[node name="EquipInventory" parent="UI/InventoryInterface/InventorySection" instance=ExtResource("13_gnviy")]
 layout_mode = 0
 offset_left = 209.0
 offset_top = 69.0
 offset_right = 233.0
 offset_bottom = 93.0
 
-[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("13_gnviy")]
+[node name="ExternalInventory" parent="UI/InventoryInterface/InventorySection" instance=ExtResource("13_gnviy")]
 visible = false
 layout_mode = 0
 offset_left = 208.0
@@ -242,7 +247,7 @@ offset_top = 63.0
 offset_right = 232.0
 offset_bottom = 87.0
 
-[node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("16_i7kvx")]
+[node name="GrabbedSlot" parent="UI/InventoryInterface/InventorySection" instance=ExtResource("16_i7kvx")]
 visible = false
 modulate = Color(1, 1, 1, 0.607843)
 layout_mode = 0

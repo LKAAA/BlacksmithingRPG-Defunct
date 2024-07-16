@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gu1pa3wve8ap"
-path="res://.godot/imported/PlayerMenuBook.png-2c534bf28a9eaa1cc96ba1c6fbe4ab23.ctex"
+uid="uid://dw8rmtf856ime"
+path="res://.godot/imported/ExitTabINUSE.png-bab97440aa5025a13e9e0496ac965d16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/PlayerMenuBook.png"
-dest_files=["res://.godot/imported/PlayerMenuBook.png-2c534bf28a9eaa1cc96ba1c6fbe4ab23.ctex"]
+source_file="res://Assets/Sprites/UI/BookmarkButtons/ExitTabINUSE.png"
+dest_files=["res://.godot/imported/ExitTabINUSE.png-bab97440aa5025a13e9e0496ac965d16.ctex"]
 
 [params]
 

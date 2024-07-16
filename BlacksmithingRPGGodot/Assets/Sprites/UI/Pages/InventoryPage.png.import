@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coup1658cyp8r"
-path="res://.godot/imported/PlayerInventoryImage.png-c56873e389abec1c6872f871339272f7.ctex"
+uid="uid://rsacp3cik1de"
+path="res://.godot/imported/InventoryPage.png-59c157a8642e7acfadb6eede9f0801c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TEMP/PlayerInventoryImage.png"
-dest_files=["res://.godot/imported/PlayerInventoryImage.png-c56873e389abec1c6872f871339272f7.ctex"]
+source_file="res://Assets/Sprites/UI/Pages/InventoryPage.png"
+dest_files=["res://.godot/imported/InventoryPage.png-59c157a8642e7acfadb6eede9f0801c7.ctex"]
 
 [params]
 

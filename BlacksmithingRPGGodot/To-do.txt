@@ -1,10 +1,5 @@
 Current to do:
 
-Intake crafting system
-- Intakes a single type of item, any amount of that item
-- Furnace
-- Barrel that you use to cool stuff?
-
 Swapping menus in the inventory when tabs are clicked
 Trash slot
 Change out the player menu ui when external inventory is open vs when just player inventory
@@ -17,9 +12,15 @@ NPCS YIPPIE
 
 Placing objects - Grid system is the groundwork
 
+- Barrel that you use to cool stuff? (A type of intake crafting table)
 
 
 Finished:
+
+Intake crafting system
+- Intakes a single type of item, any amount of that item
+- Furnace
+
 
 Stamina UI updating - DONE
 Health UI updating - DONE
