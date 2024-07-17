@@ -20,3 +20,19 @@ func unequip_slot_data(slot_data: SlotData) -> void:
 
 func interact(object: InteractionManager) -> void:
 	player.interact(object)
+
+func get_skills() -> Array[String]:
+	var levels: Array[String]
+	
+	levels.append(str(player.leveling_manager.getSkill("Mining").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Foraging").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Combat").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Leatherworking").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Woodworking").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Forging").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Assembling").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Rune Etching").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Cooking").curLevel) + "/10")
+	levels.append(str(player.leveling_manager.getSkill("Fishing").curLevel) + "/10")
+	
+	return levels

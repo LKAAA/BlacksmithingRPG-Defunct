@@ -25,6 +25,7 @@ signal toggle_inventory()
 signal use_item()
 signal request_harvest()
 signal request_interaction()
+signal update_max_stats()
 
 @onready var leveling_manager = $LevelingManager
 @onready var interactionManager = $InteractionManager
@@ -110,8 +111,9 @@ func recieve_inputs():
 	
 	if Input.is_action_just_pressed("TestAction"):
 		print("Test Action")
-		stats.decrease_stamina(10)
-		health_manager.damage(10)
+		leveling_manager.gainXP(100, "Mining")
+		leveling_manager.gainXP(100, "Forging")
+		leveling_manager.gainXP(100, "Fishing")
 	
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory.emit()
@@ -150,6 +152,7 @@ func levelup(): # on level up increase max health by 2, and stamina by 3.
 	health_manager.full_heal()
 	stats.increase_max_stamina(3)
 	stats.full_stamina_restore()
+	update_max_stats.emit(health_manager.max_health + 2, stats.max_stamina + 3)
 
 func newGameStats():
 	health_manager.max_health = 100

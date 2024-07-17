@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=46 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_g7qdg"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://player/player.tscn" id="1_gngn8"]
@@ -29,6 +29,8 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStatsInterface.gd" id="24_6kgt2"]
 [ext_resource type="Resource" uid="uid://bsqf62kb7kym" path="res://item/items/iron_pickaxe.tres" id="25_scooj"]
 [ext_resource type="PackedScene" uid="uid://dfgkh35w7t27k" path="res://inventory/hot_bar_inventory.tscn" id="27_tp3vq"]
+[ext_resource type="Script" path="res://Scripts/SkillsUI.gd" id="29_nlko4"]
+[ext_resource type="FontFile" uid="uid://d2pdhgsshvjl6" path="res://Assets/Fonts/ark-pixel-10px-monospaced-ja.ttf" id="29_tvcjo"]
 [ext_resource type="PackedScene" uid="uid://coj44cc4xejp3" path="res://Scenes/selected_tile_indicator.tscn" id="33_n7hfb"]
 [ext_resource type="PackedScene" uid="uid://deahbq4wwnnpw" path="res://gridobjects/rock_1.tscn" id="37_054oh"]
 
@@ -251,6 +253,111 @@ offset_bottom = 87.0
 visible = false
 modulate = Color(1, 1, 1, 0.607843)
 layout_mode = 0
+
+[node name="SkillsSection" type="Control" parent="UI/InventoryInterface"]
+visible = false
+anchors_preset = 0
+offset_left = 67.0
+offset_top = 19.0
+offset_right = 317.0
+offset_bottom = 172.0
+script = ExtResource("29_nlko4")
+
+[node name="LeftPage" type="VBoxContainer" parent="UI/InventoryInterface/SkillsSection"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 108.0
+offset_bottom = 153.0
+theme_override_constants/separation = 8
+
+[node name="MiningLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Mining
+10000/10000"
+horizontal_alignment = 1
+
+[node name="ForagingLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Foraging
+10000/10000"
+horizontal_alignment = 1
+
+[node name="CombatLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Combat
+10000/10000"
+horizontal_alignment = 1
+
+[node name="LeatherworkingLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Leatherworking 
+10000/10000"
+horizontal_alignment = 1
+
+[node name="WoodworkingLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Woodworking
+10000/10000"
+horizontal_alignment = 1
+
+[node name="LeftPage2" type="VBoxContainer" parent="UI/InventoryInterface/SkillsSection"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 2.0
+offset_right = 248.0
+offset_bottom = 153.0
+theme_override_constants/separation = 8
+
+[node name="ForgingLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Forging
+10000/10000"
+horizontal_alignment = 1
+
+[node name="AssemblingLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Assembling
+10000/10000"
+horizontal_alignment = 1
+
+[node name="RuneEtchingLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Rune Etching
+10000/10000"
+horizontal_alignment = 1
+
+[node name="CookingLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Cooking
+10000/10000"
+horizontal_alignment = 1
+
+[node name="FishingLabel" type="Label" parent="UI/InventoryInterface/SkillsSection/LeftPage2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_tvcjo")
+theme_override_font_sizes/font_size = 10
+text = "Fishing
+10000/10000"
+horizontal_alignment = 1
 
 [node name="HotBarInventory" parent="UI" instance=ExtResource("27_tp3vq")]
 anchors_preset = 7

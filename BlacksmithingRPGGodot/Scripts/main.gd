@@ -10,6 +10,9 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var grid: Grid = $Grid
 @onready var inventory_section: Control = $UI/InventoryInterface/InventorySection
 @onready var equip_inventory: PanelContainer = $UI/InventoryInterface/InventorySection/EquipInventory
+@onready var skills_section = $UI/InventoryInterface/SkillsSection
+
+var external = false
 
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
@@ -36,26 +39,39 @@ func update_game_ui() -> void:
 func change_menu(menu_num: int) -> void:
 	match menu_num:
 		0: # Inventory
-			player_menu_ui.set_normal_inventory()
+			if external == false:
+				Log.print("This")
+				player_menu_ui.set_normal_inventory()
+			else:
+				player_menu_ui.set_external_inventory()
+				Log.print("That")
 			inventory_section.visible = true
-		1: 
+			skills_section.visible = false
+		1: # Skill
 			player_menu_ui.set_other_menu()
 			inventory_section.visible = false
-		2: 
+			skills_section.visible = true
+			skills_section.update_labels()
+		2: # Relationship
 			player_menu_ui.set_other_menu()
 			inventory_section.visible = false
-		3: 
+			skills_section.visible = false
+		3: # Quests
 			player_menu_ui.set_other_menu()
 			inventory_section.visible = false
-		4: 
+			skills_section.visible = false
+		4: # Runes
 			player_menu_ui.set_other_menu()
 			inventory_section.visible = false
-		5: 
+			skills_section.visible = false
+		5: # Collection
 			player_menu_ui.set_other_menu()
 			inventory_section.visible = false
-		6: 
+			skills_section.visible = false
+		6: # Settings
 			player_menu_ui.set_other_menu()
 			inventory_section.visible = false
+			skills_section.visible = false
 
 func toggle_inventory_interface(external_inventory_owner = null) -> void:
 	inventory_interface.visible = not inventory_interface.visible
@@ -77,9 +93,11 @@ func toggle_inventory_interface(external_inventory_owner = null) -> void:
 		inventory_interface.set_external_inventory(external_inventory_owner)
 		player_menu_ui.set_external_inventory()
 		equip_inventory.hide()
+		external = true
 	else:
 		inventory_interface.clear_external_inventory()
 		equip_inventory.show()
+		external = false
 
 func use_item() -> void:
 	hot_bar_inventory.use_hot_bar_slot()
