@@ -8,6 +8,8 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var hot_bar_inventory: PanelContainer = $UI/HotBarInventory
 @onready var player_stats_interface: Control = $UI/PlayerStatsInterface
 @onready var grid: Grid = $Grid
+@onready var inventory_section: Control = $UI/InventoryInterface/InventorySection
+@onready var equip_inventory: PanelContainer = $UI/InventoryInterface/InventorySection/EquipInventory
 
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
@@ -34,23 +36,37 @@ func update_game_ui() -> void:
 func change_menu(menu_num: int) -> void:
 	match menu_num:
 		0: # Inventory
-			pass
+			player_menu_ui.set_normal_inventory()
+			inventory_section.visible = true
 		1: 
-			pass
+			player_menu_ui.set_other_menu()
+			inventory_section.visible = false
 		2: 
-			pass
+			player_menu_ui.set_other_menu()
+			inventory_section.visible = false
 		3: 
-			pass
+			player_menu_ui.set_other_menu()
+			inventory_section.visible = false
 		4: 
-			pass
+			player_menu_ui.set_other_menu()
+			inventory_section.visible = false
 		5: 
-			pass
+			player_menu_ui.set_other_menu()
+			inventory_section.visible = false
 		6: 
-			pass
+			player_menu_ui.set_other_menu()
+			inventory_section.visible = false
 
 func toggle_inventory_interface(external_inventory_owner = null) -> void:
 	inventory_interface.visible = not inventory_interface.visible
 	player.isMenuOpen = not player.isMenuOpen
+	
+	player_menu_ui.update_all_button_textures()
+	
+	if inventory_section.visible:
+		player_menu_ui.set_normal_inventory()
+	else:
+		player_menu_ui.set_other_menu()
 	
 	if inventory_interface.visible:
 		hot_bar_inventory.hide()
@@ -59,8 +75,11 @@ func toggle_inventory_interface(external_inventory_owner = null) -> void:
 	
 	if external_inventory_owner and inventory_interface.visible:
 		inventory_interface.set_external_inventory(external_inventory_owner)
+		player_menu_ui.set_external_inventory()
+		equip_inventory.hide()
 	else:
 		inventory_interface.clear_external_inventory()
+		equip_inventory.show()
 
 func use_item() -> void:
 	hot_bar_inventory.use_hot_bar_slot()

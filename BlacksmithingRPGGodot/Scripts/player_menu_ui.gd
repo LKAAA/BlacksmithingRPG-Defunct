@@ -82,3 +82,12 @@ func update_all_button_textures():
 
 func exit_menu():
 	toggle_inventory.emit()
+
+func set_external_inventory() -> void:
+	inventory_sprite.texture = INVENTORY_PAGE_EXTERNAL
+
+func set_normal_inventory() -> void:
+	inventory_sprite.texture = INVENTORY_PAGE
+
+func set_other_menu() -> void:
+	inventory_sprite.texture = BLANK_PAGE
