@@ -1,0 +1,30 @@
+~ start
+
+if State.has_met_dragon_lady == false:
+	Player: Dragon! I've come for your heart!
+	Dragon Lady: How many times do I have to tell you humans! My heart is not magic nor a metal!
+	Player: No. I've come for your heart. *Pulls out a rose*[wait=0.5] You are beautiful.
+	Dragon Lady: *Blushes*
+else:
+	Dragon Lady: Back again {{State.player_name}}? How many times do I have to tell you. It isn't going to work out.
+	Player: PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE
+
+=> END 
+
+~ important_question
+
+Dragon Lady: Do you wish to date me? Breath if no. Recite the bible in japanese if yes.
+- Breath
+	Dragon Lady: A wise choice
+- Recite the bible in japanese
+	Player: はじめに神は天と地とを創造された。
+	Dragon Lady: What the—?
+	Player: 地は井なく、をなしく、やみが淵のおもてにあり…
+	Dragon Lady: …Is that actually the Bible?
+	Player: …神の霊が水のおもてをおおっていた。
+	Dragon Lady: And you stopped breathing, too!?
+	Player: 神は「光あれ」と言われた。
+	Dragon Lady: I would've preferred you just beat me up and stole my treasure.
+
+=> END
+

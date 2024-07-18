@@ -11,8 +11,21 @@ config_version=5
 [application]
 
 config/name="Dialogue System Test"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+State="*res://state.gd"
+
+[dialogue_manager]
+
+general/wrap_lines=true
+general/balloon_path="res://dialogue/balloon.tscn"
+general/include_character_in_translation_exports=true
+general/include_notes_in_translation_exports=true
 
 [display]
 
@@ -21,9 +34,25 @@ window/size/viewport_height=216
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
 [gui]
 
 common/snap_controls_to_pixels=false
+
+[input]
+
+interact={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogue/main.dialogue")
 
 [rendering]
 
