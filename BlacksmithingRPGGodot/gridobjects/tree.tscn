@@ -44,6 +44,8 @@ shape = SubResource("RectangleShape2D_676nx")
 [node name="Breakable" parent="." instance=ExtResource("5_ycele")]
 required_tool = "Pickaxe"
 drop_item = SubResource("Resource_qfys4")
+xp_reward_type = "Foraging"
+xp_amount = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable"]
 position = Vector2(0, -8)

@@ -37,6 +37,8 @@ shape = SubResource("CapsuleShape2D_ge8x1")
 [node name="Breakable" parent="." instance=ExtResource("2_d5vrv")]
 required_tool = "Pickaxe"
 drop_item = SubResource("Resource_frwgt")
+xp_reward_type = "Mining"
+xp_amount = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable"]
 shape = SubResource("RectangleShape2D_v2h3f")

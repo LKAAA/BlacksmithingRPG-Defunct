@@ -11,6 +11,10 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @export var required_efficiency: int = 1 # The minimum tool efficiency/level required
 @export var drop_item: SlotData
 @export var break_animation: AnimationPlayer
+@export_enum("Mining","Foraging", "Combat", "Leatherworking", 
+			"Woodworking", "Forging", "Assembling", 
+			"Rune Etching", "Cooking", "Fishing") var xp_reward_type: String
+@export var xp_amount: int = 1
 
 func take_damage(tool_damage: int):
 	health -= tool_damage
@@ -23,6 +27,7 @@ func break_object():
 		#implement waiting till it ends
 		#probably set up a timer
 	drop()
+	PlayerManager.give_xp(xp_amount, xp_reward_type)
 	destroyed.emit()
 	get_parent().queue_free()
 

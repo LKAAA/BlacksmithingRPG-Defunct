@@ -21,6 +21,9 @@ func unequip_slot_data(slot_data: SlotData) -> void:
 func interact(object: InteractionManager) -> void:
 	player.interact(object)
 
+func give_xp(xp_amount: int, xp_type: String) -> void:
+	player.leveling_manager.gainXP(xp_amount, xp_type)
+
 func get_skills() -> Array[String]:
 	var levels: Array[String]
 	
