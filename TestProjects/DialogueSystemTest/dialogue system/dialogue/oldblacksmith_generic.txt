@@ -1,0 +1,4 @@
+spring_Mon: "If ya ever need a place in the city ya can stop by me ol' shop. You'll always have a place with me.$s#$e#"
+
+"summer: “$query !PLAYER_MET_NPC Hunting Orc#I’ve ‘eard tales of a special type o’ steel known as orc steel. $0#$b#Seen signs of orcs recently in the ol’ forest not three yalms west o’ here. $0#$b#Might be able to sweet talk em’ into tellin ya’ ther’ secrets.$h#$e#Be careful out there.|I 'eard ya made it to the orc village. $0#$b#Did ya find the orc steel?$0"
+

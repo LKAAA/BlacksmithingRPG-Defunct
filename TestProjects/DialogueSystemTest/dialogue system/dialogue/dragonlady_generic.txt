@@ -1,0 +1,5 @@
+spring_Mon: "How many times do I have to tell you humans! My heart is not magic nor a metal.$a#$e#"
+
+spring_Tue: "You humans are all the same.$a#$e#"
+
+spring_Fri: "... and they have the audacity to call us greedy?!$a#$e#"

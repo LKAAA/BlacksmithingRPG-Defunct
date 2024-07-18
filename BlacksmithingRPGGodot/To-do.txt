@@ -2,7 +2,6 @@ Current to do:
 
 Swapping menus in the inventory when tabs are clicked
 Trash slot
-Change out the player menu ui when external inventory is open vs when just player inventory
 equipping slots specific to type of equipment (boot only slot, head only slot, chest only slot)
 
 Menu crafting system

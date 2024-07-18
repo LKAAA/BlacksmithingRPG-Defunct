@@ -1,0 +1,29 @@
+
+Commands:
+
+Special Tokens: 
+# - Seperates two commands in a dialogue string
+^ - Gender switch character. Text before is for male text after is for female
+Example: Oh, good morning Mr. @!^Oh, good morning Ms. @!
+% - Turns the dialogue box into a generic text box.
+Example: "%The old blacksmith is clanging his hammer to loud to hear you."
+
+Dialogue Commands: 
+$b - indicates a pause in the dialogue, where the player needs to click to load the next part of the dialogue
+$e - Ends the current dialogue, closing the dialogue box and resuming player control. The dialogue following $e will require a new interaction with the NPC
+[ItemName] - Gives the player the named item
+$query - <query> # <if true> | <if false> - Show different dialogue text depending on the game state query.
+Example: "spring: “$query !PLAYER_MET_NPC Hunting Orc#I’ve ‘eard tales of a special type o’ steel known as orc steel. $0#$b#Seen signs of orcs recently in the ol’ forest not three yalms west o’ here. $0#$b#Might be able to sweet talk em’ into tellin ya’ ther’ secrets.$h#$e#Be careful out there.|I 'eard ya made it to the orc village. $0#$b#Did ya find the orc steel?$0”
+
+ 
+
+Character Portrait Commands:
+$0 - Neutral portrait - Default
+$1 - $h - Happy Portrait
+$2 - $s - Sad Portrait
+$3 - $u - Unique Portrait per character
+$4 - $l - Love Portrait
+$5 - $a - Angry Portrait
+Example: 
+	spring_Tue: "You humans are all the same.$a#$e#"
+
