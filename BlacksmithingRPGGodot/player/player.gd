@@ -42,7 +42,7 @@ func _ready():
 		print("YEYARAUYUADS")
 		get_player_properties()
 
-func _physics_process(_delta):
+func _unhandled_input(event):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	horizontal = Input.get_axis("walk_left", "walk_right")
@@ -79,11 +79,12 @@ func _physics_process(_delta):
 			velocity.x = move_toward(velocity.x, 0,(WALKSPEED + speedBonuses))
 			velocity.y = move_toward(velocity.y, 0, (WALKSPEED + speedBonuses))
 	
-	if not isMenuOpen:
-		move_and_slide()
-	
 	play_animations()
 	recieve_inputs()
+
+func _physics_process(_delta):
+	if not isMenuOpen:
+		move_and_slide()
 
 func recieve_inputs():
 	

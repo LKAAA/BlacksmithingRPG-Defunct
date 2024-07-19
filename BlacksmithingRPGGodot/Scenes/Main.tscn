@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=54 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_g7qdg"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://player/player.tscn" id="1_gngn8"]
@@ -32,6 +32,11 @@
 [ext_resource type="Script" path="res://Scripts/SkillsUI.gd" id="29_nlko4"]
 [ext_resource type="FontFile" uid="uid://d2pdhgsshvjl6" path="res://Assets/Fonts/ark-pixel-10px-monospaced-ja.ttf" id="29_tvcjo"]
 [ext_resource type="PackedScene" uid="uid://coj44cc4xejp3" path="res://Scenes/selected_tile_indicator.tscn" id="33_n7hfb"]
+[ext_resource type="Script" path="res://NPCTest.gd" id="34_mwusu"]
+[ext_resource type="Texture2D" uid="uid://4xlpmg48qrg3" path="res://Assets/Sprites/BaseCharacterSheet.PNG" id="34_tu0ab"]
+[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="35_a0ms7"]
+[ext_resource type="Resource" uid="uid://3wjg1caarkcc" path="res://dialogue/test.dialogue" id="35_f8xb0"]
+[ext_resource type="Script" path="res://Scenes/Managers/interaction_manager.gd" id="37_6o113"]
 [ext_resource type="PackedScene" uid="uid://deahbq4wwnnpw" path="res://gridobjects/rock_1.tscn" id="37_054oh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6ptr"]
@@ -90,6 +95,18 @@ quantity = 1
 script = ExtResource("12_k4o7h")
 slot_datas = Array[ExtResource("14_fct8j")]([SubResource("Resource_0bw48"), SubResource("Resource_febrx"), SubResource("Resource_4xmbu"), SubResource("Resource_3wckr"), SubResource("Resource_spkuj"), SubResource("Resource_vmj7r"), SubResource("Resource_8khr3"), SubResource("Resource_bunex"), SubResource("Resource_5cy3y"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3ghb"]
+atlas = ExtResource("34_tu0ab")
+region = Rect2(0, 80, 32, 80)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hbu6c"]
+radius = 6.5
+height = 33.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rm45p"]
+radius = 15.0
+height = 50.0
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g7qdg")
 
@@ -121,25 +138,6 @@ position = Vector2(45, 2)
 collision_layer = 75
 inventory_data = ExtResource("2_pn8co")
 equip_inventory_data = SubResource("Resource_4m0pn")
-
-[node name="Tree" parent="." instance=ExtResource("8_wb64p")]
-position = Vector2(-56, -88)
-
-[node name="Tree2" parent="." instance=ExtResource("8_wb64p")]
-position = Vector2(-104, -88)
-
-[node name="Tree3" parent="." instance=ExtResource("8_wb64p")]
-position = Vector2(-152, -88)
-
-[node name="Tree4" parent="." instance=ExtResource("8_wb64p")]
-position = Vector2(-200, -88)
-
-[node name="Chest" parent="." instance=ExtResource("10_2lris")]
-position = Vector2(-24, -72)
-inventory_data = SubResource("Resource_u37tx")
-
-[node name="Forge" parent="." instance=ExtResource("14_yy3xl")]
-position = Vector2(88, -40)
 
 [node name="CastleGate" parent="." instance=ExtResource("15_sjfcc")]
 position = Vector2(46, -172)
@@ -376,23 +374,74 @@ grow_vertical = 0
 z_index = 5
 position = Vector2(-120, -8)
 
-[node name="RockType1" parent="." instance=ExtResource("37_054oh")]
+[node name="TestObjects" type="Node" parent="."]
+
+[node name="RockType1" parent="TestObjects" instance=ExtResource("37_054oh")]
 position = Vector2(-120, -8)
 
-[node name="RockType2" parent="." instance=ExtResource("37_054oh")]
+[node name="RockType2" parent="TestObjects" instance=ExtResource("37_054oh")]
 position = Vector2(-136, 24)
 
-[node name="RockType3" parent="." instance=ExtResource("37_054oh")]
+[node name="RockType3" parent="TestObjects" instance=ExtResource("37_054oh")]
 position = Vector2(-168, -8)
 
-[node name="RockType4" parent="." instance=ExtResource("37_054oh")]
+[node name="RockType4" parent="TestObjects" instance=ExtResource("37_054oh")]
 position = Vector2(-136, -40)
 
-[node name="RockType5" parent="." instance=ExtResource("37_054oh")]
+[node name="RockType5" parent="TestObjects" instance=ExtResource("37_054oh")]
 position = Vector2(-184, 56)
 
-[node name="RockType6" parent="." instance=ExtResource("37_054oh")]
+[node name="RockType6" parent="TestObjects" instance=ExtResource("37_054oh")]
 position = Vector2(-104, 72)
+
+[node name="Tree" parent="TestObjects" instance=ExtResource("8_wb64p")]
+position = Vector2(-56, -88)
+
+[node name="Tree2" parent="TestObjects" instance=ExtResource("8_wb64p")]
+position = Vector2(-104, -88)
+
+[node name="Tree3" parent="TestObjects" instance=ExtResource("8_wb64p")]
+position = Vector2(-152, -88)
+
+[node name="Tree4" parent="TestObjects" instance=ExtResource("8_wb64p")]
+position = Vector2(-200, -88)
+
+[node name="Chest" parent="TestObjects" instance=ExtResource("10_2lris")]
+position = Vector2(-24, -72)
+inventory_data = SubResource("Resource_u37tx")
+
+[node name="Forge" parent="TestObjects" instance=ExtResource("14_yy3xl")]
+position = Vector2(88, -40)
+
+[node name="Forge2" parent="TestObjects" instance=ExtResource("14_yy3xl")]
+position = Vector2(128, -40)
+
+[node name="Forge3" parent="TestObjects" instance=ExtResource("14_yy3xl")]
+position = Vector2(168, -40)
+
+[node name="Forge4" parent="TestObjects" instance=ExtResource("14_yy3xl")]
+position = Vector2(208, -40)
+
+[node name="NPCTest" type="StaticBody2D" parent="TestObjects"]
+script = ExtResource("34_mwusu")
+character_name = "Test NPC"
+dialogue_file = ExtResource("35_f8xb0")
+
+[node name="Sprite2D" type="Sprite2D" parent="TestObjects/NPCTest"]
+position = Vector2(0, -18)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_c3ghb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestObjects/NPCTest"]
+position = Vector2(0.5, -16.5)
+shape = SubResource("CapsuleShape2D_hbu6c")
+
+[node name="InteractionManager" parent="TestObjects/NPCTest" instance=ExtResource("35_a0ms7")]
+script = ExtResource("37_6o113")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestObjects/NPCTest/InteractionManager"]
+position = Vector2(0.5, -16)
+shape = SubResource("CapsuleShape2D_rm45p")
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

@@ -1,0 +1,63 @@
+~ test
+
+if has_met_testNPC == true:
+	Test NPC: Do you wish to date me? Breath if yes. Recite the bible in japanese if no.
+- Breath
+	Test NPC: A wise choice
+- Recite the bible in japanese
+	Player: はじめに神は天と地とを創造された。
+	Test NPC: What the—?
+	Player: 地は井なく、をなしく、やみが淵のおもてにあり…
+	Test NPC: …Is that actually the Bible?
+	Player: …神の霊が水のおもてをおおっていた。
+	Test NPC: And you stopped breathing, too!?
+	Player: 神は「光あれ」と言われた。
+	Test NPC: I would've preferred you just beat me up and called me gay.
+
+else:
+	Test NPC: Hi, I'm Test NPC. Nice to meet you.
+	do has_met_testNPC = true
+
+=> END
+
+~ spring_Mon
+
+Test NPC: It is Monday currently.
+
+=> END
+
+~ spring_Tue
+
+Test NPC: It is Tuesday currently
+
+=> END
+
+~ spring_Wed
+
+Test NPC: It is Wednesday currently
+
+=> END
+
+~ spring_Thu
+
+Test NPC: It is Thursday currently
+
+=> END
+
+~ spring_Fri
+
+Test NPC: It is Friday currently
+
+=> END
+
+~ spring_Sat
+
+Test NPC: It is Saturday currently
+
+=> END
+
+~ spring_Sun
+
+Test NPC: It is Sunday currently
+
+=> END
