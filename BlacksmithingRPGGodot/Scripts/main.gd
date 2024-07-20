@@ -114,9 +114,12 @@ func resetObject():
 func request_harvest(toolType: String, tool_efficiency: int, tool_damage: int):
 	var requestedObjectInfo
 	if grid.lastClicked:
-		requestedObjectInfo = grid.lastClicked.get_node("Breakable")
-		if not requestedObjectInfo.destroyed.is_connected(resetObject):
-			requestedObjectInfo.destroyed.connect(resetObject)
+		if is_instance_valid(grid.lastClicked):
+			requestedObjectInfo = grid.lastClicked.get_node("Breakable")
+			if not requestedObjectInfo.destroyed.is_connected(resetObject):
+				requestedObjectInfo.destroyed.connect(resetObject)
+		else:
+			print("Idk")
 	
 	if requestedObjectInfo:
 		if requestedObjectInfo.required_tool == toolType:

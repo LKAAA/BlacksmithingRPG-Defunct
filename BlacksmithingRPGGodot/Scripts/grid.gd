@@ -23,8 +23,7 @@ var mousePos
 @export var clamped_indicator: bool = false
 
 func _ready() -> void:
-	for node in get_tree().get_nodes_in_group("grid_object"):
-		node.object_clicked.connect(object_clicked)
+	update_grid_objects()
 
 func _process(delta: float) -> void:
 	mousePos = get_global_mouse_position()
@@ -40,6 +39,10 @@ func _process(delta: float) -> void:
 	
 	#if Input.is_action_pressed("TestAction"):
 		#debug_all_tiles(get_all_tiles())
+
+func update_grid_objects() -> void:
+	for node in get_tree().get_nodes_in_group("grid_object"):
+		node.object_clicked.connect(object_clicked)
 
 func object_clicked(object) -> void:
 	print(object.name)
