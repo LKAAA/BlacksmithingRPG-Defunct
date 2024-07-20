@@ -39,3 +39,8 @@ func get_skills() -> Array[String]:
 	levels.append(str(player.leveling_manager.getSkill("Fishing").curLevel) + "/10")
 	
 	return levels
+
+func stop_movement() -> void:
+	player.horizontal = 0
+	player.vertical = 0
+	player.play_animations()

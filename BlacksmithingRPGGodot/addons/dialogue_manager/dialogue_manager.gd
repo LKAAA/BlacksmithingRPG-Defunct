@@ -274,6 +274,7 @@ func show_dialogue_balloon(resource: DialogueResource, title: String = "", extra
 	var balloon_path: String = DialogueSettings.get_setting(&"balloon_path", _get_example_balloon_path())
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = _get_example_balloon_path()
+	PlayerManager.stop_movement()
 	return show_dialogue_balloon_scene(balloon_path, resource, title, extra_game_states)
 
 

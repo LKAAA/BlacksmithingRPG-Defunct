@@ -48,6 +48,10 @@ func _unhandled_input(event):
 	horizontal = Input.get_axis("walk_left", "walk_right")
 	vertical = Input.get_axis("walk_up", "walk_down")
 	
+	play_animations()
+	recieve_inputs()
+
+func _physics_process(_delta):
 	if isSprinting:
 		# First check if you are moving in both direction
 		if vertical && horizontal: 
@@ -79,10 +83,6 @@ func _unhandled_input(event):
 			velocity.x = move_toward(velocity.x, 0,(WALKSPEED + speedBonuses))
 			velocity.y = move_toward(velocity.y, 0, (WALKSPEED + speedBonuses))
 	
-	play_animations()
-	recieve_inputs()
-
-func _physics_process(_delta):
 	if not isMenuOpen:
 		move_and_slide()
 
