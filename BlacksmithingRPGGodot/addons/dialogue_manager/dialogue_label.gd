@@ -46,7 +46,7 @@ var _already_mutated_indices: PackedInt32Array = []
 var dialogue_line:
 	set(next_dialogue_line):
 		dialogue_line = next_dialogue_line
-		custom_minimum_size = Vector2(180, 0)
+		custom_minimum_size = Vector2(205, 0)
 		text = dialogue_line.text
 	get:
 		return dialogue_line

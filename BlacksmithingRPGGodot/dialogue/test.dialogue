@@ -1,63 +1,72 @@
-~ test
-
-if has_met_testNPC == true:
-	Test NPC: Do you wish to date me? Breath if yes. Recite the bible in japanese if no.
-- Breath
-	Test NPC: A wise choice
-- Recite the bible in japanese
-	Player: はじめに神は天と地とを創造された。
-	Test NPC: What the—?
-	Player: 地は井なく、をなしく、やみが淵のおもてにあり…
-	Test NPC: …Is that actually the Bible?
-	Player: …神の霊が水のおもてをおおっていた。
-	Test NPC: And you stopped breathing, too!?
-	Player: 神は「光あれ」と言われた。
-	Test NPC: I would've preferred you just beat me up and called me gay.
-
-else:
-	Test NPC: Hi, I'm Test NPC. Nice to meet you.
+~ unmet_dialogue
+# 328 Character Limit
+if has_met_testNPC == false:
+	Ryan: Hi, I'm Ryan. Nice to meet you.
+	Ryan: Hey I have a question for you.
+	Ryan: Guess what?
+	- What?
+		Ryan: CHICKEN BUTT. HAHAHAHA
+		Ryan: HAHAAHAHAHAHAHAAHAHAAHAHAHAAHAAHAHAA
+		Ryan: HAHAAHAHAHAHAHAAHAHAAHAHAHAAHAAHAHAAHAHAHAAHAHAHAHAHAAHAHAAHAHAHAAHAAHAHAAHAHAHAAHAHAHAHAHAAHAHAAHAHAHAAHAAHAHAAHAHAHAAHAHAHAHAHAAHAHAAHAHAHAAHAAHAHAAHAHAHAAHAHAHAHAHAAHAHAAHAHAHAAHAAHAHAAHAHAHAAHAHAHAHAHAAHAHAAHAHAHAAHAAHAHAAHAHAHAAHAHAHAHAHAAHAHAAHAHAHAAHAAHAHAAHAHAHAAHAHAHAHAHAHAHAHAHAHAAHAAHAHAAHAHAHAAHAHAHAHAHAHAHAHAHAHAH
+	- Recite the bible in japanese
+		Player: はじめに神は天と地とを創造された。 地は井なく、をなしく、やみが淵のおもてにあり神の霊が水のおもてをおおっていた。神は「光あれ」と言われた。
+		Ryan: ...
+		Ryan: I think you meant CHICKEN BUTT HAHAHAHAHAAHAHAHAAHAHAHAHAAHA
+		Ryan: HAAHAHAHAHAHAAHAHAHAAHAHAHAHAHAHAHHAHAAHHAHAAHAHHAHAHAHAHAHAH
 	do has_met_testNPC = true
 
 => END
 
 ~ spring_Mon
 
-Test NPC: It is Monday currently.
+Ryan: Anyway, it is currently monday
 
 => END
 
 ~ spring_Tue
 
-Test NPC: It is Tuesday currently
+Ryan: It is Tuesday currently
 
 => END
 
 ~ spring_Wed
 
-Test NPC: It is Wednesday currently
+Ryan: It is Wednesday currently
 
 => END
 
 ~ spring_Thu
 
-Test NPC: It is Thursday currently
+Ryan: It is Thursday currently
 
 => END
 
 ~ spring_Fri
 
-Test NPC: It is Friday currently
+Ryan: It is Friday currently
 
 => END
 
 ~ spring_Sat
 
-Test NPC: It is Saturday currently
+Ryan: It is Saturday currently
 
 => END
 
 ~ spring_Sun
 
-Test NPC: It is Sunday currently
+Ryan: It is Sunday currently
+Ryan: Do you wish to date me? Breath if yes. Recite the bible in japanese if no.
+- Breath
+	Ryan: A wise choice
+- Recite the bible in japanese
+	Player: はじめに神は天と地とを創造された。
+	Ryan: What the—?
+	Player: 地は井なく、をなしく、やみが淵のおもてにあり…
+	Ryan: …Is that actually the Bible?
+	Player: …神の霊が水のおもてをおおっていた。
+	Ryan: And you stopped breathing, too!?
+	Player: 神は「光あれ」と言われた。
+	Ryan: I would've preferred you just beat me up and called me gay.
 
 => END

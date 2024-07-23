@@ -11,6 +11,7 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var inventory_section: Control = $UI/InventoryInterface/InventorySection
 @onready var equip_inventory: PanelContainer = $UI/InventoryInterface/InventorySection/EquipInventory
 @onready var skills_section = $UI/InventoryInterface/SkillsSection
+@onready var time_manager: Node = %TimeManager
 
 var external = false
 
@@ -32,6 +33,9 @@ func _ready() -> void:
 	
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
+	
+	for node in get_tree().get_nodes_in_group("npcs"):
+		node.begin_dialogue.connect(begin_dialogue)
 
 func update_game_ui() -> void:
 	player_stats_interface.update_text(player.health_manager.cur_health, player.stats.cur_stamina)
@@ -139,3 +143,16 @@ func request_interaction(object: InteractionManager):
 		object.receive_interaction()
 	else:
 		print("Not in range")
+
+func begin_dialogue(dialogue_file: DialogueResource, character_name: String) -> void:
+	var dialogue_line_title: String
+	Log.print("Starting Dialogue")
+	if State.has_met(character_name) == false:
+		DialogueManager.show_dialogue_balloon(dialogue_file, "unmet_dialogue")
+		Log.print("Unmet Dialogue Check as false")
+		return
+	
+	Log.print("Unmet dialogue check as true")
+	dialogue_line_title = time_manager.cur_season.to_lower() + "_" + time_manager.cur_weekday.substr(0, 3)
+	
+	DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_line_title)
