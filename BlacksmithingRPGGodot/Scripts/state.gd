@@ -11,8 +11,16 @@ extends Node
 @export var has_met_testNPC: bool = false
 
 
+var previous_hour: int = 5
+signal hour_passed
+
 func has_met(character_name: String) -> bool:
 	match character_name:
 		"Very Hot Man":
 			return has_met_testNPC
 	return false
+
+func _process(delta: float) -> void:
+	if previous_hour == cur_hour - 1:
+		hour_passed.emit()
+		previous_hour += 1

@@ -5,7 +5,7 @@ extends Node
 var secs_per_hour = 60 * 60
 var cur_time: int
 var prev_time
-var time_accelerator = 2000 #60.0 / 0.7 # 60 game seconds = 0.7 actual seconds
+var time_accelerator = 1000 #60.0 / 0.7 # 60 game seconds = 0.7 actual seconds
 var day = 1
 var season = 1
 var cur_weekday: String
