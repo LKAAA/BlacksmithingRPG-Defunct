@@ -7,11 +7,11 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var player_menu_ui: Control = $UI/InventoryInterface/PlayerMenuUI
 @onready var hot_bar_inventory: PanelContainer = $UI/HotBarInventory
 @onready var player_stats_interface: Control = $UI/PlayerStatsInterface
-@onready var grid: Grid = $Grid
 @onready var inventory_section: Control = $UI/InventoryInterface/InventorySection
 @onready var equip_inventory: PanelContainer = $UI/InventoryInterface/InventorySection/EquipInventory
 @onready var skills_section = $UI/InventoryInterface/SkillsSection
 @onready var time_manager: Node = %TimeManager
+@onready var grid: Grid = $TileMap
 
 var external = false
 
@@ -36,6 +36,13 @@ func _ready() -> void:
 	
 	for node in get_tree().get_nodes_in_group("npcs"):
 		node.begin_dialogue.connect(begin_dialogue)
+	
+	var astargrid = AStarGrid2D.new()
+	astargrid.size = Vector2i(32, 32)
+	astargrid.cell_size = Vector2i(16,16)
+	astargrid.update()
+	
+	astargrid.set_point_solid(Vector2i(0,0), true)
 
 func update_game_ui() -> void:
 	player_stats_interface.update_text(player.health_manager.cur_health, player.stats.cur_stamina)
@@ -114,6 +121,7 @@ func _on_inventory_interface_drop_slot_data(slot_data: SlotData) -> void:
 
 func resetObject():
 	grid.lastClicked = null
+	pass
 
 func request_harvest(toolType: String, tool_efficiency: int, tool_damage: int):
 	var requestedObjectInfo

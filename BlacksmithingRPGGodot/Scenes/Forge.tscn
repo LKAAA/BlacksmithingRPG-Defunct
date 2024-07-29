@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bqfe80ngwbbev" path="res://Scenes/Managers/intake_crafting_station_manager.tscn" id="2_rirfw"]
 [ext_resource type="Script" path="res://Scripts/craftingStationItemInputInteraction.gd" id="3_gxgu4"]
 [ext_resource type="Resource" uid="uid://d2101k08srt0j" path="res://recipe/recipes/r_iron_bar.tres" id="4_p50mt"]
-[ext_resource type="PackedScene" uid="uid://dqg10gk8fv7db" path="res://Scenes/placeable_info.tscn" id="7_d12aa"]
 [ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="7_x2hoy"]
+[ext_resource type="PackedScene" uid="uid://b6fh16bp8putl" path="res://grid/grid_object.tscn" id="8_7rjqf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bxffx"]
 atlas = ExtResource("1_kp3in")
@@ -46,8 +46,12 @@ height = 48.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnib4"]
 size = Vector2(28, 48)
 
-[node name="Forge" type="StaticBody2D" groups=["grid_objects"]]
+[node name="Forge" type="StaticBody2D" groups=["grid_object"]]
 script = ExtResource("1_c77jh")
+
+[node name="GridObject" parent="." instance=ExtResource("8_7rjqf")]
+GRID_WIDTH = 2
+GRID_HEIGHT = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -36)
@@ -76,10 +80,6 @@ position = Vector2(8, -28)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BehindAdjustment"]
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_nnib4")
-
-[node name="GridInfo" parent="." instance=ExtResource("7_d12aa")]
-GRID_WIDTH = 2
-GRID_HEIGHT = 5
 
 [connection signal="turnedOff" from="IntakeCraftingStationManager" to="." method="_on_intake_crafting_station_manager_turned_off"]
 [connection signal="turnedOn" from="IntakeCraftingStationManager" to="." method="_on_intake_crafting_station_manager_turned_on"]

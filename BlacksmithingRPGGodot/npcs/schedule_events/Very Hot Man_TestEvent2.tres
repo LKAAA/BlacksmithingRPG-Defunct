@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ScheduleEvent" load_steps=2 format=3 uid="uid://dafaaci6yexm4"]
+
+[ext_resource type="Script" path="res://npcs/schedule_event.gd" id="1_fkmht"]
+
+[resource]
+script = ExtResource("1_fkmht")
+start_time = 9
+tile_location = Vector2i(300, 300)
+direction = 0
+requires_raining = false
+day = Array[String](["Monday", "Thursday"])
+season = Array[String](["Spring"])

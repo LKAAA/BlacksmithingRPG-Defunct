@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://deahbq4wwnnpw"]
+[gd_scene load_steps=11 format=3 uid="uid://deahbq4wwnnpw"]
 
 [ext_resource type="Texture2D" uid="uid://cxbws1mfeorh5" path="res://item/ItemSheet.PNG" id="1_cnten"]
 [ext_resource type="PackedScene" uid="uid://dbekqd73dhguj" path="res://Scenes/breakable.tscn" id="2_d5vrv"]
 [ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/iron_ore.tres" id="3_8no5c"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="4_cdvep"]
+[ext_resource type="PackedScene" uid="uid://b6fh16bp8putl" path="res://grid/grid_object.tscn" id="5_fn2ah"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6x08r"]
 atlas = ExtResource("1_cnten")
@@ -25,7 +26,7 @@ quantity = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2h3f"]
 size = Vector2(16, 16)
 
-[node name="RockType1" type="StaticBody2D" groups=["grid_objects"]]
+[node name="RockType1" type="StaticBody2D" groups=["grid_object"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_d17hs")
@@ -42,3 +43,5 @@ xp_amount = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable"]
 shape = SubResource("RectangleShape2D_v2h3f")
+
+[node name="GridObject" parent="." instance=ExtResource("5_fn2ah")]

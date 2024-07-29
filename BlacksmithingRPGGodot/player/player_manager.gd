@@ -25,7 +25,7 @@ func give_xp(xp_amount: int, xp_type: String) -> void:
 	player.leveling_manager.gainXP(xp_amount, xp_type)
 
 func get_skills() -> Array[String]:
-	var levels: Array[String]
+	var levels: Array[String] = []
 	
 	levels.append(str(player.leveling_manager.getSkill("Mining").curLevel) + "/10")
 	levels.append(str(player.leveling_manager.getSkill("Foraging").curLevel) + "/10")

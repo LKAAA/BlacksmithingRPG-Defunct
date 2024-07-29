@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var npc: NPC_CORE = $".."
+
 var events: Array[ScheduleEvent]
 
 func _ready() -> void:

@@ -1,33 +1,14 @@
 extends TileMap
-class_name Grid
 
-signal harvesting
-
-@export var GRID_WIDTH: int
-@export var GRID_HEIGHT: int
-
-@onready var player: Player = $"../Player"
-
-const TILE_SIZE = 16
-
-var grid_objects = []
-var player_tile: Vector2i
-var interaction_range: int = 2
-
-var lastClicked
-
-var mousePos
-
+var gridsize_x = 100
+var gridsize_y = 100
 var Dic = {}
 
-@export var clamped_indicator: bool = false
+var debug_mode_on = false
 
-func _ready() -> void:
-	update_grid_objects()
-	State.active_grid = self
-	
-	for x in GRID_WIDTH:
-		for y in GRID_HEIGHT:
+func _ready():
+	for x in gridsize_x:
+		for y in gridsize_y:
 			var type: String
 			var obstructed: bool = false
 			match get_cell_atlas_coords(0, Vector2(x,y)): # Hard coding texture atlas coords
@@ -55,6 +36,10 @@ func _ready() -> void:
 				_: 
 					type = "Uh oh"
 					obstructed = true     
+			#var objects = get_used_cells(1)
+			#for object in objects:
+				#if object == Vector2i(x,y):
+					#obstructed = true
 			
 			var objects = get_tree().get_nodes_in_group("grid_object")
 			for object in objects:
@@ -101,67 +86,19 @@ func _ready() -> void:
 					#"ObjectName" : object,
 			}
 
-func _process(_delta: float) -> void:
-	mousePos = get_local_mouse_position()
-	var hoveredTile = local_to_map(mousePos)
-	var hoveredTileWorldPosCenter = Vector2i((hoveredTile.x * TILE_SIZE) + (TILE_SIZE / 2), 
-										(hoveredTile.y * TILE_SIZE) + (TILE_SIZE / 2) + (4))
-	
-	player_tile = local_to_map(player.position)
-	
-	if Dic.has(str(hoveredTile)):
-		handle_selection_indicator()
-		print(Dic[str(hoveredTile)])
-	
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Debug"):
+		debug_mode_on = true
+	
+	if debug_mode_on:
 		debug_placement_grid()
 	
 	if Input.is_action_just_pressed("DebugRemove"):
 		remove_debug_grid()
-
-func handle_selection_indicator() -> void:
-	var tile = local_to_map(get_global_mouse_position())
+		debug_mode_on = false
 	
-	for x in GRID_WIDTH: #Erase old selected tile
-		for y in GRID_HEIGHT:
-			erase_cell(2, Vector2(x,y))
-	
-	if Dic.has(str(tile)): # Select a new tile
-		set_cell(2, tile, 1, Vector2i(0,0))
-		print(Dic[str(tile)])
-
-func update_grid_objects() -> void:
-	for node in get_tree().get_nodes_in_group("grid_object"):
-		if node.has_signal("object_clicked"):
-			node.object_clicked.connect(object_clicked)
-
-func object_clicked(object) -> void:
-	print(object.name)
-	var clickedTile = local_to_map(object.position)
-	if get_distance(clickedTile, player_tile) <= interaction_range:
-		lastClicked = object
-		print(lastClicked)
-		#harvesting.emit(object.get_node("Breakable"))
-	else:
-		print("Not in range")
-
-func get_centered_tile_position(tile: Vector2i) -> Vector2i:
-	return Vector2i((tile.x * TILE_SIZE) + (TILE_SIZE / 2), (tile.y * TILE_SIZE)
-															 + (TILE_SIZE / 2))
-
-func get_distance(tile1: Vector2i, tile2: Vector2i) -> int:
-	var tile1Vector = Vector2(tile1.x, tile1.y)
-	var tile2Vector = Vector2(tile2.x, tile2.y)
-	var distanceTo = tile1Vector.distance_to(tile2Vector)
-	var roundedDistanceTo = roundf(distanceTo)
-	return roundedDistanceTo
-
-func check_if_in_interaction_range(objectPos: Vector2) -> bool:
-	var objectTile = local_to_map(Vector2i(objectPos.x, objectPos.y))
-	if get_distance(objectTile, player_tile) <= interaction_range:
-		return true
-	else:
-		return false
+	handle_obstruction()
+	handle_selection_indicator()
 
 func get_object_tiles(object) -> Array[Vector2i]:
 	var ObjectTiles: Array[Vector2i] = []
@@ -169,12 +106,12 @@ func get_object_tiles(object) -> Array[Vector2i]:
 	var origin_tile = local_to_map(object.position)
 	ObjectTiles.append(origin_tile)
 	
-	if not object.has_node("GridInfo"):
-		push_error("Object does not have grid info")
+	if not object.has_node("GridObject"):
+		#push_error("Object does not have grid object")
 		return ObjectTiles
 	
-	var objectHeight = object.get_node("GridInfo").GRID_HEIGHT
-	var objectWidth = object.get_node("GridInfo").GRID_WIDTH
+	var objectHeight = object.get_node("GridObject").GRID_HEIGHT
+	var objectWidth = object.get_node("GridObject").GRID_WIDTH
 	
 	var prevTile = origin_tile
 	
@@ -202,18 +139,9 @@ func get_object_tiles(object) -> Array[Vector2i]:
 	
 	return ObjectTiles
 
-func get_all_tiles() -> Array[Vector2i]:
-	var all_tiles: Array[Vector2i] = []
-	
-	for w in GRID_WIDTH:
-		for h in GRID_HEIGHT:
-			all_tiles.append(Vector2i(w, h))
-	
-	return all_tiles
-
 func handle_obstruction() -> void:
-	for x in GRID_WIDTH:
-		for y in GRID_HEIGHT:
+	for x in gridsize_x:
+		for y in gridsize_y:
 			Dic[str(Vector2(x,y))] = {
 					"BaseType": Dic[str(Vector2(x,y))].BaseType,
 					"Position": str(Vector2(x,y)),
@@ -234,9 +162,9 @@ func handle_obstruction() -> void:
 
 func debug_placement_grid() -> void:
 	clear_layer(1)
-	handle_obstruction()
-	for x in GRID_WIDTH:
-		for y in GRID_HEIGHT:
+	
+	for x in gridsize_x:
+		for y in gridsize_y:
 			if Dic[str(Vector2(x,y))].Obstructed == false:
 				set_cell(1, Vector2(x,y), 2, Vector2(1,0)) # Green tiles
 			else:
@@ -244,3 +172,14 @@ func debug_placement_grid() -> void:
 
 func remove_debug_grid() -> void:
 	clear_layer(1)
+
+func handle_selection_indicator() -> void:
+	var tile = local_to_map(get_global_mouse_position())
+	
+	for x in gridsize_x: #Erase old selected tile
+		for y in gridsize_y:
+			erase_cell(2, Vector2(x,y))
+	
+	if Dic.has(str(tile)): # Select a new tile
+		set_cell(2, tile, 1, Vector2i(0,0))
+		print(Dic[str(tile)])

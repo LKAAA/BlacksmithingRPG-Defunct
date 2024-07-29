@@ -69,6 +69,11 @@ height = 84.0
 [node name="NPC" type="CharacterBody2D" groups=["grid_object", "npcs"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_mvn3n")
+npc_name = null
+gender = null
+is_child = null
+is_dateable = null
+schedule_events = null
 
 [node name="GridObject" parent="." instance=ExtResource("6_qfwr1")]
 GRID_HEIGHT = 3

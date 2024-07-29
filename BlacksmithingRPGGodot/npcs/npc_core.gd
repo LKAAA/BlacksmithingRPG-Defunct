@@ -25,4 +25,4 @@ func query_schedule() -> void:
 	npc_scheduler.query_events()
 
 func run_event(tile_location: Vector2i, Direction: int) -> void:
-	self.position = Vector2(0,0)
+	self.position = tile_location

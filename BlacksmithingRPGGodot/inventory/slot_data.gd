@@ -21,10 +21,10 @@ func fully_merge_with(other_slot_data: SlotData) -> void:
 	quantity += other_slot_data.quantity
 
 func create_single_slot_data() -> SlotData:
-	var new_slot_data = duplicate()
-	new_slot_data.quantity = 1
+	var created_slot_data = duplicate()
+	created_slot_data.quantity = 1
 	quantity -= 1
-	return new_slot_data
+	return created_slot_data
 
 func set_quantity(value: int) -> void:
 	quantity = value

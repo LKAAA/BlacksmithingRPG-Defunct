@@ -10,9 +10,12 @@ extends Node
 # NPC VARIABLES
 @export var has_met_testNPC: bool = false
 
+var active_grid
 
 var previous_hour: int = 5
 signal hour_passed
+
+
 
 func has_met(character_name: String) -> bool:
 	match character_name:
@@ -20,7 +23,7 @@ func has_met(character_name: String) -> bool:
 			return has_met_testNPC
 	return false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if previous_hour == cur_hour - 1:
 		hour_passed.emit()
 		previous_hour += 1

@@ -42,7 +42,7 @@ func _ready():
 		print("YEYARAUYUADS")
 		get_player_properties()
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	horizontal = Input.get_axis("walk_left", "walk_right")
@@ -84,7 +84,9 @@ func _physics_process(_delta):
 			velocity.y = move_toward(velocity.y, 0, (WALKSPEED + speedBonuses))
 	
 	if not isMenuOpen:
-		move_and_slide()
+		move_and_slide() 
+	
+	Log.print(str(Engine.get_frames_per_second()))
 
 func recieve_inputs():
 	
@@ -110,7 +112,7 @@ func recieve_inputs():
 			#print("init interaction")
 			#interactionManager.initiate_interaction()
 	
-	if Input.is_action_just_pressed("TestAction"):
+	if Input.is_action_just_pressed("Debug"):
 		print("Test Action")
 		leveling_manager.gainXP(100, "Mining")
 		leveling_manager.gainXP(100, "Forging")

@@ -43,4 +43,9 @@ func print(message: String) -> void:
 	if debug:
 		if label:
 			var oldText = label.text
-			label.text = (message + "\n") + oldText
+			if oldText.length() > 300:
+				oldText = ""
+				label.text = (message + "\n") + oldText
+			else:
+				label.text = (message + "\n") + oldText
+			

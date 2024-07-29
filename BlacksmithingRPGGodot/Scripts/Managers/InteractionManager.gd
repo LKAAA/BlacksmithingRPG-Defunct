@@ -24,6 +24,6 @@ func _on_Interaction_Manager_area_exited(area):
 		current_interaction = null
 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("interact"):
 		PlayerManager.interact(self)
