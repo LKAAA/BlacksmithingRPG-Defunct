@@ -10,8 +10,10 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var inventory_section: Control = $UI/InventoryInterface/InventorySection
 @onready var equip_inventory: PanelContainer = $UI/InventoryInterface/InventorySection/EquipInventory
 @onready var skills_section = $UI/InventoryInterface/SkillsSection
-@onready var time_manager: Node = %TimeManager
+#@onready var time_manager: Node = %TimeManager
 @onready var grid: Grid = $TileMap
+@onready var canvas_modulate: CanvasModulate = $CanvasModulate
+@onready var day_night_cycle_ui: Control = $UI/DayNightCycleUI
 
 var external = false
 
@@ -29,6 +31,7 @@ func _ready() -> void:
 	inventory_interface.set_equip_inventory_data(player.equip_inventory_data)
 	hot_bar_inventory.set_inventory_data(player.inventory_data)
 	player_stats_interface.update_max_stats(player.health_manager.max_health, player.stats.max_stamina)
+	canvas_modulate.time_tick.connect(day_night_cycle_ui.set_daytime)
 	update_game_ui()
 	
 	for node in get_tree().get_nodes_in_group("external_inventory"):
@@ -87,6 +90,7 @@ func change_menu(menu_num: int) -> void:
 func toggle_inventory_interface(external_inventory_owner = null) -> void:
 	inventory_interface.visible = not inventory_interface.visible
 	player.isMenuOpen = not player.isMenuOpen
+	State.time_passing = not State.time_passing
 	
 	player_menu_ui.update_all_button_textures()
 	
@@ -161,6 +165,6 @@ func begin_dialogue(dialogue_file: DialogueResource, character_name: String) -> 
 		return
 	
 	Log.print("Unmet dialogue check as true")
-	dialogue_line_title = time_manager.cur_season.to_lower() + "_" + time_manager.cur_weekday.substr(0, 3)
+	#dialogue_line_title = time_manager.cur_season.to_lower() + "_" + time_manager.cur_weekday.substr(0, 3)
 	
 	DialogueManager.show_dialogue_balloon(dialogue_file, dialogue_line_title)

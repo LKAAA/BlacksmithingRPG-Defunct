@@ -5,7 +5,7 @@ extends Node
 @export var cur_day: String
 @export var cur_season: String
 @export var is_raining: bool = false
-
+@export var time_passing: bool = true
 
 # NPC VARIABLES
 @export var has_met_testNPC: bool = false

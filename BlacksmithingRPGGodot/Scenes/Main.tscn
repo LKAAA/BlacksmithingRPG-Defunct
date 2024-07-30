@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=57 format=3 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_g7qdg"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://player/player.tscn" id="1_gngn8"]
@@ -8,12 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://4nyibjlgn6g2" path="res://Assets/Sprites/TileSelection.png" id="4_0u8eh"]
 [ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="4_bour0"]
 [ext_resource type="Script" path="res://Scripts/grid.gd" id="5_fs3xq"]
+[ext_resource type="Script" path="res://day-night-cycle/day-night-cycle.gd" id="6_nheol"]
+[ext_resource type="Texture2D" uid="uid://16woqty2ouv3" path="res://day-night-cycle/daynightcycle-gradient-texture.tres" id="7_yd8r4"]
 [ext_resource type="PackedScene" uid="uid://dsd632mtmfucj" path="res://gridobjects/tree.tscn" id="8_wb64p"]
 [ext_resource type="PackedScene" uid="uid://dlsg4y4406gp8" path="res://Scenes/transition_zone.tscn" id="9_n22hg"]
 [ext_resource type="PackedScene" uid="uid://d1pqxjvx0qh0l" path="res://Scenes/chest.tscn" id="10_2lris"]
-[ext_resource type="PackedScene" uid="uid://che3xejp0ukh5" path="res://Scenes/Managers/time_manager.tscn" id="11_7rm8d"]
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="12_k4o7h"]
 [ext_resource type="PackedScene" uid="uid://dbqh862rtg5hi" path="res://Scenes/UI/player_menu_ui.tscn" id="12_o8tq4"]
+[ext_resource type="Script" path="res://day-night-cycle/DayNightCycleUI.gd" id="13_1pl07"]
 [ext_resource type="Resource" uid="uid://bprk0oovcmmp3" path="res://item/items/glass_bottle.tres" id="13_fynrc"]
 [ext_resource type="PackedScene" uid="uid://otlmg4lw37rt" path="res://inventory/inventory.tscn" id="13_gnviy"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="14_fct8j"]
@@ -328,6 +330,11 @@ script = ExtResource("5_fs3xq")
 GRID_WIDTH = 140
 GRID_HEIGHT = 70
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+script = ExtResource("6_nheol")
+gradient = ExtResource("7_yd8r4")
+INGAME_SPEED = 100.0
+
 [node name="CastleGate" parent="." instance=ExtResource("15_sjfcc")]
 position = Vector2(1096, 200)
 
@@ -347,16 +354,21 @@ equip_inventory_data = SubResource("Resource_4m0pn")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="TimeManager" parent="UI" instance=ExtResource("11_7rm8d")]
-unique_name_in_owner = true
+[node name="DayNightCycleUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_1pl07")
 
-[node name="TimeText" type="Label" parent="UI/TimeManager"]
+[node name="TimeText" type="Label" parent="UI/DayNightCycleUI"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -80.0
+offset_left = 264.0
 offset_top = 1.0
-offset_right = 79.0
+offset_right = 423.0
 offset_bottom = 81.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)

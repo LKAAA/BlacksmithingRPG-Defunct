@@ -3,9 +3,9 @@ extends Node
 @onready var time_text = $TimeText
 
 var secs_per_hour = 60 * 60
-var cur_time: int
-var prev_time
-var time_accelerator = 1000 #60.0 / 0.7 # 60 game seconds = 0.7 actual seconds
+var cur_time: float
+var prev_time: float = 0
+var time_accelerator = 60.0 / 0.7 # 60 game seconds = 0.7 actual seconds
 var day = 1
 var season = 1
 var cur_weekday: String
@@ -22,7 +22,9 @@ func _ready():
 func _process(delta):
 	if timePassing:
 		cur_time += delta * time_accelerator
+		State.cur_time = cur_time
 		State.cur_hour = cur_hour
+		
 	if update_ui_time():
 		new_day()
 	

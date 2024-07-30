@@ -111,10 +111,10 @@ func _process(_delta: float) -> void:
 	
 	if Dic.has(str(hoveredTile)):
 		handle_selection_indicator()
-		print(Dic[str(hoveredTile)])
+		#print(Dic[str(hoveredTile)])
 	
-	if Input.is_action_just_pressed("Debug"):
-		debug_placement_grid()
+	#if Input.is_action_just_pressed("Debug"):
+		#debug_placement_grid()
 	
 	if Input.is_action_just_pressed("DebugRemove"):
 		remove_debug_grid()
@@ -128,7 +128,7 @@ func handle_selection_indicator() -> void:
 	
 	if Dic.has(str(tile)): # Select a new tile
 		set_cell(2, tile, 1, Vector2i(0,0))
-		print(Dic[str(tile)])
+		#print(Dic[str(tile)])a
 
 func update_grid_objects() -> void:
 	for node in get_tree().get_nodes_in_group("grid_object"):

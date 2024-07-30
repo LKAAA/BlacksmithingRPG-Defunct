@@ -86,7 +86,7 @@ func _physics_process(_delta):
 	if not isMenuOpen:
 		move_and_slide() 
 	
-	Log.print(str(Engine.get_frames_per_second()))
+	#Log.print(str(Engine.get_frames_per_second()))
 
 func recieve_inputs():
 	
@@ -113,10 +113,11 @@ func recieve_inputs():
 			#interactionManager.initiate_interaction()
 	
 	if Input.is_action_just_pressed("Debug"):
-		print("Test Action")
-		leveling_manager.gainXP(100, "Mining")
-		leveling_manager.gainXP(100, "Forging")
-		leveling_manager.gainXP(100, "Fishing")
+		Log.print("Begin next day")
+		State.time_passing = true
+		#leveling_manager.gainXP(100, "Mining")
+		#leveling_manager.gainXP(100, "Forging")
+		#leveling_manager.gainXP(100, "Fishing")
 	
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory.emit()
