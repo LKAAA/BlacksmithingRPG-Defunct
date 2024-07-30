@@ -8,7 +8,7 @@
 script = ExtResource("3_sn3e0")
 craftedItem = ExtResource("1_pq5qp")
 craftedQuantity = 1
-ingredients = Array[Resource("res://item/item_data.gd")]([ExtResource("2_7juud"), ExtResource("2_7juud")])
+ingredients = Array[Resource("res://item/item_data.gd")]([ExtResource("2_7juud"), ExtResource("2_7juud"), ExtResource("2_7juud"), ExtResource("2_7juud"), ExtResource("2_7juud")])
 recipieOwned = false
 craftingDuration = 20
 xpReward = 50

@@ -21,6 +21,15 @@ var player: Player
 func _ready() -> void:
 	player = PlayerManager.player
 
+func _process(delta: float) -> void:
+	if isOn:
+		if State.time_passing:
+			if timer.paused == true:
+				timer.paused = false
+		else:
+			if timer.paused == false:
+				timer.paused = true
+
 func interactedWith() -> void:
 	if readyToGrab == false:
 		decide_recipe()

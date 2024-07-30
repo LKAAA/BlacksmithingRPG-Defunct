@@ -333,7 +333,7 @@ GRID_HEIGHT = 70
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 script = ExtResource("6_nheol")
 gradient = ExtResource("7_yd8r4")
-INGAME_SPEED = 100.0
+INGAME_SPEED = 1.0
 
 [node name="CastleGate" parent="." instance=ExtResource("15_sjfcc")]
 position = Vector2(1096, 200)
