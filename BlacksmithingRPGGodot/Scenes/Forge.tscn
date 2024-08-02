@@ -47,7 +47,7 @@ height = 48.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnib4"]
 size = Vector2(28, 48)
 
-[node name="Forge" type="StaticBody2D" groups=["grid_object"]]
+[node name="Forge" type="StaticBody2D" groups=["grid_objects"]]
 script = ExtResource("1_c77jh")
 
 [node name="GridObject" parent="." instance=ExtResource("8_7rjqf")]

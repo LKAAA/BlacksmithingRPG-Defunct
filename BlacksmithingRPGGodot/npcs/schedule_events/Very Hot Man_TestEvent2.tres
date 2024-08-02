@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_fkmht")
 start_time = 9
-tile_location = Vector2i(300, 300)
+tile_location = Vector2i(856, 328)
 direction = 0
 requires_raining = false
 day = Array[String](["Monday", "Thursday"])

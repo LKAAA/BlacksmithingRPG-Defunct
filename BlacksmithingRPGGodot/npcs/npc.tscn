@@ -7,27 +7,27 @@
 [ext_resource type="Script" path="res://npcs/interaction_manager_npc.gd" id="4_7dck3"]
 [ext_resource type="PackedScene" uid="uid://b6fh16bp8putl" path="res://grid/grid_object.tscn" id="6_qfwr1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rghss"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l2bp"]
 atlas = ExtResource("2_2crcr")
-region = Rect2(0, 80, 32, 80)
+region = Rect2(0, 48, 16, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vh03v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p73qx"]
 atlas = ExtResource("2_2crcr")
-region = Rect2(0, 0, 32, 80)
+region = Rect2(0, 0, 16, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qcx6e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gis0y"]
 atlas = ExtResource("2_2crcr")
-region = Rect2(32, 0, 32, 80)
+region = Rect2(16, 0, 16, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xlrvs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pda5n"]
 atlas = ExtResource("2_2crcr")
-region = Rect2(32, 80, 32, 80)
+region = Rect2(16, 48, 16, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pvt4s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rghss")
+"texture": SubResource("AtlasTexture_2l2bp")
 }],
 "loop": true,
 "name": &"Down_Idle",
@@ -35,7 +35,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vh03v")
+"texture": SubResource("AtlasTexture_p73qx")
 }],
 "loop": true,
 "name": &"Left_Idle",
@@ -43,7 +43,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qcx6e")
+"texture": SubResource("AtlasTexture_gis0y")
 }],
 "loop": true,
 "name": &"Right_Idle",
@@ -51,7 +51,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xlrvs")
+"texture": SubResource("AtlasTexture_pda5n")
 }],
 "loop": true,
 "name": &"Up_Idle",
@@ -59,37 +59,38 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tetee"]
-radius = 13.0
-height = 66.0
+radius = 7.0
+height = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_88xqc"]
-radius = 22.0
-height = 84.0
+radius = 13.0
+height = 48.0
 
-[node name="NPC" type="CharacterBody2D" groups=["grid_object", "npcs"]]
-scale = Vector2(0.5, 0.5)
+[node name="NPC" type="CharacterBody2D" groups=["grid_objects", "npcs"]]
 script = ExtResource("1_mvn3n")
 
 [node name="GridObject" parent="." instance=ExtResource("6_qfwr1")]
+position = Vector2(0, -16)
 GRID_HEIGHT = 3
 
 [node name="NPC_Scheduler" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -16)
 script = ExtResource("2_pinjd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -36)
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_pvt4s")
-animation = &"Down_Idle"
+animation = &"Up_Idle"
 autoplay = "Down_Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -33)
+position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_tetee")
 
 [node name="InteractionManager" parent="." instance=ExtResource("3_c3frg")]
+position = Vector2(0, -16)
 script = ExtResource("4_7dck3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionManager"]
-position = Vector2(0, -34)
 shape = SubResource("CapsuleShape2D_88xqc")

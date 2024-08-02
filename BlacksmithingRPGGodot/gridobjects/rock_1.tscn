@@ -26,7 +26,7 @@ quantity = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2h3f"]
 size = Vector2(16, 16)
 
-[node name="RockType1" type="StaticBody2D" groups=["grid_object"]]
+[node name="RockType1" type="StaticBody2D" groups=["grid_objects"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_d17hs")
@@ -35,7 +35,7 @@ texture = SubResource("AtlasTexture_d17hs")
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_ge8x1")
 
-[node name="Breakable" parent="." instance=ExtResource("2_d5vrv")]
+[node name="Breakable" parent="." groups=["grid_object"] instance=ExtResource("2_d5vrv")]
 required_tool = "Pickaxe"
 drop_item = SubResource("Resource_frwgt")
 xp_reward_type = "Mining"

@@ -15,8 +15,6 @@ var active_grid
 var previous_hour: int = 5
 signal hour_passed
 
-
-
 func has_met(character_name: String) -> bool:
 	match character_name:
 		"Very Hot Man":
@@ -27,3 +25,4 @@ func _process(_delta: float) -> void:
 	if previous_hour == cur_hour - 1:
 		hour_passed.emit()
 		previous_hour += 1
+		Log.print("Hour passed")

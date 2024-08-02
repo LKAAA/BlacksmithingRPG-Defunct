@@ -56,7 +56,7 @@ func _ready() -> void:
 					type = "Uh oh"
 					obstructed = true     
 			
-			var objects = get_tree().get_nodes_in_group("grid_object")
+			var objects = get_tree().get_nodes_in_group("grid_objects")
 			for object in objects:
 				var origin_tile = local_to_map(object.position)
 				if origin_tile == Vector2i(x,y):
@@ -113,8 +113,8 @@ func _process(_delta: float) -> void:
 		handle_selection_indicator()
 		#print(Dic[str(hoveredTile)])
 	
-	#if Input.is_action_just_pressed("Debug"):
-		#debug_placement_grid()
+	if Input.is_action_just_pressed("Debug"):
+		debug_placement_grid()
 	
 	if Input.is_action_just_pressed("DebugRemove"):
 		remove_debug_grid()
@@ -169,12 +169,13 @@ func get_object_tiles(object) -> Array[Vector2i]:
 	var origin_tile = local_to_map(object.position)
 	ObjectTiles.append(origin_tile)
 	
-	if not object.has_node("GridInfo"):
+	if not object.has_node("GridObject"):
+		print(object.name)
 		push_error("Object does not have grid info")
 		return ObjectTiles
 	
-	var objectHeight = object.get_node("GridInfo").GRID_HEIGHT
-	var objectWidth = object.get_node("GridInfo").GRID_WIDTH
+	var objectHeight = object.get_node("GridObject").GRID_HEIGHT
+	var objectWidth = object.get_node("GridObject").GRID_WIDTH
 	
 	var prevTile = origin_tile
 	
@@ -220,7 +221,7 @@ func handle_obstruction() -> void:
 					"Obstructed" : false
 			}
 	
-	var objects = get_tree().get_nodes_in_group("grid_object")
+	var objects = get_tree().get_nodes_in_group("grid_objects")
 	
 	for object in objects:
 		var tiles = get_object_tiles(object)

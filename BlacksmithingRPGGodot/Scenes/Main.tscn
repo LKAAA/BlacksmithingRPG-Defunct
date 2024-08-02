@@ -240,6 +240,7 @@ texture = ExtResource("2_1kjoy")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7xyh6"]
 texture = ExtResource("4_0u8eh")
 0:0/0 = 0
+0:0/0/z_index = 10
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
@@ -351,6 +352,13 @@ position = Vector2(1112, 280)
 collision_layer = 75
 inventory_data = ExtResource("2_pn8co")
 equip_inventory_data = SubResource("Resource_4m0pn")
+
+[node name="NPC" parent="." instance=ExtResource("34_ru2h0")]
+position = Vector2(984, 232)
+npc_name = "Very Hot Man"
+is_dateable = true
+dialogue_file = ExtResource("35_f8xb0")
+schedule_events = Array[Resource("res://npcs/schedule_event.gd")]([ExtResource("36_wd3h3"), ExtResource("37_8xtaa")])
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -607,39 +615,32 @@ position = Vector2(1112, 648)
 position = Vector2(1192, 664)
 
 [node name="Tree" parent="TestObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(888, 280)
+position = Vector2(888, 312)
 
 [node name="Tree2" parent="TestObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(920, 344)
+position = Vector2(664, 424)
 
 [node name="Tree3" parent="TestObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(792, 280)
+position = Vector2(728, 296)
 
 [node name="Tree4" parent="TestObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(808, 376)
+position = Vector2(920, 472)
 
 [node name="Chest" parent="TestObjects" instance=ExtResource("10_2lris")]
-position = Vector2(1464, 280)
+position = Vector2(1496, 280)
 inventory_data = SubResource("Resource_u37tx")
 
 [node name="Forge" parent="TestObjects" instance=ExtResource("14_yy3xl")]
 position = Vector2(1304, 280)
 
 [node name="Forge2" parent="TestObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1344, 280)
+position = Vector2(1352, 280)
 
 [node name="Forge3" parent="TestObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1384, 280)
+position = Vector2(1400, 280)
 
 [node name="Forge4" parent="TestObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1424, 280)
-
-[node name="NPC" parent="TestObjects" instance=ExtResource("34_ru2h0")]
-position = Vector2(1368, 424)
-npc_name = "Very Hot Man"
-is_dateable = true
-dialogue_file = ExtResource("35_f8xb0")
-schedule_events = Array[Resource("res://npcs/schedule_event.gd")]([ExtResource("36_wd3h3"), ExtResource("37_8xtaa")])
+position = Vector2(1448, 280)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

@@ -34,6 +34,16 @@ func _ready() -> void:
 	decideWeekday()
 
 func _process(delta: float) -> void:
+	
+	if Input.is_action_just_pressed("debug_slow_down_time"):
+		if INGAME_SPEED > 5:
+			INGAME_SPEED -= 5
+		else:
+			INGAME_SPEED = 1
+	
+	if Input.is_action_just_pressed("debug_speed_up_time"):
+			INGAME_SPEED += 5
+
 	if State.time_passing:
 		time += delta * INGAME_TO_REAL_MINUTE_DURATION * INGAME_SPEED
 		var value = (sin (time - PI / 2) + 1.0) / 2.0
@@ -68,7 +78,7 @@ func _recalculate_time() -> void:
 		_calculate_display_time()
 
 func _calculate_display_time() -> void:
-	var display_hour
+	var display_hour: int
 	match hour:
 		1:
 			display_hour = 1
@@ -147,12 +157,9 @@ func _calculate_display_time() -> void:
 			am_pm = "am"
 	decideWeekday()
 	decideSeason()
-	print(day)
-	print(display_hour)
-	print(minute)
-	print(cur_weekday)
-	print(cur_season)
-	print(am_pm)
+	if State.cur_hour != display_hour:
+		print("This")
+		State.cur_hour = display_hour
 	time_tick.emit(day, display_hour, minute, cur_weekday, cur_season, am_pm)
 
 func new_day():
