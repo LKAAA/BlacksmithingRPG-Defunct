@@ -21,7 +21,6 @@ var buttons = []
 
 var currentActiveTab: int = 0
 
-
 var player: Player
 
 func _ready():

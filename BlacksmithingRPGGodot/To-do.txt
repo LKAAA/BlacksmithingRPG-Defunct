@@ -1,5 +1,16 @@
 Current to do:
 
+FIGURE OUT HOW INTERACTION WORKS
+WRITE COMMENTS TO EXPLAIN EVERY PIECE OF CODE
+REWORK EVERYTHING 
+REWORK EVERYTHING INTO ENUMS
+Player state enum - WALK, USE, ATTACK
+game state enum - Playing, Pause, dead, game over
+
+---------------------------------------------------------------------------------------------------------
+
+
+
 Swapping menus in the inventory when tabs are clicked
 Trash slot
 equipping slots specific to type of equipment (boot only slot, head only slot, chest only slot)

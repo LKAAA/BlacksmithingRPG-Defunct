@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=49 format=4 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_g7qdg"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://player/player.tscn" id="1_gngn8"]
@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cl4oo4ivhpwa7" path="res://Assets/Sprites/PlacementTileset.png" id="3_g2iut"]
 [ext_resource type="Texture2D" uid="uid://4nyibjlgn6g2" path="res://Assets/Sprites/TileSelection.png" id="4_0u8eh"]
 [ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="4_bour0"]
-[ext_resource type="PackedScene" uid="uid://bmsbntx0y201s" path="res://addons/astar2d_grid_node/astar2d_grid_node.tscn" id="5_3i7el"]
-[ext_resource type="Script" path="res://Scripts/grid.gd" id="5_fs3xq"]
 [ext_resource type="Script" path="res://day-night-cycle/day-night-cycle.gd" id="6_nheol"]
 [ext_resource type="Texture2D" uid="uid://16woqty2ouv3" path="res://day-night-cycle/daynightcycle-gradient-texture.tres" id="7_yd8r4"]
 [ext_resource type="PackedScene" uid="uid://dsd632mtmfucj" path="res://gridobjects/tree.tscn" id="8_wb64p"]
@@ -184,22 +182,9 @@ slot_datas = Array[ExtResource("14_fct8j")]([SubResource("Resource_0bw48"), SubR
 [node name="Main" type="Node2D"]
 script = ExtResource("1_g7qdg")
 
-[node name="AStar2DGridNode" parent="." instance=ExtResource("5_3i7el")]
-z_index = 50
-grid_size = Vector2i(124, 60)
-enable_debug = false
-debug_editor_only = false
-debug_point_size = 2.0
-debug_point_border_size = 0.5
-enabled_point_fill_color = Color(0.980392, 0.501961, 0.447059, 1)
-enabled_point_border_color = Color(1, 1, 1, 1)
-disabled_point_fill_color = Color(0.439216, 0.501961, 0.564706, 1)
-disabled_point_border_color = Color(1, 1, 1, 1)
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_y24ur")
 format = 2
-script = ExtResource("5_fs3xq")
 
 [node name="Base" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
@@ -212,7 +197,6 @@ tile_set = SubResource("TileSet_y24ur")
 
 [node name="SelectionIndicator" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
-position = Vector2(8, 8)
 tile_set = SubResource("TileSet_y24ur")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -221,7 +205,7 @@ gradient = ExtResource("7_yd8r4")
 INGAME_SPEED = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_gngn8")]
-position = Vector2(1256, 374)
+position = Vector2(1104, -109)
 collision_layer = 75
 inventory_data = ExtResource("2_pn8co")
 equip_inventory_data = SubResource("Resource_4m0pn")
@@ -470,53 +454,53 @@ offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="GameObjects" type="Node" parent="."]
+[node name="TestObjects" type="Node" parent="."]
 
-[node name="RockType1" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1184, 592)
+[node name="RockType1" parent="TestObjects" instance=ExtResource("37_054oh")]
+position = Vector2(1176, 584)
 
-[node name="RockType2" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1152, 624)
+[node name="RockType2" parent="TestObjects" instance=ExtResource("37_054oh")]
+position = Vector2(1160, 616)
 
-[node name="RockType3" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1120, 592)
+[node name="RockType3" parent="TestObjects" instance=ExtResource("37_054oh")]
+position = Vector2(1128, 584)
 
-[node name="RockType4" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1152, 544)
+[node name="RockType4" parent="TestObjects" instance=ExtResource("37_054oh")]
+position = Vector2(1160, 552)
 
-[node name="RockType5" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1104, 640)
+[node name="RockType5" parent="TestObjects" instance=ExtResource("37_054oh")]
+position = Vector2(1112, 648)
 
-[node name="RockType6" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1200, 656)
+[node name="RockType6" parent="TestObjects" instance=ExtResource("37_054oh")]
+position = Vector2(1192, 664)
 
-[node name="Tree" parent="GameObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(848, 336)
+[node name="Tree" parent="TestObjects" instance=ExtResource("8_wb64p")]
+position = Vector2(888, 312)
 
-[node name="Tree2" parent="GameObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(672, 432)
+[node name="Tree2" parent="TestObjects" instance=ExtResource("8_wb64p")]
+position = Vector2(664, 424)
 
-[node name="Tree3" parent="GameObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(736, 304)
+[node name="Tree3" parent="TestObjects" instance=ExtResource("8_wb64p")]
+position = Vector2(728, 296)
 
-[node name="Tree4" parent="GameObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(912, 480)
+[node name="Tree4" parent="TestObjects" instance=ExtResource("8_wb64p")]
+position = Vector2(920, 472)
 
-[node name="Chest" parent="GameObjects" instance=ExtResource("10_2lris")]
-position = Vector2(1504, 288)
+[node name="Chest" parent="TestObjects" instance=ExtResource("10_2lris")]
+position = Vector2(1496, 280)
 inventory_data = SubResource("Resource_u37tx")
 
-[node name="Forge" parent="GameObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1312, 288)
+[node name="Forge" parent="TestObjects" instance=ExtResource("14_yy3xl")]
+position = Vector2(1304, 280)
 
-[node name="Forge2" parent="GameObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1360, 288)
+[node name="Forge2" parent="TestObjects" instance=ExtResource("14_yy3xl")]
+position = Vector2(1352, 280)
 
-[node name="Forge3" parent="GameObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1408, 288)
+[node name="Forge3" parent="TestObjects" instance=ExtResource("14_yy3xl")]
+position = Vector2(1400, 280)
 
-[node name="Forge4" parent="GameObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1456, 288)
+[node name="Forge4" parent="TestObjects" instance=ExtResource("14_yy3xl")]
+position = Vector2(1448, 280)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

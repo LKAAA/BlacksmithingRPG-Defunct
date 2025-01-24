@@ -22,6 +22,7 @@ PlayerManager="*res://player/player_manager.gd"
 Log="*res://Scripts/log.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 State="*res://Scripts/state.gd"
+SignalBus="*res://Scripts/Autoloads/signal_bus.gd"
 
 [dialogue_manager]
 
@@ -33,8 +34,10 @@ general/include_notes_in_translation_exports=true
 
 [display]
 
-window/size/viewport_width=384
-window/size/viewport_height=216
+window/size/viewport_width=640
+window/size/viewport_height=320
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 window/screen_space_roughness_limiter/enabled=false

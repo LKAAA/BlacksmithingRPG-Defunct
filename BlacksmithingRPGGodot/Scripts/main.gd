@@ -11,7 +11,6 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 @onready var equip_inventory: PanelContainer = $UI/InventoryInterface/InventorySection/EquipInventory
 @onready var skills_section = $UI/InventoryInterface/SkillsSection
 #@onready var time_manager: Node = %TimeManager
-@onready var grid: Grid = $TileMap
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 @onready var day_night_cycle_ui: Control = $UI/DayNightCycleUI
 
@@ -26,7 +25,6 @@ func _ready() -> void:
 	player.use_item.connect(use_item)
 	player.request_harvest.connect(request_harvest)
 	player.request_interaction.connect(request_interaction)
-	grid.harvesting.connect(request_harvest)
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 	inventory_interface.set_equip_inventory_data(player.equip_inventory_data)
 	hot_bar_inventory.set_inventory_data(player.inventory_data)
@@ -123,19 +121,15 @@ func _on_inventory_interface_drop_slot_data(slot_data: SlotData) -> void:
 	pick_up.position = player.get_drop_position()
 	add_child(pick_up)
 
-func resetObject():
-	grid.lastClicked = null
-	pass
-
 func request_harvest(toolType: String, tool_efficiency: int, tool_damage: int):
 	var requestedObjectInfo
-	if grid.lastClicked:
-		if is_instance_valid(grid.lastClicked):
-			requestedObjectInfo = grid.lastClicked.get_node("Breakable")
-			if not requestedObjectInfo.destroyed.is_connected(resetObject):
-				requestedObjectInfo.destroyed.connect(resetObject)
-		else:
-			print("Idk")
+	#if grid.lastClicked:
+		#if is_instance_valid(grid.lastClicked):
+			#requestedObjectInfo = grid.lastClicked.get_node("Breakable")
+			#if not requestedObjectInfo.destroyed.is_connected(resetObject):
+			#	requestedObjectInfo.destroyed.connect(resetObject)
+		#else:
+			#print("Idk")
 	
 	if requestedObjectInfo:
 		if requestedObjectInfo.required_tool == toolType:
@@ -151,10 +145,10 @@ func request_harvest(toolType: String, tool_efficiency: int, tool_damage: int):
 
 func request_interaction(object: InteractionManager):
 	var requestedObjectInfo
-	if grid.check_if_in_interaction_range(object.get_parent().position):
-		object.receive_interaction()
-	else:
-		print("Not in range")
+	#if grid.check_if_in_interaction_range(object.get_parent().position):
+	#	object.receive_interaction()
+	#else:
+	#	print("Not in range")
 
 func begin_dialogue(dialogue_file: DialogueResource, character_name: String) -> void:
 	var dialogue_line_title: String

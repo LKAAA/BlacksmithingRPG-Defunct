@@ -10,15 +10,15 @@ var isMenuOpen: bool = false
 
 const RUNSPEED = 70.00
 const WALKSPEED = 50.00
-var speedBonuses: int = 0
+var speedBonuses: float = 0
+var currentSpeed: float = (RUNSPEED + speedBonuses)
 
 var isSprinting = false
 var toggleSprint = true
 
 var isInteracting = false
 
-var horizontal
-var vertical
+var direction: Vector2 = Vector2(0,0)
 var lastDirection
 
 signal toggle_inventory()
@@ -43,65 +43,34 @@ func _ready():
 		get_player_properties()
 
 func _unhandled_input(_event):
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	horizontal = Input.get_axis("walk_left", "walk_right")
-	vertical = Input.get_axis("walk_up", "walk_down")
-	
-	play_animations()
 	recieve_inputs()
 
 func _physics_process(_delta):
-	if isSprinting:
-		# First check if you are moving in both direction
-		if vertical && horizontal: 
-			# If you are moving in both direction cap speed so it doesnt move faster diagonally
-			velocity.x = horizontal * ((RUNSPEED + speedBonuses) / 1.5)
-			velocity.y = vertical * ((RUNSPEED + speedBonuses) / 1.5)
-		elif horizontal: # If only moving horizontal you want to slow down vertical to 0
-			velocity.x = horizontal * (RUNSPEED + speedBonuses)
-			velocity.y = move_toward(velocity.y, 0, (RUNSPEED + speedBonuses))
-		elif vertical: # Same but with vertical and horizontal
-			velocity.y = vertical * (RUNSPEED + speedBonuses)
-			velocity.x = move_toward(velocity.x, 0, (RUNSPEED + speedBonuses))
-		else:
-			velocity.x = move_toward(velocity.x, 0, (RUNSPEED + speedBonuses))
-			velocity.y = move_toward(velocity.y, 0, (RUNSPEED + speedBonuses))
-	else:
-		# First check if you are moving in both direction
-		if vertical && horizontal: 
-			# If you are moving in both direction cap speed so it doesnt move faster diagonally
-			velocity.x = horizontal * ((WALKSPEED + speedBonuses) / 1.5)
-			velocity.y = vertical * ((WALKSPEED + speedBonuses) / 1.5)
-		elif horizontal: # If only moving horizontal you want to slow down vertical to 0
-			velocity.x = horizontal * (WALKSPEED + speedBonuses)
-			velocity.y = move_toward(velocity.y, 0, (WALKSPEED + speedBonuses))
-		elif vertical: # Same but with vertical and horizontal
-			velocity.y = vertical * (WALKSPEED + speedBonuses)
-			velocity.x = move_toward(velocity.x, 0, (WALKSPEED + speedBonuses))
-		else:
-			velocity.x = move_toward(velocity.x, 0,(WALKSPEED + speedBonuses))
-			velocity.y = move_toward(velocity.y, 0, (WALKSPEED + speedBonuses))
+	direction = get_movement_input()
+	velocity = direction * (currentSpeed + speedBonuses)
+	velocity = velocity.limit_length(currentSpeed)
 	
 	if not isMenuOpen:
 		move_and_slide() 
-	
-	#Log.print(str(Engine.get_frames_per_second()))
+		play_animations()
+
+func get_movement_input():
+	return Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 
 func recieve_inputs():
-	
-	if toggleSprint == true: 
-		# When you press the sprint button, if not already sprinting, start, and vice versa
-		if Input.is_action_just_pressed("sprint") && isSprinting == false:
-			isSprinting = true
-		elif Input.is_action_just_pressed("sprint") && isSprinting == true:
-			isSprinting = false
+	# Sprinting
+	if toggleSprint:
+		if Input.is_action_just_pressed("sprint"):
+			isSprinting = !isSprinting
+			if isSprinting:
+				currentSpeed = RUNSPEED
+			else:
+				currentSpeed = WALKSPEED
 	else:
-		# If you hold down the sprint button, set sprinting to true
 		if Input.is_action_pressed("sprint"):
-			isSprinting = true
+			currentSpeed = RUNSPEED
 		else:
-			isSprinting = false
+			currentSpeed = WALKSPEED
 	
 	if not isMenuOpen:
 		if Input.is_action_just_pressed("use_item"):
@@ -112,9 +81,9 @@ func recieve_inputs():
 			#print("init interaction")
 			#interactionManager.initiate_interaction()
 	
-	if Input.is_action_just_pressed("Debug"):
-		Log.print("Begin next day")
-		State.time_passing = true
+	if Input.is_action_just_pressed("DebugRemove"):
+		Log.print("Toggle time passing")
+		State.time_passing = !State.time_passing
 		#leveling_manager.gainXP(100, "Mining")
 		#leveling_manager.gainXP(100, "Forging")
 		#leveling_manager.gainXP(100, "Fishing")
@@ -123,16 +92,16 @@ func recieve_inputs():
 		toggle_inventory.emit()
 
 func play_animations():
-	if vertical < 0:
+	if direction.y < 0:
 		animated_sprite.play("walk_up")
 		lastDirection = 1
-	elif vertical > 0: 
+	elif direction.y > 0: 
 		animated_sprite.play("walk_down")
 		lastDirection = 2
-	elif horizontal > 0:
+	elif direction.x > 0:
 		animated_sprite.play("walk_right")
 		lastDirection = 3
-	elif horizontal < 0:
+	elif direction.x < 0:
 		animated_sprite.play("walk_left")
 		lastDirection = 4
 	else:
@@ -149,7 +118,7 @@ func play_animations():
 				animated_sprite.play("idle_down")
 
 func _on_health_manager_death():
-	print("Oh no this is so sad little bunny died :(")
+	print("Deadge")
 
 func levelup(): # on level up increase max health by 2, and stamina by 3.
 	health_manager.increase_max_health(2)
@@ -199,16 +168,6 @@ func get_player_properties():
 	leveling_manager.setSkillLevel(PlayerProperties.cookingLevel, "Cooking")
 	leveling_manager.setSkillLevel(PlayerProperties.fishingLevel, "Fishing")
 #endregion
-
-func zoom_out_camera():
-	camera.zoom.x = 2.5
-	camera.zoom.y = 2.5
-	print("Zoom")
-
-func zoom_in_camera():
-	camera.zoom.x = 3.5
-	camera.zoom.y = 3.5
-	print("Unzoom")
 
 func get_drop_position() -> Vector2:
 	match lastDirection:

@@ -212,7 +212,6 @@ tile_set = SubResource("TileSet_y24ur")
 
 [node name="SelectionIndicator" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
-position = Vector2(8, 8)
 tile_set = SubResource("TileSet_y24ur")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
