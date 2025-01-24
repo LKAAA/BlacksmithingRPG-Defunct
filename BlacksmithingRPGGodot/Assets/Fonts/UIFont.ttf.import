@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/UIFont.ttf-5afa9f0d512ab1d86690403ad36802c8.f
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
