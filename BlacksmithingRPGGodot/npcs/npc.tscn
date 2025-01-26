@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://npcs/NPC_Scheduler.gd" id="2_pinjd"]
 [ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_c3frg"]
 [ext_resource type="Script" path="res://npcs/interaction_manager_npc.gd" id="4_7dck3"]
-[ext_resource type="PackedScene" uid="uid://b6fh16bp8putl" path="res://grid/grid_object.tscn" id="6_qfwr1"]
+[ext_resource type="PackedScene" uid="uid://ctiffudfpfy8t" path="res://grid/grid_object.tscn" id="6_qfwr1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l2bp"]
 atlas = ExtResource("2_2crcr")

@@ -7,7 +7,7 @@ var max_stamina: int
 @onready var stamina_text: Label = $StaminaText
 
 func _ready():
-	PlayerManager.player.update_max_stats.connect(update_max_stats)
+	SignalBus.update_max_stats.connect(update_max_stats)
 
 func update_max_stats(_max_health: int, _max_stamina: int) -> void:
 	max_health = _max_health

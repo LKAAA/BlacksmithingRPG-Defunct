@@ -1,121 +1,138 @@
 extends CharacterBody2D
 class_name Player
 
-@export var interaction_range: int = 2
-
-@export var inventory_data: InventoryData
-@export var equip_inventory_data: InventoryDataEquip
-
-var isMenuOpen: bool = false
-
-const RUNSPEED = 70.00
-const WALKSPEED = 50.00
-var speedBonuses: float = 0
-var currentSpeed: float = (RUNSPEED + speedBonuses)
-
-var isSprinting = false
-var toggleSprint = true
-
-var isInteracting = false
-
-var direction: Vector2 = Vector2(0,0)
-var lastDirection
-
-signal toggle_inventory()
-signal use_item()
-signal request_harvest()
-signal request_interaction()
-signal update_max_stats()
-
+# Nodes
 @onready var leveling_manager = $LevelingManager
-@onready var interactionManager = $InteractionManager
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var health_manager = $HealthManager
 @onready var stats = $PlayerStatsManager
 @onready var camera = $Camera2D
 
+# Variables
+@export var interaction_range: int = 2
+@export var inventory_data: InventoryData
+@export var equip_inventory_data: InventoryDataEquip
+
+# Movement Variables
+
+const RUNSPEED = 70.00
+const WALKSPEED = 50.00
+
+var state = {
+	"is_sprinting": false,
+	"toggle_sprint": true,
+	"direction": Vector2.ZERO,
+	"last_direction": 2,  # Default to idle_down
+	"current_speed": RUNSPEED,
+	"speed_bonuses": 0
+}
+
+var player_state = Util.PLAYER_STATES.MOVE  # Default player state
+
 func _ready():
 	PlayerManager.player = self
-	isMenuOpen = false
-	newGameStats()
-	if PlayerProperties.holdingStats:
-		print("YEYARAUYUADS")
-		get_player_properties()
-
-func _unhandled_input(_event):
-	recieve_inputs()
+	_initialize_player()
+	
+	SignalBus.connect("game_state_changed", _on_game_state_changed)
 
 func _physics_process(_delta):
-	direction = get_movement_input()
-	velocity = direction * (currentSpeed + speedBonuses)
-	velocity = velocity.limit_length(currentSpeed)
+	match Global.game_time_state:
+		Util.GAME_TIME_STATES.PLAY:
+			match player_state:
+				Util.PLAYER_STATES.MOVE:
+					_handle_movement()
+					_handle_input()
+					_handle_animations()
+					_handle_inventory_input()
+				Util.PLAYER_STATES.USE:
+					_handle_use_state()
+					_handle_movement()
+					_handle_animations()
+		Util.GAME_TIME_STATES.PAUSED:
+			_handle_inventory_input()
 	
-	if not isMenuOpen:
-		move_and_slide() 
-		play_animations()
 
-func get_movement_input():
-	return Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+func _handle_movement():
+	state["direction"] = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+	velocity = state["direction"] * (state["current_speed"] + state["speed_bonuses"])
+	velocity = velocity.limit_length(state["current_speed"] + state["speed_bonuses"])
+	move_and_slide() 
 
-func recieve_inputs():
-	# Sprinting
-	if toggleSprint:
-		if Input.is_action_just_pressed("sprint"):
-			isSprinting = !isSprinting
-			if isSprinting:
-				currentSpeed = RUNSPEED
-			else:
-				currentSpeed = WALKSPEED
+func _handle_input():
+	# Handle Sprint Toggling
+	if state["toggle_sprint"] and Input.is_action_just_pressed("sprint"):
+		state["is_sprinting"] = !state["is_sprinting"]
+		state["current_speed"] = RUNSPEED if state["is_sprinting"] else WALKSPEED
 	else:
 		if Input.is_action_pressed("sprint"):
-			currentSpeed = RUNSPEED
-		else:
-			currentSpeed = WALKSPEED
+			state["current_speed"] = RUNSPEED if state["is_sprinting"] else WALKSPEED
 	
-	if not isMenuOpen:
-		if Input.is_action_just_pressed("use_item"):
-			print("Use item")
-			use_item.emit()
-		
-		#if Input.is_action_just_pressed("interact"):
-			#print("init interaction")
-			#interactionManager.initiate_interaction()
+	if Input.is_action_just_pressed("use_item"):
+		player_state = Util.PLAYER_STATES.USE
+	
+	if Input.is_action_just_pressed("interact"):
+		SignalBus.request_interaction.emit()
 	
 	if Input.is_action_just_pressed("DebugRemove"):
 		Log.print("Toggle time passing")
-		State.time_passing = !State.time_passing
-		#leveling_manager.gainXP(100, "Mining")
-		#leveling_manager.gainXP(100, "Forging")
-		#leveling_manager.gainXP(100, "Fishing")
-	
-	if Input.is_action_just_pressed("inventory"):
-		toggle_inventory.emit()
+		SignalBus.game_state_changed.emit(Util.GAME_TIME_STATES.PAUSED if Global.game_time_state == Util.GAME_TIME_STATES.PLAY else Util.GAME_TIME_STATES.PLAY)
 
-func play_animations():
-	if direction.y < 0:
+func _handle_inventory_input():
+	if Input.is_action_just_pressed("inventory"):
+		SignalBus.toggle_inventory.emit()
+
+func _handle_animations():
+	if state["direction"].y < 0:
 		animated_sprite.play("walk_up")
-		lastDirection = 1
-	elif direction.y > 0: 
+		state["last_direction"] = 1
+	elif state["direction"].y > 0:
 		animated_sprite.play("walk_down")
-		lastDirection = 2
-	elif direction.x > 0:
+		state["last_direction"] = 2
+	elif state["direction"].x > 0:
 		animated_sprite.play("walk_right")
-		lastDirection = 3
-	elif direction.x < 0:
+		state["last_direction"] = 3
+	elif state["direction"].x < 0:
 		animated_sprite.play("walk_left")
-		lastDirection = 4
+		state["last_direction"] = 4
 	else:
-		match lastDirection:
-			1:
-				animated_sprite.play("idle_up")
-			2:
-				animated_sprite.play("idle_down")
-			3:
-				animated_sprite.play("idle_right")
-			4:
-				animated_sprite.play("idle_left")
-			_:
-				animated_sprite.play("idle_down")
+		_play_idle_animation()
+
+func _play_idle_animation() -> void:
+	match state["last_direction"]:
+		1: animated_sprite.play("idle_up")
+		2: animated_sprite.play("idle_down")
+		3: animated_sprite.play("idle_right")
+		4: animated_sprite.play("idle_left")
+		_: animated_sprite.play("idle_down")
+
+func _handle_use_state():
+	# Handle item usage logic
+	print("Player is using an item")
+	SignalBus.use_item.emit()
+	player_state = Util.PLAYER_STATES.MOVE  # Reset back to MOVE after using
+
+
+func _initialize_player():
+	_reset_stats()
+	if PlayerProperties.holdingStats:
+		_apply_saved_properties()
+
+func _reset_stats():
+	health_manager.max_health = 100
+	stats.max_stamina = 200
+	health_manager.full_heal()
+	stats.full_stamina_restore()
+
+func _apply_saved_properties():
+	health_manager.cur_health = PlayerProperties.cur_health
+	stats.cur_stamina = PlayerProperties.cur_stamina
+	health_manager.max_health = PlayerProperties.max_health
+	stats.max_stamina = PlayerProperties.max_stamina
+	_apply_skill_levels()
+
+func _apply_skill_levels():
+	for skill_name in PlayerProperties.get_skill_names():
+		leveling_manager.setSkillLevel(PlayerProperties[skill_name], skill_name)
 
 func _on_health_manager_death():
 	print("Deadge")
@@ -125,7 +142,7 @@ func levelup(): # on level up increase max health by 2, and stamina by 3.
 	health_manager.full_heal()
 	stats.increase_max_stamina(3)
 	stats.full_stamina_restore()
-	update_max_stats.emit(health_manager.max_health + 2, stats.max_stamina + 3)
+	SignalBus.update_max_stats.emit(health_manager.max_health + 2, stats.max_stamina + 3)
 
 func newGameStats():
 	health_manager.max_health = 100
@@ -170,20 +187,17 @@ func get_player_properties():
 #endregion
 
 func get_drop_position() -> Vector2:
-	match lastDirection:
-		1:
-			return self.position - Vector2(0, 20)
-		2:
-			return self.position + Vector2(0, 30)
-		3:
-			return self.position + Vector2(30, 0)
-		4:
-			return self.position - Vector2(30, 0)
-		_:
-			return self.position + Vector2(0, 30)
+	match state["last_direction"]:
+		1: return self.position - Vector2(0, 20)
+		2: return self.position + Vector2(0, 30)
+		3: return self.position + Vector2(30, 0)
+		4: return self.position - Vector2(30, 0)
+		_: return self.position + Vector2(0, 30)
 
 func harvest(toolType: String, toolStrength: int, tool_damage: int) -> void:
-	request_harvest.emit(toolType, toolStrength, tool_damage)
+	SignalBus.request_harvest.emit(toolType, toolStrength, tool_damage)
+	print("Request Harvest")
 
-func interact(object: InteractionManager) -> void:
-	request_interaction.emit(object)
+func _on_game_state_changed(new_state):
+	if new_state == Util.GAME_TIME_STATES.PLAY:
+		state["current_speed"] = WALKSPEED

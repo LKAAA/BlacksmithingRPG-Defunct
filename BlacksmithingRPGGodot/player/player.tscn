@@ -1,12 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://drfu4v1c5wh0c"]
+[gd_scene load_steps=25 format=3 uid="uid://drfu4v1c5wh0c"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_27t2j"]
 [ext_resource type="Texture2D" uid="uid://bqktms2cbpgah" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_qnijf"]
 [ext_resource type="PackedScene" uid="uid://cb16uv4cnk3td" path="res://Scenes/Managers/leveling_manager.tscn" id="2_5tb78"]
 [ext_resource type="PackedScene" uid="uid://2ytgkv3twyk7" path="res://Scenes/Managers/health_manager.tscn" id="3_k5wky"]
-[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_t5ayg"]
 [ext_resource type="PackedScene" uid="uid://du2scp2mhwtnu" path="res://Scenes/Managers/player_stats_manager.tscn" id="4_o6k7l"]
-[ext_resource type="PackedScene" uid="uid://b6fh16bp8putl" path="res://grid/grid_object.tscn" id="7_2mlfc"]
+[ext_resource type="PackedScene" uid="uid://ctiffudfpfy8t" path="res://grid/grid_object.tscn" id="7_2mlfc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4hoy"]
 atlas = ExtResource("1_qnijf")
@@ -166,9 +165,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ek807"]
 radius = 5.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tc56"]
-radius = 11.0
-
 [node name="Player" type="CharacterBody2D" groups=["grid_objects", "player"]]
 z_index = 2
 collision_layer = 73
@@ -198,11 +194,4 @@ centered = false
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_ek807")
 
-[node name="InteractionManager" parent="." instance=ExtResource("3_t5ayg")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionManager"]
-shape = SubResource("CapsuleShape2D_6tc56")
-
 [node name="GridObject" parent="." instance=ExtResource("7_2mlfc")]
-
-[connection signal="death" from="HealthManager" to="." method="_on_health_manager_death"]

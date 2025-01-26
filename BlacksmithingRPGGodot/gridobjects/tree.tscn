@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="3_03ppl"]
 [ext_resource type="PackedScene" uid="uid://dbekqd73dhguj" path="res://Scenes/breakable.tscn" id="5_ycele"]
 [ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/iron_ore.tres" id="6_rjfdk"]
-[ext_resource type="PackedScene" uid="uid://b6fh16bp8putl" path="res://grid/grid_object.tscn" id="7_aortw"]
+[ext_resource type="PackedScene" uid="uid://ctiffudfpfy8t" path="res://grid/grid_object.tscn" id="7_aortw"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="7_o3lvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vsrb"]

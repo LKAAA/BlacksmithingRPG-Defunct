@@ -19,10 +19,11 @@ config/features=PackedStringArray("4.3", "Mobile")
 
 PlayerProperties="*res://player/player_properties.tscn"
 PlayerManager="*res://player/player_manager.gd"
-Log="*res://Scripts/log.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-State="*res://Scripts/state.gd"
 SignalBus="*res://Scripts/Autoloads/signal_bus.gd"
+Global="*res://Scripts/Autoloads/Global.gd"
+Util="*res://Scripts/Autoloads/Util.gd"
+Log="*res://Scripts/Autoloads/log.gd"
 
 [dialogue_manager]
 

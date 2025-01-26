@@ -23,12 +23,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if isOn:
-		if State.time_passing:
-			if timer.paused == true:
-				timer.paused = false
-		else:
-			if timer.paused == false:
-				timer.paused = true
+		match Global.game_time_state:
+			Util.GAME_TIME_STATES.PLAY:
+				if timer.paused == false: timer.paused = true
+			Util.GAME_TIME_STATES.PAUSED:
+				if timer.paused == true: timer.paused = false
 
 func interactedWith() -> void:
 	if readyToGrab == false:
@@ -92,18 +91,10 @@ func beginCrafting(recipe: Recipe) -> void:
 
 func attemptGrab() -> void:
 	finishCraft()
-	#if PlayerManager.active_slot == requiredItem:
-		#Log.print("You have the required item to pick this up")
-		#finishCraft()
-	#else:
-		#Log.print("You don't have the required item to pick this up")
 
 func finishCraft():
-	#player.inventory.remove_item(player.activeItem.item, 1)
-	#player.inventory.add_item(ItemDatabase.get_item("Tongs (" + owedItem.name + ")"), 1)
 	PlayerManager.player.inventory_data.add_item(owedItem, owedCount)
 	player.leveling_manager.gainXP(owedXP, owedXPType)
-	#Log.print("Picked up " + ItemDatabase.get_item("Tongs (" + owedItem.name + ")").name)
 	owedItem = null
 	owedCount = 0
 	readyToGrab = false

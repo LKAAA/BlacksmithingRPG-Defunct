@@ -5,7 +5,6 @@ class_name Grid
 @onready var obstacles: Node = $"../GameObjects"
 @onready var selection_indicator: TileMapLayer = $SelectionIndicator
 
-var mousePos
 var previousTile
 @export var clamped_indicator: bool = false
 var interaction_range: int = 2
@@ -15,6 +14,10 @@ var player_tile:Vector2
 
 var lastClicked
 
+# ------------------------------------------------------------------------------
+# --- Built_in functions -------------------------------------------------------
+# ------------------------------------------------------------------------------
+
 func _ready():
 	_disable_obstacles(1)
 
@@ -22,19 +25,24 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Debug"):
 		astar_grid.set_enable_debug(!astar_grid.get_enable_debug())
 	
-	player_tile = player.position
+	player_tile = local_to_map(Vector2i(player.position.x, player.position.y))
+	
+	handle_selection_indicator()
+
+# ------------------------------------------------------------------------------
+# --- functions ----------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 func _disable_obstacles(margin: float = 0.0) -> void:
 	for obstacle in obstacles.get_children():
 		_disable_obstacle(obstacle, margin)
 
 func _disable_obstacle(obstacle: Node2D, margin: float = 0.0):
+	print(obstacle)
 	if obstacle is PhysicsBody2D:
 		var coll_shape: CollisionShape2D = obstacle.get_node("CollisionShape2D")
 		var shape = coll_shape.shape
 		var points: Array[Vector2i] = []
-		
-		print(obstacle)
 
 		if shape is CircleShape2D:
 			# Call get_id_list_inside_circle to get all point ids inside a circle
@@ -54,13 +62,7 @@ func _disable_obstacle(obstacle: Node2D, margin: float = 0.0):
 						margin)
 		astar_grid.disable_points(points)
 
-
-func _process(_delta: float) -> void:
-	mousePos = get_local_mouse_position()
-	var hoveredTile = local_to_map(mousePos)
-	
-	handle_selection_indicator()
-
+# Put selection indicator as a tile at mouse position
 func handle_selection_indicator() -> void:
 	var mouse = get_global_mouse_position()
 	
@@ -75,26 +77,19 @@ func handle_selection_indicator() -> void:
 	previousTile = tile
 	selection_indicator.set_cell(tile, 1, Vector2i(0,0))
 
+# If clicked tile is within x amount of tiles (interaction range)
 func object_clicked(object) -> void:
-	print(object.name)
 	var clickedTile = local_to_map(object.position)
 	if get_distance(clickedTile, player_tile) <= interaction_range:
 		lastClicked = object
-		print(lastClicked)
-		#harvesting.emit(object.get_node("Breakable"))
+		print(lastClicked + " was in range and clicked.")
 	else:
-		print("Not in range")
+		print(lastClicked + " was not in range.")
 
+# Distance between two tiles 
 func get_distance(tile1: Vector2i, tile2: Vector2i) -> int:
 	var tile1Vector = Vector2(tile1.x, tile1.y)
 	var tile2Vector = Vector2(tile2.x, tile2.y)
 	var distanceTo = tile1Vector.distance_to(tile2Vector)
 	var roundedDistanceTo = roundf(distanceTo)
 	return roundedDistanceTo
-
-func check_if_in_interaction_range(objectPos: Vector2) -> bool:
-	var objectTile = local_to_map(Vector2i(objectPos.x, objectPos.y))
-	if get_distance(objectTile, player_tile) <= interaction_range:
-		return true
-	else:
-		return false

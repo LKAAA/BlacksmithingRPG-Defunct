@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dbekqd73dhguj" path="res://Scenes/breakable.tscn" id="2_d5vrv"]
 [ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/iron_ore.tres" id="3_8no5c"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="4_cdvep"]
-[ext_resource type="PackedScene" uid="uid://b6fh16bp8putl" path="res://grid/grid_object.tscn" id="5_fn2ah"]
+[ext_resource type="PackedScene" uid="uid://ctiffudfpfy8t" path="res://grid/grid_object.tscn" id="5_fn2ah"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6x08r"]
 atlas = ExtResource("1_cnten")

@@ -215,7 +215,7 @@ use_parent_material = true
 position = Vector2(8, 8)
 tile_set = SubResource("TileSet_y24ur")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="DayNightCycle" type="CanvasModulate" parent="."]
 script = ExtResource("6_nheol")
 gradient = ExtResource("7_yd8r4")
 INGAME_SPEED = 1.0

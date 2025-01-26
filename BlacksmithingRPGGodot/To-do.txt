@@ -7,6 +7,9 @@ REWORK EVERYTHING INTO ENUMS
 Player state enum - WALK, USE, ATTACK
 game state enum - Playing, Pause, dead, game over
 
+CURRENTLY WORKING ON INTERACTION SYSTEM
+- GET what is clicked on
+
 ---------------------------------------------------------------------------------------------------------
 
 
