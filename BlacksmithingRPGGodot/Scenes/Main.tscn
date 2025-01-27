@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://b7m6okjf4a2y2"]
+[gd_scene load_steps=49 format=4 uid="uid://b7m6okjf4a2y2"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_g7qdg"]
 [ext_resource type="PackedScene" uid="uid://drfu4v1c5wh0c" path="res://player/player.tscn" id="1_gngn8"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Scripts/grid.gd" id="5_fs3xq"]
 [ext_resource type="Script" path="res://day-night-cycle/day-night-cycle.gd" id="6_nheol"]
 [ext_resource type="Texture2D" uid="uid://16woqty2ouv3" path="res://day-night-cycle/daynightcycle-gradient-texture.tres" id="7_yd8r4"]
-[ext_resource type="PackedScene" uid="uid://dsd632mtmfucj" path="res://gridobjects/tree.tscn" id="8_wb64p"]
 [ext_resource type="PackedScene" uid="uid://d1pqxjvx0qh0l" path="res://Scenes/chest.tscn" id="10_2lris"]
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="12_k4o7h"]
 [ext_resource type="PackedScene" uid="uid://dbqh862rtg5hi" path="res://Scenes/UI/player_menu_ui.tscn" id="12_o8tq4"]
@@ -34,7 +33,6 @@
 [ext_resource type="PackedScene" uid="uid://dfgkh35w7t27k" path="res://inventory/hot_bar_inventory.tscn" id="27_tp3vq"]
 [ext_resource type="Script" path="res://Scripts/SkillsUI.gd" id="29_nlko4"]
 [ext_resource type="FontFile" uid="uid://d2pdhgsshvjl6" path="res://Assets/Fonts/ark-pixel-10px-monospaced-ja.ttf" id="29_tvcjo"]
-[ext_resource type="PackedScene" uid="uid://deahbq4wwnnpw" path="res://gridobjects/rock_1.tscn" id="37_054oh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8sv8n"]
 texture = ExtResource("2_1kjoy")
@@ -222,7 +220,6 @@ INGAME_SPEED = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_gngn8")]
 position = Vector2(1256, 374)
-collision_layer = 75
 inventory_data = ExtResource("2_pn8co")
 equip_inventory_data = SubResource("Resource_4m0pn")
 
@@ -236,6 +233,7 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
+mouse_filter = 1
 script = ExtResource("13_1pl07")
 
 [node name="TimeText" type="Label" parent="UI/DayNightCycleUI"]
@@ -248,6 +246,7 @@ offset_right = 79.0
 offset_bottom = 80.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
+mouse_filter = 1
 theme_override_font_sizes/font_size = 12
 text = "Spring
 Wednesday, Day 1
@@ -265,6 +264,7 @@ offset_left = -40.0
 offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 script = ExtResource("24_6kgt2")
 
 [node name="HealthText" type="Label" parent="UI/PlayerStatsInterface"]
@@ -315,6 +315,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("14_oq4ix")
 
 [node name="PlayerMenuUI" parent="UI/InventoryInterface" instance=ExtResource("12_o8tq4")]
@@ -324,6 +325,7 @@ layout_mode = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="PlayerInventory" parent="UI/InventoryInterface/InventorySection" instance=ExtResource("13_gnviy")]
 layout_mode = 0
@@ -331,6 +333,7 @@ offset_left = -124.0
 offset_top = -45.0
 offset_right = -100.0
 offset_bottom = -21.0
+mouse_filter = 1
 
 [node name="EquipInventory" parent="UI/InventoryInterface/InventorySection" instance=ExtResource("13_gnviy")]
 layout_mode = 0
@@ -338,6 +341,7 @@ offset_left = 17.0
 offset_top = -41.0
 offset_right = 41.0
 offset_bottom = -17.0
+mouse_filter = 1
 
 [node name="ExternalInventory" parent="UI/InventoryInterface/InventorySection" instance=ExtResource("13_gnviy")]
 visible = false
@@ -346,11 +350,13 @@ offset_left = 15.0
 offset_top = -45.0
 offset_right = 39.0
 offset_bottom = -21.0
+mouse_filter = 1
 
 [node name="GrabbedSlot" parent="UI/InventoryInterface/InventorySection" instance=ExtResource("16_i7kvx")]
 visible = false
 modulate = Color(1, 1, 1, 0.607843)
 layout_mode = 0
+mouse_filter = 1
 
 [node name="SkillsSection" type="Control" parent="UI/InventoryInterface"]
 visible = false
@@ -359,6 +365,7 @@ offset_left = -125.0
 offset_top = -89.0
 offset_right = 125.0
 offset_bottom = 64.0
+mouse_filter = 1
 script = ExtResource("29_nlko4")
 
 [node name="LeftPage" type="VBoxContainer" parent="UI/InventoryInterface/SkillsSection"]
@@ -469,54 +476,16 @@ offset_right = 110.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 
 [node name="GameObjects" type="Node" parent="."]
-
-[node name="RockType1" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1184, 592)
-
-[node name="RockType2" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1152, 624)
-
-[node name="RockType3" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1120, 592)
-
-[node name="RockType4" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1152, 544)
-
-[node name="RockType5" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1104, 640)
-
-[node name="RockType6" parent="GameObjects" instance=ExtResource("37_054oh")]
-position = Vector2(1200, 656)
-
-[node name="Tree" parent="GameObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(848, 336)
-
-[node name="Tree2" parent="GameObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(672, 432)
-
-[node name="Tree3" parent="GameObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(736, 304)
-
-[node name="Tree4" parent="GameObjects" instance=ExtResource("8_wb64p")]
-position = Vector2(912, 480)
 
 [node name="Chest" parent="GameObjects" instance=ExtResource("10_2lris")]
 position = Vector2(1504, 288)
 inventory_data = SubResource("Resource_u37tx")
 
 [node name="Forge" parent="GameObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1312, 288)
-
-[node name="Forge2" parent="GameObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1360, 288)
-
-[node name="Forge3" parent="GameObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1408, 288)
-
-[node name="Forge4" parent="GameObjects" instance=ExtResource("14_yy3xl")]
-position = Vector2(1456, 288)
+position = Vector2(1392, 288)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

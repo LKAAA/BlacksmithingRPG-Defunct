@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1pqxjvx0qh0l"]
+[gd_scene load_steps=7 format=3 uid="uid://d1pqxjvx0qh0l"]
 
-[ext_resource type="Script" path="res://Scripts/chest.gd" id="1_t4tag"]
+[ext_resource type="Script" path="res://Scripts/InteractableObjects/chest.gd" id="1_tmvrn"]
 [ext_resource type="PackedScene" uid="uid://ctiffudfpfy8t" path="res://grid/grid_object.tscn" id="2_77sop"]
 [ext_resource type="Texture2D" uid="uid://bhkv28fd2pwbb" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Chest.png" id="2_iqsla"]
+[ext_resource type="PackedScene" uid="uid://dc016w1wvbilw" path="res://Interaction/Interaction Area/interactable.tscn" id="4_8lrv6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cno3t"]
 size = Vector2(16, 14)
 
-[node name="Chest" type="StaticBody2D" groups=["external_inventory", "grid_object"]]
-script = ExtResource("1_t4tag")
+[sub_resource type="CircleShape2D" id="CircleShape2D_chscs"]
+radius = 40.7922
+
+[node name="Chest" type="StaticBody2D" groups=["external_inventory", "grid_object", "interactable"]]
+script = ExtResource("1_tmvrn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cno3t")
@@ -20,3 +24,12 @@ position = Vector2(0, -1)
 texture = ExtResource("2_iqsla")
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
+
+[node name="Interactable" parent="." instance=ExtResource("4_8lrv6")]
+action_name = "Open Chest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_chscs")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

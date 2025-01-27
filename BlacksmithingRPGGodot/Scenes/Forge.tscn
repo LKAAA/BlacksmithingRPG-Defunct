@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://s54eyr60mjw0"]
+[gd_scene load_steps=16 format=3 uid="uid://s54eyr60mjw0"]
 
-[ext_resource type="Script" path="res://Scripts/Forge.gd" id="1_c77jh"]
+[ext_resource type="Script" path="res://Scripts/InteractableObjects/Forge.gd" id="1_c77jh"]
 [ext_resource type="Texture2D" uid="uid://08oab3va4bq0" path="res://Assets/Sprites/ForgeSpriteSheet.png" id="1_kp3in"]
 [ext_resource type="PackedScene" uid="uid://bqfe80ngwbbev" path="res://Scenes/Managers/intake_crafting_station_manager.tscn" id="2_rirfw"]
 [ext_resource type="Resource" uid="uid://d2101k08srt0j" path="res://recipe/recipes/r_iron_bar.tres" id="4_p50mt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://d1mrwlo7ojx3c" path="res://recipe/recipes/r_mithril_bar.tres" id="6_tp0aq"]
 [ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="7_x2hoy"]
 [ext_resource type="PackedScene" uid="uid://ctiffudfpfy8t" path="res://grid/grid_object.tscn" id="8_7rjqf"]
+[ext_resource type="PackedScene" uid="uid://dc016w1wvbilw" path="res://Interaction/Interaction Area/interactable.tscn" id="9_5ybuh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bxffx"]
 atlas = ExtResource("1_kp3in")
@@ -42,7 +43,10 @@ size = Vector2(28, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnib4"]
 size = Vector2(28, 48)
 
-[node name="Forge" type="StaticBody2D" groups=["grid_objects"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8eth"]
+radius = 40.3113
+
+[node name="Forge" type="StaticBody2D" groups=["grid_objects", "interactable"]]
 script = ExtResource("1_c77jh")
 
 [node name="GridObject" parent="." instance=ExtResource("8_7rjqf")]
@@ -69,6 +73,15 @@ position = Vector2(8, -28)
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_nnib4")
 
+[node name="Interactable" parent="." instance=ExtResource("9_5ybuh")]
+position = Vector2(8, -11)
+action_name = "Forge"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_s8eth")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="turnedOff" from="IntakeCraftingStationManager" to="." method="_on_intake_crafting_station_manager_turned_off"]
 [connection signal="turnedOn" from="IntakeCraftingStationManager" to="." method="_on_intake_crafting_station_manager_turned_on"]
 [connection signal="body_entered" from="BehindAdjustment" to="." method="_on_behind_adjustment_body_entered"]

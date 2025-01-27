@@ -8,6 +8,9 @@ var cur_hour: int = 0
 var cur_day: String
 var cur_season: String
 
+# Interaction Variables
+var can_interact = true
+
 # NPC VARIABLES
 var MET_NPCS = {
 	"test_npc": false

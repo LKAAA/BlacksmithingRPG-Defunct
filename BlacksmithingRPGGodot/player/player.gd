@@ -71,7 +71,7 @@ func _handle_input():
 		player_state = Util.PLAYER_STATES.USE
 	
 	if Input.is_action_just_pressed("interact"):
-		SignalBus.request_interaction.emit()
+		SignalBus.interact.emit()
 	
 	if Input.is_action_just_pressed("DebugRemove"):
 		Log.print("Toggle time passing")

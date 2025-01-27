@@ -1,8 +1,5 @@
 extends Control
 
-signal toggle_inventory
-signal change_menu
-
 const BLANK_PAGE = preload("res://Assets/Sprites/UI/Pages/BlankPage.png")
 const INVENTORY_PAGE = preload("res://Assets/Sprites/UI/Pages/InventoryPage.png")
 const INVENTORY_PAGE_EXTERNAL = preload("res://Assets/Sprites/UI/Pages/InventoryPageExternal.png")
@@ -39,33 +36,33 @@ func button_pressed(buttonType: String):
 	match buttonType:
 		"inventory":
 			currentActiveTab = 0
-			change_menu.emit(currentActiveTab)
+			SignalBus.change_menu.emit(currentActiveTab)
 			#activate inventory tab
 			#set inventory button to in use
 			#set all other buttons to not in use
 		"skills":
 			currentActiveTab = 1
-			change_menu.emit(currentActiveTab)
+			SignalBus.change_menu.emit(currentActiveTab)
 			print("Skills Pressed")
 		"relationships":
 			currentActiveTab = 2
-			change_menu.emit(currentActiveTab)
+			SignalBus.change_menu.emit(currentActiveTab)
 			print("Relationships Pressed")
 		"quests":
 			currentActiveTab = 3
-			change_menu.emit(currentActiveTab)
+			SignalBus.change_menu.emit(currentActiveTab)
 			print("Quests Pressed")
 		"runes":
 			currentActiveTab = 4
-			change_menu.emit(currentActiveTab)
+			SignalBus.change_menu.emit(currentActiveTab)
 			print("Runes Pressed")
 		"collection":
 			currentActiveTab = 5
-			change_menu.emit(currentActiveTab)
+			SignalBus.change_menu.emit(currentActiveTab)
 			print("Collection Pressed")
 		"settings":
 			currentActiveTab = 6
-			change_menu.emit(currentActiveTab)
+			SignalBus.change_menu.emit(currentActiveTab)
 			print("Settings Pressed")
 		"close":
 			exit_menu()
@@ -80,7 +77,7 @@ func update_all_button_textures():
 			buttons[button].set_not_in_use()
 
 func exit_menu():
-	toggle_inventory.emit()
+	SignalBus.toggle_inventory.emit()
 
 func set_external_inventory() -> void:
 	inventory_sprite.texture = INVENTORY_PAGE_EXTERNAL

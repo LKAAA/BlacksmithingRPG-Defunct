@@ -22,7 +22,7 @@ quantity = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7fe6"]
 size = Vector2(16, 33)
 
-[node name="Tree" type="StaticBody2D" groups=["grid_object"]]
+[node name="Tree" type="StaticBody2D" groups=["breakable", "grid_object"]]
 script = ExtResource("1_3mky2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

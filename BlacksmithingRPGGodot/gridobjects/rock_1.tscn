@@ -26,7 +26,7 @@ quantity = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2h3f"]
 size = Vector2(16, 16)
 
-[node name="RockType1" type="StaticBody2D" groups=["grid_objects"]]
+[node name="Breakable_Rock" type="StaticBody2D" groups=["breakable", "grid_objects"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_d17hs")

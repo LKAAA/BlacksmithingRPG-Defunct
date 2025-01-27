@@ -24,8 +24,7 @@ func _ready() -> void:
 	
 	# Signal Connections
 	SignalBus.toggle_inventory.connect(toggle_inventory_interface)
-	player_menu_ui.toggle_inventory.connect(toggle_inventory_interface)
-	player_menu_ui.change_menu.connect(change_menu)
+	SignalBus.change_menu.connect(change_menu)
 	SignalBus.updated_stats.connect(update_game_ui)
 	SignalBus.updated_health.connect(update_game_ui)
 	SignalBus.use_item.connect(use_item)
