@@ -1,14 +1,13 @@
 Current to do:
 
-FIGURE OUT HOW INTERACTION WORKS
 WRITE COMMENTS TO EXPLAIN EVERY PIECE OF CODE
 REWORK EVERYTHING 
 REWORK EVERYTHING INTO ENUMS
-Player state enum - WALK, USE, ATTACK
-game state enum - Playing, Pause, dead, game over
 
-CURRENTLY WORKING ON INTERACTION SYSTEM
-- GET what is clicked on
+If dropped slot is overlapping with another dropped slot and it is the same type of item
+Combine them
+
+
 
 ---------------------------------------------------------------------------------------------------------
 

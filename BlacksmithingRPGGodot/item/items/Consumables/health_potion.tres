@@ -19,3 +19,4 @@ name = "Health Potion"
 description = "A gloopy red healing potion."
 stackable = false
 texture = SubResource("AtlasTexture_dveuv")
+item_type = "Consumable"

@@ -10,6 +10,7 @@ const Slot = preload("res://inventory/slot.tscn")
 
 func _ready() -> void:
 	PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
+	SignalBus.item_changed.connect(item_changed)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("scroll_up"):
@@ -95,6 +96,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		KEY_EQUAL:
 			activeSlot = 11
 			PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
+
+func item_changed():
+	PlayerManager.set_active_item(PlayerManager.player.inventory_data.get_slot_data(activeSlot))
 
 func use_hot_bar_slot():
 	hot_bar_use.emit(activeSlot)

@@ -1,10 +1,43 @@
-[gd_scene load_steps=24 format=3 uid="uid://drfu4v1c5wh0c"]
+[gd_scene load_steps=33 format=3 uid="uid://drfu4v1c5wh0c"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_27t2j"]
 [ext_resource type="Texture2D" uid="uid://bqktms2cbpgah" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_qnijf"]
 [ext_resource type="PackedScene" uid="uid://cb16uv4cnk3td" path="res://Scenes/Managers/leveling_manager.tscn" id="2_5tb78"]
 [ext_resource type="PackedScene" uid="uid://2ytgkv3twyk7" path="res://Scenes/Managers/health_manager.tscn" id="3_k5wky"]
 [ext_resource type="PackedScene" uid="uid://du2scp2mhwtnu" path="res://Scenes/Managers/player_stats_manager.tscn" id="4_o6k7l"]
+[ext_resource type="Texture2D" uid="uid://dlaw6pgixvmu2" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Actions.png" id="5_f5ngx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0srb"]
+atlas = ExtResource("5_f5ngx")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mquyr"]
+atlas = ExtResource("5_f5ngx")
+region = Rect2(48, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pghcp"]
+atlas = ExtResource("5_f5ngx")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbdgg"]
+atlas = ExtResource("5_f5ngx")
+region = Rect2(48, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bniu"]
+atlas = ExtResource("5_f5ngx")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjqwn"]
+atlas = ExtResource("5_f5ngx")
+region = Rect2(48, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jdrk"]
+atlas = ExtResource("5_f5ngx")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww1xb"]
+atlas = ExtResource("5_f5ngx")
+region = Rect2(48, 240, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4hoy"]
 atlas = ExtResource("1_qnijf")
@@ -72,6 +105,50 @@ region = Rect2(144, 48, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vmjjh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0srb")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_mquyr")
+}],
+"loop": false,
+"name": &"axe_swing_down",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pghcp")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_vbdgg")
+}],
+"loop": false,
+"name": &"axe_swing_left",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bniu")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_bjqwn")
+}],
+"loop": false,
+"name": &"axe_swing_right",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jdrk")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ww1xb")
+}],
+"loop": false,
+"name": &"axe_swing_up",
+"speed": 4.0
+}, {
 "frames": [{
 "duration": 3.0,
 "texture": SubResource("AtlasTexture_x4hoy")
@@ -185,10 +262,12 @@ editor_draw_drag_margin = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-24, -23)
 sprite_frames = SubResource("SpriteFrames_vmjjh")
-animation = &"idle_down"
+animation = &"axe_swing_down"
 autoplay = "idle_down"
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_ek807")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

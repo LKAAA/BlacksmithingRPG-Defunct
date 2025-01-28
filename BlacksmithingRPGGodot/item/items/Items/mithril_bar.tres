@@ -13,3 +13,4 @@ name = "Mithril Bar"
 description = "A smelted bar of mithril."
 stackable = true
 texture = SubResource("AtlasTexture_k16ct")
+item_type = "Material"

@@ -14,3 +14,4 @@ description = "An empty glass bottle.
 "
 stackable = false
 texture = SubResource("AtlasTexture_7bs8x")
+item_type = "Material"

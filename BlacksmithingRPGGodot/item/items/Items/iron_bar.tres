@@ -13,3 +13,4 @@ name = "Iron Bar"
 description = "A wrought bar of iron."
 stackable = true
 texture = SubResource("AtlasTexture_2upea")
+item_type = "Material"

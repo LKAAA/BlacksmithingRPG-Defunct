@@ -5,6 +5,7 @@ class_name ItemData
 @export_multiline var description: String = ""
 @export var stackable: bool = false
 @export var texture: AtlasTexture
+@export var item_type: String = "Material"
 
 func use(_target) -> void:
 	pass

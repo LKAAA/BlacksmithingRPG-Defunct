@@ -19,3 +19,4 @@ name = "Mana Potion"
 description = "A bright blue potion that regenerates mana."
 stackable = false
 texture = SubResource("AtlasTexture_mvmqy")
+item_type = "Consumable"

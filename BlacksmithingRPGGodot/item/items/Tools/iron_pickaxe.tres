@@ -16,3 +16,4 @@ name = "Iron Pickaxe"
 description = "A pickaxe of iron."
 stackable = false
 texture = SubResource("AtlasTexture_6l8hs")
+item_type = "Tool"

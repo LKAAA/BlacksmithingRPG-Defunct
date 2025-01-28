@@ -19,3 +19,6 @@ func use(target) -> void:
 	if item_to_give:
 		print("Give item")
 		target.inventory_data.create_slot_data(item_to_give, item_to_give_quantity)
+		SignalBus.item_changed.emit()
+	
+	Global.player.player_state = Util.PLAYER_STATES.MOVE  # Reset back to MOVE after using

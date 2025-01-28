@@ -16,3 +16,4 @@ name = "Funny Hat"
 description = "It is a funny hat."
 stackable = false
 texture = SubResource("AtlasTexture_82lqr")
+item_type = "Equipment - Head"

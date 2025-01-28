@@ -12,6 +12,9 @@ class_name Player
 @export var interaction_range: int = 2
 @export var inventory_data: InventoryData
 @export var equip_inventory_data: InventoryDataEquip
+var toolDamage = 0
+var toolStrength = 0
+var toolType = ""
 
 # Movement Variables
 
@@ -46,8 +49,6 @@ func _physics_process(_delta):
 					_handle_inventory_input()
 				Util.PLAYER_STATES.USE:
 					_handle_use_state()
-					_handle_movement()
-					_handle_animations()
 		Util.GAME_TIME_STATES.PAUSED:
 			_handle_inventory_input()
 	
@@ -68,7 +69,9 @@ func _handle_input():
 			state["current_speed"] = RUNSPEED if state["is_sprinting"] else WALKSPEED
 	
 	if Input.is_action_just_pressed("use_item"):
-		player_state = Util.PLAYER_STATES.USE
+		print(PlayerManager.active_slot.item_data.item_type)
+		if PlayerManager.active_slot.item_data.item_type == "Tool" or PlayerManager.active_slot.item_data.item_type == "Consumable" or PlayerManager.active_slot.item_data.item_type == "Weapon":
+			player_state = Util.PLAYER_STATES.USE
 	
 	if Input.is_action_just_pressed("interact"):
 		SignalBus.interact.emit()
@@ -107,10 +110,8 @@ func _play_idle_animation() -> void:
 
 func _handle_use_state():
 	# Handle item usage logic
-	print("Player is using an item")
 	SignalBus.use_item.emit()
-	player_state = Util.PLAYER_STATES.MOVE  # Reset back to MOVE after using
-
+	
 
 func _initialize_player():
 	_reset_stats()
@@ -195,8 +196,44 @@ func get_drop_position() -> Vector2:
 		_: return self.position + Vector2(0, 30)
 
 func harvest(toolType: String, toolStrength: int, tool_damage: int) -> void:
+	Global.can_harvest = false
+	play_harvest_animation(toolType)
+	toolType = toolType
+	toolStrength = toolStrength
+	toolDamage = tool_damage
+	
 	SignalBus.request_harvest.emit(toolType, toolStrength, tool_damage)
+	#player_state = Util.PLAYER_STATES.MOVE  # Reset back to MOVE after using
+
+func play_harvest_animation(toolType: String) -> void:
+	match toolType:
+		"Pickaxe":
+			match state["last_direction"]:
+				1: animated_sprite.play("axe_swing_up")
+				2: animated_sprite.play("axe_swing_down")
+				3: animated_sprite.play("axe_swing_right")
+				4: animated_sprite.play("axe_swing_left")
+				_: animated_sprite.play("axe_swing_down")
+		"Axe": 
+			match state["last_direction"]:
+				1: animated_sprite.play("axe_swing_up")
+				2: animated_sprite.play("axe_swing_down")
+				3: animated_sprite.play("axe_swing_right")
+				4: animated_sprite.play("axe_swing_left")
+				_: animated_sprite.play("axe_swing_down")
+
 
 func _on_game_state_changed(new_state):
 	if new_state == Util.GAME_TIME_STATES.PLAY:
 		state["current_speed"] = WALKSPEED
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if player_state == Util.PLAYER_STATES.USE:
+		if toolType and toolStrength and toolDamage:
+			SignalBus.request_harvest.emit(toolType, toolStrength, toolDamage)
+			toolType = ""
+			toolStrength = 0
+			toolDamage = 0
+		player_state = Util.PLAYER_STATES.MOVE  # Reset back to MOVE after using
+		Global.can_harvest = true

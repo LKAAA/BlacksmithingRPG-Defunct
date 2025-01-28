@@ -13,3 +13,4 @@ name = "Mithril Ore"
 description = "A large chunk of mithril ore."
 stackable = true
 texture = SubResource("AtlasTexture_5iqi7")
+item_type = "Material"

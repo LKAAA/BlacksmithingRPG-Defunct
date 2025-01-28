@@ -22,3 +22,5 @@ signal interact(tool: String)
 signal updated_health
 signal takenDamage
 signal death
+
+signal item_changed

@@ -13,3 +13,4 @@ name = "Iron Ore"
 description = "A small chunk of iron ore."
 stackable = true
 texture = SubResource("AtlasTexture_83evi")
+item_type = "Material"

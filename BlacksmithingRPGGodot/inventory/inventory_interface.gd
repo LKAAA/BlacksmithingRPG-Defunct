@@ -45,13 +45,17 @@ func clear_external_inventory() -> void:
 func on_inventory_interact(inventory_data: InventoryData, index: int, button: int) -> void:
 	match [grabbed_slot_data, button]:
 		[null, MOUSE_BUTTON_LEFT]:
+			print("Has nothing, grab all slot data")
 			grabbed_slot_data = inventory_data.grab_slot_data(index)
 		[_, MOUSE_BUTTON_LEFT]: # _ means it can be anything
+			print("Has something, grab all of slot data")
 			grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
 		[null, MOUSE_BUTTON_RIGHT]:
+			print("Has nothing, grab single slot data")
 			grabbed_slot_data = inventory_data.grab_new_single_slot_data(index)
 			#inventory_data.use_slot_data(index)
 		[_, MOUSE_BUTTON_RIGHT]: # _ means it can be anything
+			print("Has something, grab another single slot data")
 			grabbed_slot_data = inventory_data.grab_single_slot_data(grabbed_slot_data, index)
 			#grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
 	
@@ -66,9 +70,7 @@ func update_grabbed_slot() -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton \
-			and event.is_pressed() \
-			and grabbed_slot_data:
+	if event is InputEventMouseButton and event.is_pressed() and grabbed_slot_data:
 		
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:

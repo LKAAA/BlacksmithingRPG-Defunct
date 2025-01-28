@@ -1,11 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdoox8yu15syy"]
+[gd_scene load_steps=10 format=3 uid="uid://bdoox8yu15syy"]
 
 [ext_resource type="Script" path="res://npcs/npc_core.gd" id="1_mvn3n"]
 [ext_resource type="Texture2D" uid="uid://4xlpmg48qrg3" path="res://Assets/Sprites/BaseCharacterSheet.PNG" id="2_2crcr"]
 [ext_resource type="Script" path="res://npcs/NPC_Scheduler.gd" id="2_pinjd"]
-[ext_resource type="PackedScene" uid="uid://yp7xta1els2i" path="res://Scenes/Managers/interaction_manager.tscn" id="3_c3frg"]
-[ext_resource type="Script" path="res://npcs/interaction_manager_npc.gd" id="4_7dck3"]
-[ext_resource type="PackedScene" uid="uid://ctiffudfpfy8t" path="res://grid/grid_object.tscn" id="6_qfwr1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l2bp"]
 atlas = ExtResource("2_2crcr")
@@ -62,16 +59,8 @@ animations = [{
 radius = 7.0
 height = 32.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_88xqc"]
-radius = 13.0
-height = 48.0
-
 [node name="NPC" type="CharacterBody2D" groups=["grid_objects", "npcs"]]
 script = ExtResource("1_mvn3n")
-
-[node name="GridObject" parent="." instance=ExtResource("6_qfwr1")]
-position = Vector2(0, -16)
-GRID_HEIGHT = 3
 
 [node name="NPC_Scheduler" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -87,10 +76,3 @@ autoplay = "Down_Idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_tetee")
-
-[node name="InteractionManager" parent="." instance=ExtResource("3_c3frg")]
-position = Vector2(0, -16)
-script = ExtResource("4_7dck3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionManager"]
-shape = SubResource("CapsuleShape2D_88xqc")

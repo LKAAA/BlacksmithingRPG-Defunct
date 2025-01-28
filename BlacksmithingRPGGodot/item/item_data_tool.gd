@@ -6,4 +6,6 @@ class_name ItemDataTool
 @export var tool_damage: int = 1
 
 func use(target) -> void:
-	target.harvest(tool_type, tool_efficiency, tool_damage)
+	if Global.can_harvest:
+		print("BIG")
+		target.harvest(tool_type, tool_efficiency, tool_damage)

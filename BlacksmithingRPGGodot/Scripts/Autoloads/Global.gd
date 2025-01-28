@@ -12,6 +12,7 @@ var cur_season: String
 
 # Interaction Variables
 var can_interact = true
+var can_harvest = true
 
 # NPC VARIABLES
 var MET_NPCS = {
