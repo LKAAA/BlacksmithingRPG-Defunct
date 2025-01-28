@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Breakable
 
 signal object_clicked
@@ -16,8 +16,14 @@ const PickUp = preload("res://item/pickup/pick_up.tscn")
 			"Rune Etching", "Cooking", "Fishing") var xp_reward_type: String
 @export var xp_amount: int = 1
 
+func check_harvest(toolType: String, toolStrength: int, tool_damage: int):
+	if required_tool == toolType:
+		if toolStrength >= required_efficiency:
+			take_damage(tool_damage)
+
 func take_damage(tool_damage: int):
 	health -= tool_damage
+	print(get_parent().name + " took " + str(tool_damage) + " damage. It now has " + str(health) + " health left.")
 	if health <= 0:
 		break_object()
 
@@ -38,7 +44,3 @@ func drop():
 	pick_up.slot_data = slot_data
 	pick_up.position = self.get_parent().position
 	find_parent("Main").add_child(pick_up)
-
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed("use_item"):
-		object_clicked.emit(get_parent())

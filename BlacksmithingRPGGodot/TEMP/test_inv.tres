@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=13 format=3 uid="uid://df0huqjiginuv"]
+
+[ext_resource type="Script" path="res://inventory/inventory_data.gd" id="1_iwl5h"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="2_hlwjm"]
+[ext_resource type="Resource" uid="uid://cwf6sjksrs1gy" path="res://item/items/Items/iron_bar.tres" id="3_rfig5"]
+[ext_resource type="Resource" uid="uid://b6dwkc303imqb" path="res://item/items/Consumables/stamina_potion.tres" id="4_0b5y3"]
+[ext_resource type="Resource" uid="uid://du4qygkwgn3bq" path="res://item/items/Equipment/funny_hat.tres" id="5_rspy1"]
+[ext_resource type="Resource" uid="uid://bsqf62kb7kym" path="res://item/items/Tools/iron_pickaxe.tres" id="6_3oov5"]
+[ext_resource type="Resource" uid="uid://bprk0oovcmmp3" path="res://item/items/Items/glass_bottle.tres" id="7_46cp8"]
+
+[sub_resource type="Resource" id="Resource_l1ao3"]
+script = ExtResource("2_hlwjm")
+item_data = ExtResource("3_rfig5")
+quantity = 100
+
+[sub_resource type="Resource" id="Resource_febrx"]
+script = ExtResource("2_hlwjm")
+item_data = ExtResource("4_0b5y3")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_flgdb"]
+script = ExtResource("2_hlwjm")
+item_data = ExtResource("5_rspy1")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_flxm5"]
+script = ExtResource("2_hlwjm")
+item_data = ExtResource("6_3oov5")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_2ytnn"]
+script = ExtResource("2_hlwjm")
+item_data = ExtResource("7_46cp8")
+quantity = 1
+
+[resource]
+script = ExtResource("1_iwl5h")
+slot_datas = Array[ExtResource("2_hlwjm")]([SubResource("Resource_l1ao3"), SubResource("Resource_febrx"), SubResource("Resource_flgdb"), SubResource("Resource_flxm5"), null, SubResource("Resource_2ytnn"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

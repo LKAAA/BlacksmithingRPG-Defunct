@@ -7,4 +7,3 @@ class_name ItemDataTool
 
 func use(target) -> void:
 	target.harvest(tool_type, tool_efficiency, tool_damage)
-	print("Test harvest")

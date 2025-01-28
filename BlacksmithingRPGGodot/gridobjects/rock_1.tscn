@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://deahbq4wwnnpw"]
+[gd_scene load_steps=12 format=3 uid="uid://deahbq4wwnnpw"]
 
 [ext_resource type="Texture2D" uid="uid://cxbws1mfeorh5" path="res://item/ItemSheet.PNG" id="1_cnten"]
+[ext_resource type="Script" path="res://gridobjects/generic_breakable_object.gd" id="1_n112j"]
 [ext_resource type="PackedScene" uid="uid://dbekqd73dhguj" path="res://Scenes/breakable.tscn" id="2_d5vrv"]
-[ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/iron_ore.tres" id="3_8no5c"]
+[ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/Items/iron_ore.tres" id="3_8no5c"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="4_cdvep"]
-[ext_resource type="PackedScene" uid="uid://ctiffudfpfy8t" path="res://grid/grid_object.tscn" id="5_fn2ah"]
+[ext_resource type="PackedScene" uid="uid://dc016w1wvbilw" path="res://Interaction/Interaction Area/interactable.tscn" id="5_ta4ws"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6x08r"]
 atlas = ExtResource("1_cnten")
@@ -24,9 +25,10 @@ item_data = ExtResource("3_8no5c")
 quantity = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2h3f"]
-size = Vector2(16, 16)
+size = Vector2(48, 48)
 
-[node name="Breakable_Rock" type="StaticBody2D" groups=["breakable", "grid_objects"]]
+[node name="Breakable_Rock" type="StaticBody2D"]
+script = ExtResource("1_n112j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_d17hs")
@@ -35,13 +37,17 @@ texture = SubResource("AtlasTexture_d17hs")
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_ge8x1")
 
-[node name="Breakable" parent="." groups=["grid_object"] instance=ExtResource("2_d5vrv")]
+[node name="Breakable" parent="." instance=ExtResource("2_d5vrv")]
 required_tool = "Pickaxe"
 drop_item = SubResource("Resource_frwgt")
 xp_reward_type = "Mining"
 xp_amount = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable"]
+[node name="Interactable" parent="." instance=ExtResource("5_ta4ws")]
+action_name = "break"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 shape = SubResource("RectangleShape2D_v2h3f")
 
-[node name="GridObject" parent="." instance=ExtResource("5_fn2ah")]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

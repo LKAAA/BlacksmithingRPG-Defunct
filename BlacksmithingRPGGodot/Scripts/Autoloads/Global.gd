@@ -1,5 +1,7 @@
 extends Node
 
+const DEBUG_TEXTURE = preload("res://Assets/Sprites/debug_texture.png")
+
 var main : Main
 var player : Player
 

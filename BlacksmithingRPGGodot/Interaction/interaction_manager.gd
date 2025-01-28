@@ -9,6 +9,7 @@ var active_areas = []
 
 func _ready() -> void:
 	SignalBus.interact.connect(_player_interacted)
+	SignalBus.request_harvest.connect(_player_requested_harvest)
 
 func register_area(area: Node2D): 
 	active_areas.push_back(area)
@@ -21,11 +22,12 @@ func unregister_area(area: Node2D):
 func _process(delta: float) -> void:
 	if active_areas.size() > 0 && Global.can_interact:
 		active_areas.sort_custom(_sort_by_distance_to_player)
-		label.text = BASE_TEXT + active_areas[0].action_name
-		label.global_position = active_areas[0].global_position
-		label.global_position.y -= 36
-		label.global_position.x -= label.size.x / 2
-		label.show()
+		if not active_areas[0].action_name == "break": # Really scuffed way of seeing whether or not to show the pop up
+			label.text = BASE_TEXT + active_areas[0].action_name
+			label.global_position = active_areas[0].global_position
+			label.global_position.y -= 36
+			label.global_position.x -= label.size.x / 2
+			label.show()
 	else:
 		label.hide()
 
@@ -43,3 +45,9 @@ func _player_interacted():
 			await active_areas[0].interact.call()
 			
 			Global.can_interact = true
+
+func _player_requested_harvest(toolType, toolStrength, tool_damage):
+	if active_areas.size() > 0:
+		for child in active_areas[0].get_parent().get_children(): 
+			if child is Breakable:
+				child.check_harvest(toolType, toolStrength, tool_damage)

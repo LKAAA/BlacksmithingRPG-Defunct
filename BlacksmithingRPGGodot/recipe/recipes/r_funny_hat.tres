@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=5 format=3 uid="uid://b6xxots5xjbk0"]
 
-[ext_resource type="Resource" uid="uid://du4qygkwgn3bq" path="res://item/items/funny_hat.tres" id="1_fr64e"]
-[ext_resource type="Resource" uid="uid://dyfi1m3g4oxwg" path="res://item/items/mithril_bar.tres" id="2_gvmo0"]
-[ext_resource type="Resource" uid="uid://b6dwkc303imqb" path="res://item/items/stamina_potion.tres" id="3_ylfy3"]
+[ext_resource type="Resource" uid="uid://du4qygkwgn3bq" path="res://item/items/Equipment/funny_hat.tres" id="1_fr64e"]
+[ext_resource type="Resource" uid="uid://dyfi1m3g4oxwg" path="res://item/items/Items/mithril_bar.tres" id="2_gvmo0"]
+[ext_resource type="Resource" uid="uid://b6dwkc303imqb" path="res://item/items/Consumables/stamina_potion.tres" id="3_ylfy3"]
 [ext_resource type="Script" path="res://recipe/Recipe.gd" id="4_d5jqq"]
 
 [resource]

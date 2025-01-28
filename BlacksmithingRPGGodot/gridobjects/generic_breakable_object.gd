@@ -18,9 +18,3 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	is_hovering = false
-
-func _on_behind_adjustment_body_exited(body):
-	self.z_index = 1
-
-func _on_behind_adjustment_body_entered(body):
-	self.z_index = 3

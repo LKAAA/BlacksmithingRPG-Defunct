@@ -196,7 +196,6 @@ func get_drop_position() -> Vector2:
 
 func harvest(toolType: String, toolStrength: int, tool_damage: int) -> void:
 	SignalBus.request_harvest.emit(toolType, toolStrength, tool_damage)
-	print("Request Harvest")
 
 func _on_game_state_changed(new_state):
 	if new_state == Util.GAME_TIME_STATES.PLAY:
