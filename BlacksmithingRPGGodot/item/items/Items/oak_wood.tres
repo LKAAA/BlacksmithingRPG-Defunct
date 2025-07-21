@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://ldhigtcyajcu"]
 
-[ext_resource type="Script" path="res://item/item_data.gd" id="1_qvgo2"]
+[ext_resource type="Script" uid="uid://devuxrjflvjjf" path="res://item/item_data.gd" id="1_qvgo2"]
 
 [resource]
 script = ExtResource("1_qvgo2")
 name = "Oak Wood"
 description = "A log of oak wood."
 stackable = true
+item_type = "Material"

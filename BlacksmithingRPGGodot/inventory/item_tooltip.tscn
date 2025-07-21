@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbj5qgyyeq0y2"]
 
 [ext_resource type="FontFile" uid="uid://d2pdhgsshvjl6" path="res://Assets/Fonts/ark-pixel-10px-monospaced-ja.ttf" id="1_h4gdk"]
-[ext_resource type="Script" path="res://inventory/item_tooltip.gd" id="1_lkr6q"]
+[ext_resource type="Script" uid="uid://bmbx4fcps25ic" path="res://inventory/item_tooltip.gd" id="1_lkr6q"]
 
 [node name="ItemTooltip" type="Control"]
 self_modulate = Color(1, 1, 1, 0)

@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dkjpj1hanuprx"]
 
 [ext_resource type="TileSet" uid="uid://triwh4caokk1" path="res://addons/astar2d_grid_node/examples/common/tileset.tres" id="1_c67mn"]
-[ext_resource type="Script" path="res://addons/astar2d_grid_node/examples/example_02-obstacles/example_02.gd" id="1_lgr0i"]
+[ext_resource type="Script" uid="uid://d3q6ag2wn810h" path="res://addons/astar2d_grid_node/examples/example_02-obstacles/example_02.gd" id="1_lgr0i"]
 [ext_resource type="PackedScene" uid="uid://cpre7763tyiqu" path="res://addons/astar2d_grid_node/examples/common/obstacle_tree.tscn" id="2_o26sf"]
-[ext_resource type="Script" path="res://addons/astar2d_grid_node/astar2d_grid_node.gd" id="2_qwjqa"]
+[ext_resource type="Script" uid="uid://y455heuaymtg" path="res://addons/astar2d_grid_node/astar2d_grid_node.gd" id="2_qwjqa"]
 [ext_resource type="PackedScene" uid="uid://b1r6fmbhec2xl" path="res://addons/astar2d_grid_node/examples/common/obstacle_house.tscn" id="2_vtq6u"]
 [ext_resource type="PackedScene" uid="uid://b4rhajhjs8u8w" path="res://addons/astar2d_grid_node/examples/common/character.tscn" id="3_spspn"]
 

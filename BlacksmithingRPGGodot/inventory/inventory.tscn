@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://otlmg4lw37rt"]
 
-[ext_resource type="Script" path="res://inventory/inventory.gd" id="1_fhefb"]
+[ext_resource type="Script" uid="uid://bnoxf80opu7y8" path="res://inventory/inventory.gd" id="1_fhefb"]
 
 [node name="Inventory" type="PanelContainer"]
 self_modulate = Color(1, 1, 1, 0)

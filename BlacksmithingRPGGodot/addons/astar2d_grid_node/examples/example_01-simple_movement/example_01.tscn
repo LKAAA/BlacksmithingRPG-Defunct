@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bb7ylmamm4vak"]
 
-[ext_resource type="Script" path="res://addons/astar2d_grid_node/examples/example_01-simple_movement/example_01.gd" id="1_btpoa"]
-[ext_resource type="Script" path="res://addons/astar2d_grid_node/astar2d_grid_node.gd" id="2_08x05"]
+[ext_resource type="Script" uid="uid://bhn3nckmcg3ky" path="res://addons/astar2d_grid_node/examples/example_01-simple_movement/example_01.gd" id="1_btpoa"]
+[ext_resource type="Script" uid="uid://y455heuaymtg" path="res://addons/astar2d_grid_node/astar2d_grid_node.gd" id="2_08x05"]
 [ext_resource type="TileSet" uid="uid://triwh4caokk1" path="res://addons/astar2d_grid_node/examples/common/tileset.tres" id="2_eyrba"]
 [ext_resource type="PackedScene" uid="uid://b4rhajhjs8u8w" path="res://addons/astar2d_grid_node/examples/common/character.tscn" id="3_21laa"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb16uv4cnk3td"]
 
-[ext_resource type="Script" path="res://Scripts/Managers/LevelingManager.gd" id="1_3ar5d"]
+[ext_resource type="Script" uid="uid://c5i7sb3h53aig" path="res://Scripts/Managers/LevelingManager.gd" id="1_3ar5d"]
 [ext_resource type="PackedScene" uid="uid://d21plplyq0wgb" path="res://Scenes/skill_class.tscn" id="2_ci7xg"]
 
 [node name="LevelingManager" type="Node"]

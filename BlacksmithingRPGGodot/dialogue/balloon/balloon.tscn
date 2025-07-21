@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://13s5spsk34qu"]
 
-[ext_resource type="Script" path="res://dialogue/balloon/balloon.gd" id="1_s2gbs"]
+[ext_resource type="Script" uid="uid://hpg3edy4161b" path="res://dialogue/balloon/balloon.gd" id="1_s2gbs"]
 [ext_resource type="FontFile" uid="uid://d2pdhgsshvjl6" path="res://Assets/Fonts/ark-pixel-10px-monospaced-ja.ttf" id="2_afd7q"]
-[ext_resource type="PackedScene" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_hfvdi"]
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_1j1j0"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_hfvdi"]
+[ext_resource type="Script" uid="uid://dsr5youwqkvik" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_1j1j0"]
 [ext_resource type="Texture2D" uid="uid://g1v53c8rvskf" path="res://Assets/Sprites/UI/Dialogue/DialogueBackground.png" id="3_tw16m"]
 [ext_resource type="Texture2D" uid="uid://dkbavgd63lxii" path="res://portraits/player.png" id="4_hxy2c"]
 

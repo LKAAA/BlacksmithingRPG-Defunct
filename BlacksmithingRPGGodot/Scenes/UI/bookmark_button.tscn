@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3okic32xtrxk"]
 
-[ext_resource type="Script" path="res://Scripts/bookmark_button.gd" id="1_6yidq"]
+[ext_resource type="Script" uid="uid://dt5jnd5gixci5" path="res://Scripts/bookmark_button.gd" id="1_6yidq"]
 [ext_resource type="Texture2D" uid="uid://b60vy73f5sjtd" path="res://Assets/Sprites/UI/BookmarkButtons/InventoryTabNOTINUSE.png" id="1_14smy"]
 [ext_resource type="Texture2D" uid="uid://bofv7auxs012m" path="res://Assets/Sprites/UI/BookmarkButtons/InventoryTabINUSE.png" id="2_ruhqf"]
 

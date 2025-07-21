@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ScheduleEvent" load_steps=2 format=3 uid="uid://lfdd0ni04d6k"]
 
-[ext_resource type="Script" path="res://npcs/schedule_event.gd" id="1_flnl6"]
+[ext_resource type="Script" uid="uid://bhwn7xf2vg6jk" path="res://npcs/schedule_event.gd" id="1_flnl6"]
 
 [resource]
 script = ExtResource("1_flnl6")

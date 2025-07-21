@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://deahbq4wwnnpw"]
 
 [ext_resource type="Texture2D" uid="uid://cxbws1mfeorh5" path="res://item/ItemSheet.PNG" id="1_cnten"]
-[ext_resource type="Script" path="res://gridobjects/generic_breakable_object.gd" id="1_n112j"]
+[ext_resource type="Script" uid="uid://c6ma4ak74b7xt" path="res://gridobjects/generic_breakable_object.gd" id="1_n112j"]
 [ext_resource type="PackedScene" uid="uid://dbekqd73dhguj" path="res://Scenes/breakable.tscn" id="2_d5vrv"]
 [ext_resource type="Resource" uid="uid://ccucsf44846mi" path="res://item/items/Items/iron_ore.tres" id="3_8no5c"]
-[ext_resource type="Script" path="res://inventory/slot_data.gd" id="4_cdvep"]
+[ext_resource type="Script" uid="uid://3q3ukd0gc0mb" path="res://inventory/slot_data.gd" id="4_cdvep"]
 [ext_resource type="PackedScene" uid="uid://dc016w1wvbilw" path="res://Interaction/Interaction Area/interactable.tscn" id="5_ta4ws"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6x08r"]

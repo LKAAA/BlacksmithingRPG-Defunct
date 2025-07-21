@@ -2,8 +2,8 @@
 
 [ext_resource type="Resource" uid="uid://dyfi1m3g4oxwg" path="res://item/items/Items/mithril_bar.tres" id="1_pq5qp"]
 [ext_resource type="Resource" uid="uid://cso7v7je31gjq" path="res://item/items/Items/mithril_ore.tres" id="2_7juud"]
-[ext_resource type="Script" path="res://item/item_data.gd" id="2_ddhha"]
-[ext_resource type="Script" path="res://recipe/Recipe.gd" id="3_sn3e0"]
+[ext_resource type="Script" uid="uid://devuxrjflvjjf" path="res://item/item_data.gd" id="2_ddhha"]
+[ext_resource type="Script" uid="uid://8od0w1a6utni" path="res://recipe/Recipe.gd" id="3_sn3e0"]
 
 [resource]
 script = ExtResource("3_sn3e0")

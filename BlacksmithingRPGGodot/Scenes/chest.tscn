@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1pqxjvx0qh0l"]
 
-[ext_resource type="Script" path="res://Scripts/InteractableObjects/chest.gd" id="1_tmvrn"]
+[ext_resource type="Script" uid="uid://b0uib4aow1r3x" path="res://Scripts/InteractableObjects/chest.gd" id="1_tmvrn"]
 [ext_resource type="Texture2D" uid="uid://bhkv28fd2pwbb" path="res://TEMP/Sprout Lands - Sprites - Basic pack/Objects/Chest.png" id="2_iqsla"]
 [ext_resource type="PackedScene" uid="uid://dc016w1wvbilw" path="res://Interaction/Interaction Area/interactable.tscn" id="4_8lrv6"]
 

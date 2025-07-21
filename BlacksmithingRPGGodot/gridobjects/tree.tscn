@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://dsd632mtmfucj"]
 
-[ext_resource type="Script" path="res://TEMP/TreeTranspotation.gd" id="1_3mky2"]
+[ext_resource type="Script" uid="uid://df7lyvxjfgqbk" path="res://TEMP/TreeTranspotation.gd" id="1_3mky2"]
 [ext_resource type="Texture2D" uid="uid://blhbtescxuvxt" path="res://Assets/Sprites/Tree_Temp.png" id="2_rm684"]
 [ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="3_03ppl"]
 [ext_resource type="Resource" uid="uid://ldhigtcyajcu" path="res://item/items/Items/oak_wood.tres" id="5_tqi8p"]
 [ext_resource type="PackedScene" uid="uid://dbekqd73dhguj" path="res://Scenes/breakable.tscn" id="5_ycele"]
 [ext_resource type="PackedScene" uid="uid://dc016w1wvbilw" path="res://Interaction/Interaction Area/interactable.tscn" id="7_k03kf"]
-[ext_resource type="Script" path="res://inventory/slot_data.gd" id="7_o3lvi"]
+[ext_resource type="Script" uid="uid://3q3ukd0gc0mb" path="res://inventory/slot_data.gd" id="7_o3lvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vsrb"]
 size = Vector2(60, 62)

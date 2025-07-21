@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bm2gtb8p7a3xx"]
 
-[ext_resource type="Script" path="res://inventory/grabbed_slot.gd" id="1_gaejm"]
+[ext_resource type="Script" uid="uid://d218l2vr0hh8n" path="res://inventory/grabbed_slot.gd" id="1_gaejm"]
 [ext_resource type="FontFile" uid="uid://bojmp50ujm2pp" path="res://Assets/Fonts/UIFont.ttf" id="2_1rfvq"]
 
 [sub_resource type="FontVariation" id="FontVariation_bqy0k"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqfe80ngwbbev"]
 
-[ext_resource type="Script" path="res://Scripts/Managers/IntakeCraftingStationManager.gd" id="1_swpyk"]
+[ext_resource type="Script" uid="uid://bs52wh02idcmh" path="res://Scripts/Managers/IntakeCraftingStationManager.gd" id="1_swpyk"]
 
 [node name="IntakeCraftingStationManager" type="Node"]
 script = ExtResource("1_swpyk")

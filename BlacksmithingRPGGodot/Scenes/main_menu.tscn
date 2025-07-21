@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://1fh6mrfh60vq"]
 
 [ext_resource type="FontFile" uid="uid://d2pdhgsshvjl6" path="res://Assets/Fonts/ark-pixel-10px-monospaced-ja.ttf" id="1_10kmb"]
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_68wb6"]
+[ext_resource type="Script" uid="uid://dxqpi4ra4kfa7" path="res://Scripts/main_menu.gd" id="1_68wb6"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://s54eyr60mjw0"]
 
-[ext_resource type="Script" path="res://Scripts/InteractableObjects/Forge.gd" id="1_c77jh"]
+[ext_resource type="Script" uid="uid://b2ylmk15nwi64" path="res://Scripts/InteractableObjects/Forge.gd" id="1_c77jh"]
 [ext_resource type="Texture2D" uid="uid://08oab3va4bq0" path="res://Assets/Sprites/ForgeSpriteSheet.png" id="1_kp3in"]
 [ext_resource type="PackedScene" uid="uid://bqfe80ngwbbev" path="res://Scenes/Managers/intake_crafting_station_manager.tscn" id="2_rirfw"]
 [ext_resource type="Resource" uid="uid://d2101k08srt0j" path="res://recipe/recipes/r_iron_bar.tres" id="4_p50mt"]
-[ext_resource type="Script" path="res://recipe/Recipe.gd" id="5_xw6j5"]
+[ext_resource type="Script" uid="uid://8od0w1a6utni" path="res://recipe/Recipe.gd" id="5_xw6j5"]
 [ext_resource type="Resource" uid="uid://d1mrwlo7ojx3c" path="res://recipe/recipes/r_mithril_bar.tres" id="6_tp0aq"]
 [ext_resource type="PackedScene" uid="uid://dqrtf53upmhg6" path="res://Scenes/behind_adjustment.tscn" id="7_x2hoy"]
 [ext_resource type="PackedScene" uid="uid://dc016w1wvbilw" path="res://Interaction/Interaction Area/interactable.tscn" id="9_5ybuh"]
